@@ -1,0 +1,25 @@
+.labels{
+    margin-top:5px;
+    margin-bottom: 5px;
+    width:20vw;
+    height:580px;
+    background-color: rgb(37,37,37);
+    overflow: scroll;
+}
+
+.display-labels{
+    margin:10px;
+    height:520px;
+    background-color: rgb(247, 247, 247);
+}
+
+.labels p{
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    margin-top:10px;
+    
+    color:white;
+    font-size: 25px;
+
+}

@@ -1,0 +1,41 @@
+.workspace{
+    margin-left:5px;
+    margin-right: 5px;
+    margin-top:5px;
+    height:580px;
+    width:79.3vw;
+    background-image: url('./background-annotate.jpeg');
+    display:flex;
+}
+
+.workspace button{
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    background-color: rgb(92,92,92);
+    opacity: 0.8;
+    height:580px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.workspace button:hover{
+    opacity: 0.9;
+}
+
+.next-btn{
+    position: absolute;
+    right: 5px;
+
+}
+
+.drag-and-drop{
+    width:400px;
+    height: 500px;
+}
+
+.workspace img{
+    z-index:100;
+}
