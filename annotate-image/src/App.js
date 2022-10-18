@@ -12,12 +12,12 @@ import './Workspace.css'
 function App() {
   return (
     <div className="App">
-        <Navbar/>
-        <div className='labels-workspace'>
-          <Labels/>
-          <Workspace/>
-        </div>
-        <Footer/>
+      <Navbar />
+      <div className='labels-workspace'>
+        <Labels />
+        <Workspace />
+      </div>
+      <Footer />
     </div>
   );
 }
