@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-function Navbar() {
+function Navbar({getImgNames}) {
 
   const [selectedFiles, setSelectedFiles]= useState(null)
   const [imageFiles, setImageFiles]=useState([])
@@ -19,6 +19,7 @@ function Navbar() {
 
   useEffect(() => {
     console.log(imgNames)
+    getImgNames(imgNames)
   }, [imgNames]);
 
   const changeCurrentImg = () =>{
@@ -50,7 +51,6 @@ function Navbar() {
 
   const getImgName = (imgData, x) => {
     setImgNames(imgNames => [...imgNames, {id: x, name: imgData.name}])
-    
   }
 
 
@@ -74,12 +74,14 @@ function Navbar() {
         <label id='tbd-btn'><button></button>tbd</label>
         <label id='tbd2-btn'><button></button>tbd</label>
 
-        <button onClick= {changeCurrentImg}>elo</button>
-
           {/* <img src={require(currentImgName)}/> */}
-          <img src={require('./images/' + imgNamesTest[0].name)}></img>
-          
 
+          { imgNames.map((image) => {
+           return <img src={require(`${'./images/' + image.name}`)}></img>
+          })
+         }
+          
+          
     </div>
   )
 }

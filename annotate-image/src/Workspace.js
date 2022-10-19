@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function Workspace() {
+function Workspace({imgNames}) {
 
   // const [image, setImage] = useState({ preview: '', data: '' })
 
@@ -23,6 +23,10 @@ function Workspace() {
   //   }
   //   setImage(img)
   // }
+
+  useEffect(() => {
+    console.log(imgNames)
+  }, [imgNames]);
 
   return (
     <div className='workspace'>
