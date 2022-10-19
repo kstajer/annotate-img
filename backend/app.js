@@ -17,7 +17,7 @@ const upload = multer({ storage: storage })
 
 app.use(cors())
 
-app.post('/image', upload.single('file'), function (req, res) {
+app.post('/image', upload.array('file'), function (req, res) {
     res.json({})
 })
 
