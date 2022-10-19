@@ -6,9 +6,9 @@ function Navbar() {
   const [imageFiles, setImageFiles]=useState([])
   const [currentImgID, setCurrentImgID]=useState(2)
   const [currentImgName, setCurrentImgName]=useState('IMG_2640.JPG')
-  const [imgNamesList, setImgNamesList]=useState([])
-  var id=0;
-  var imgNames=[]
+  const [imgNames, setImgNames]=useState([])
+  var index= 0
+
   var imgNamesTest = [{id:0, name:'IMG_2640.JPG'}, {id:1, name:'dddd.jpg'}, {id:2, name:'aaa.png'}]
 
   useEffect(() => {
@@ -18,8 +18,8 @@ function Navbar() {
   }, [selectedFiles]);
 
   useEffect(() => {
-    console.log(imgNamesList)
-  }, [imgNamesList]);
+    console.log(imgNames)
+  }, [imgNames]);
 
   const changeCurrentImg = () =>{
     for(var x = 0; x<imgNames.length; x++) {
@@ -33,9 +33,7 @@ function Navbar() {
     const data = new FormData()
     for(var x = 0; x<selectedFiles.length; x++) {
         data.append('file', selectedFiles[x])
-        imgNames.push({id:id, name:selectedFiles[x].name})
-        id=id+1
-        getImgName(selectedFiles[x])
+        getImgName(selectedFiles[x], imgNames.length+x)
     }
 
     const response = await fetch('http://localhost:4000/image', {
@@ -46,14 +44,15 @@ function Navbar() {
     if (response) console.log(response.statusText)
   }
 
-  const getImgName = (imgData) => {
-    setImgNamesList(imgNamesList=> [...imgNamesList, {id: id, name: imgData.name}])
-    id= id+1
-  }
-
   const handleFileChange = (event) => {
     setSelectedFiles(event.target.files)
   }
+
+  const getImgName = (imgData, x) => {
+    setImgNames(imgNames => [...imgNames, {id: x, name: imgData.name}])
+    
+  }
+
 
   return (
     <div className='navbar'>
