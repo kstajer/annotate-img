@@ -41,6 +41,7 @@ input[type="file"] {
 }
 
 .upload-label{
+    margin-left:15px;
 }
 
 .custom-file-upload {

@@ -3,42 +3,54 @@ import { useState, useEffect } from 'react';
 
 function Workspace({imgNames}) {
 
-  // const [image, setImage] = useState({ preview: '', data: '' })
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   let formData = new FormData()
-  //   formData.append('file', image.data)
-  //   const response = await fetch('http://localhost:4000/image', {
-  //     method: 'POST',
-  //     body: formData,
-  //   })
-  //   if (response) console.log(response.statusText)
-  // }
-
-  // const handleFileChange = (e) => {
-  //   const img = {
-  //     preview: URL.createObjectURL(e.target.files[0]),
-  //     data: e.target.files[0],
-  //   }
-  //   setImage(img)
-  // }
+  const [currentImgID, setCurrentImgID]=useState(-1)
+  const [currentImgName, setCurrentImgName]=useState(null)
 
   useEffect(() => {
     console.log(imgNames)
+    nextImg()
   }, [imgNames]);
+
+  useEffect(() => {
+    console.log('id: ' + currentImgID + ' name: ' +currentImgName)
+  }, [currentImgID]);
+
+  // const changeCurrentImg = () =>{
+  //   for(var x = 0; x<imgNames.length; x++) {
+  //     if(currentImgID===imgNames[x].id){
+  //       setCurrentImgName(imgNames[x].name)
+  //     }
+  // }
+  // }
+
+  const nextImg = () => {
+    if(currentImgID < imgNames.length-1){
+    setCurrentImgID(currentImgID + 1)
+    setCurrentImgName(imgNames[currentImgID+1].name)
+  }
+}
+
+  const previousImg = () => {
+    if(currentImgID > 0){
+    setCurrentImgID(currentImgID - 1)
+    setCurrentImgName(imgNames[currentImgID-1].name)
+    }
+  }
 
   return (
     <div className='workspace'>
-      <button className='previous-btn'>[</button>
-      <div clas>
-        {/* {image.preview && <img src={image.preview} width='100' height='100' alt='no file'/>}
-        <form onSubmit={handleSubmit}>
-          <input type='file' name='file' onChange={handleFileChange}></input>
-          <button type='submit'>Submit</button>
-        </form> */}
+      <button className='previous-btn' onClick={previousImg}>[</button>
+      <div className='img-display-div'>
+        {/* {imgNames.map((image) => {
+           return <img src={require(`${'./images/' + image.name}`)}></img>
+          })
+         } */}
+
+        { currentImgName &&
+        <img src={require(`${'./images/' + currentImgName}`)} className='img-display'></img>
+        }
       </div>
-      <button className='next-btn'>]</button>
+      <button className='next-btn' onClick={nextImg}>]</button>
     </div>
   )
 }

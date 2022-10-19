@@ -4,8 +4,6 @@ function Navbar({getImgNames}) {
 
   const [selectedFiles, setSelectedFiles]= useState(null)
   const [imageFiles, setImageFiles]=useState([])
-  const [currentImgID, setCurrentImgID]=useState(2)
-  const [currentImgName, setCurrentImgName]=useState('IMG_2640.JPG')
   const [imgNames, setImgNames]=useState([])
   var index= 0
 
@@ -21,14 +19,6 @@ function Navbar({getImgNames}) {
     console.log(imgNames)
     getImgNames(imgNames)
   }, [imgNames]);
-
-  const changeCurrentImg = () =>{
-    for(var x = 0; x<imgNames.length; x++) {
-      if(currentImgID===imgNames[x].id){
-        setCurrentImgName(imgNames[x].name)
-      }
-  }
-  }
 
   const handleSubmit = async (event) => {
     const data = new FormData()
@@ -60,7 +50,7 @@ function Navbar({getImgNames}) {
           <label for="upload-btn" class="custom-file-upload" id='upload-btn-label'>
           </label>
           <label for="upload-btn-label" class="upload-label">
-            Upload
+           Upload
           </label>
           <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
         </form>
@@ -76,10 +66,10 @@ function Navbar({getImgNames}) {
 
           {/* <img src={require(currentImgName)}/> */}
 
-          { imgNames.map((image) => {
+          {/* { imgNames.map((image) => {
            return <img src={require(`${'./images/' + image.name}`)}></img>
           })
-         }
+         } */}
           
           
     </div>

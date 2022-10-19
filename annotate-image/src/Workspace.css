@@ -6,6 +6,8 @@
     width: 79.3vw;
     background-image: url('./background-annotate.jpeg');
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .workspace button {
@@ -28,7 +30,11 @@
 .next-btn {
     position: absolute;
     right: 5px;
+}
 
+.previous-btn{
+    position: absolute;
+    left:20vw;
 }
 
 .drag-and-drop {
@@ -38,4 +44,17 @@
 
 .workspace img {
     z-index: 100;
+}
+
+.img-display-div{
+    height: 560px;
+    width: 70vw;
+    display:flex;
+    justify-content: center;
+}
+
+.img-display{
+    height:560px;
+    width:70vw;
+    object-fit: contain;
 }
