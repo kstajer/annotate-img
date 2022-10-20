@@ -6,7 +6,7 @@ const multer = require('multer')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'images/')
+        cb(null, '../annotate-image/src/images/')
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname)
@@ -17,7 +17,7 @@ const upload = multer({ storage: storage })
 
 app.use(cors())
 
-app.post('/image', upload.single('file'), function (req, res) {
+app.post('/image', upload.array('file'), function (req, res) {
     res.json({})
 })
 

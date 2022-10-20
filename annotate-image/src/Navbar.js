@@ -1,25 +1,60 @@
-import React from 'react'
-import Uploady from "@rpldy/uploady";
-import UploadButton from "@rpldy/upload-button";
-import UploadDropZone from "@rpldy/upload-drop-zone";
-import { asUploadButton } from "@rpldy/upload-button";
-import UploadPreview from "@rpldy/upload-preview";
+import React, {useState, useEffect} from 'react'
 
-const DivUploadButton = asUploadButton((props) => {
-  return <div {...props} style={{ cursor: "pointer" }}>
-      <label id='upload-btn'><button className='upload-btn' ></button>Upload</label>
-  </div>
-});
+function Navbar({getImgNames}) {
 
-function Navbar() {
+  const [selectedFiles, setSelectedFiles]= useState(null)
+  const [imageFiles, setImageFiles]=useState([])
+  const [imgNames, setImgNames]=useState([])
+  var index= 0
+
+  var imgNamesTest = [{id:0, name:'IMG_2640.JPG'}, {id:1, name:'dddd.jpg'}, {id:2, name:'aaa.png'}]
+
+  useEffect(() => {
+    if(selectedFiles){
+    handleSubmit(selectedFiles); 
+    }
+  }, [selectedFiles]);
+
+  useEffect(() => {
+    console.log(imgNames)
+    getImgNames(imgNames)
+  }, [imgNames]);
+
+  const handleSubmit = async (event) => {
+    const data = new FormData()
+    for(var x = 0; x<selectedFiles.length; x++) {
+        data.append('file', selectedFiles[x])
+        getImgName(selectedFiles[x], imgNames.length+x)
+    }
+
+    const response = await fetch('http://localhost:4000/image', {
+      method: 'POST',
+      body: data,
+      
+    })
+    if (response) console.log(response.statusText)
+  }
+
+  const handleFileChange = (event) => {
+    setSelectedFiles(event.target.files)
+  }
+
+  const getImgName = (imgData, x) => {
+    setImgNames(imgNames => [...imgNames, {id: x, name: imgData.name}])
+  }
+
+
   return (
     <div className='navbar'>
-        
-        <Uploady 
-        multiple
-        destination={{ }}>
-          <DivUploadButton/>
-        </Uploady>
+        <form onSubmit={handleSubmit}>
+          <label for="upload-btn" class="custom-file-upload" id='upload-btn-label'>
+          </label>
+          <label for="upload-btn-label" class="upload-label">
+           Upload
+          </label>
+          <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
+        </form>
+
         <label id='download-btn'><button className='download-btn'></button>Download</label>
         <label id='rectangle-btn'><button></button>Rectangle</label>
         <label id='polygon-btn'><button></button>Polygon</label>
@@ -29,6 +64,14 @@ function Navbar() {
         <label id='tbd-btn'><button></button>tbd</label>
         <label id='tbd2-btn'><button></button>tbd</label>
 
+          {/* <img src={require(currentImgName)}/> */}
+
+          {/* { imgNames.map((image) => {
+           return <img src={require(`${'./images/' + image.name}`)}></img>
+          })
+         } */}
+          
+          
     </div>
   )
 }

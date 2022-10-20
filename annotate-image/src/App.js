@@ -1,4 +1,5 @@
 import './App.css';
+import {useState} from 'react'
 import Navbar from './Navbar.js'
 import Labels from './Labels.js'
 import Footer from './Footer.js'
@@ -10,12 +11,19 @@ import './Footer.css'
 import './Workspace.css'
 
 function App() {
+
+  const [imgNames, setImgNames]=useState([])
+
+  const getImgNames=(data)=>{
+    setImgNames(data)
+  }
+
   return (
     <div className="App">
-      <Navbar />
+      <Navbar getImgNames={getImgNames}/>
       <div className='labels-workspace'>
         <Labels />
-        <Workspace />
+        <Workspace imgNames={imgNames}/>
       </div>
       <Footer />
     </div>

@@ -36,9 +36,28 @@
     background-color: rgb(162, 238, 170) !important;
 }
 
-#upload-btn {
+input[type="file"] {
+    display: none;
+}
+
+.upload-label{
+    margin-left:15px;
+}
+
+.custom-file-upload {
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0px;
+    margin-bottom: 3px;
     margin-left: 3vw;
     margin-right: 2vw;
+
+    width: 80px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: rgb(76, 171, 231) !important;
+    cursor: pointer;
 }
 
 #download-btn {
