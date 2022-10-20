@@ -1,13 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Navbar({getImgNames}) {
 
   const [selectedFiles, setSelectedFiles]= useState(null)
-  const [imageFiles, setImageFiles]=useState([])
-  const [imgNames, setImgNames]=useState([])
-  var index= 0
-
-  var imgNamesTest = [{id:0, name:'IMG_2640.JPG'}, {id:1, name:'dddd.jpg'}, {id:2, name:'aaa.png'}]
+  const [imgNames, setImgNames]= useState([])
 
   useEffect(() => {
     if(selectedFiles){
@@ -22,7 +18,7 @@ function Navbar({getImgNames}) {
 
   const handleSubmit = async (event) => {
     const data = new FormData()
-    for(var x = 0; x<selectedFiles.length; x++) {
+    for(var x = 0; x < selectedFiles.length; x++) {
         data.append('file', selectedFiles[x])
         getImgName(selectedFiles[x], imgNames.length+x)
     }
@@ -40,16 +36,15 @@ function Navbar({getImgNames}) {
   }
 
   const getImgName = (imgData, x) => {
-    setImgNames(imgNames => [...imgNames, {id: x, name: imgData.name}])
+    setImgNames(imgNames => [...imgNames, {id: x, name: decodeURIComponent(imgData.name)}])
   }
-
 
   return (
     <div className='navbar'>
         <form onSubmit={handleSubmit}>
-          <label for="upload-btn" class="custom-file-upload" id='upload-btn-label'>
+          <label htmlFor="upload-btn" className="custom-file-upload" id='upload-btn-label'>
           </label>
-          <label for="upload-btn-label" class="upload-label">
+          <label htmlFor="upload-btn-label" className="upload-label">
            Upload
           </label>
           <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
@@ -63,14 +58,6 @@ function Navbar({getImgNames}) {
         <label id='clear-btn'><button></button>Clear All</label>
         <label id='tbd-btn'><button></button>tbd</label>
         <label id='tbd2-btn'><button></button>tbd</label>
-
-          {/* <img src={require(currentImgName)}/> */}
-
-          {/* { imgNames.map((image) => {
-           return <img src={require(`${'./images/' + image.name}`)}></img>
-          })
-         } */}
-          
           
     </div>
   )
