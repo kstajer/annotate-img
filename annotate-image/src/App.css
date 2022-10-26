@@ -1,8 +1,13 @@
 .App {
   height: 100vh;
+  width: 100vw;
   background-color: rgb(62, 62, 62);
+  overflow: hidden;
 }
 
 .labels-workspace {
   display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height:calc(100% - (40px + 30px + 10px));
 }

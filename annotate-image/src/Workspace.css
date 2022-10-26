@@ -1,10 +1,9 @@
 .workspace {
     margin-left: 5px;
     margin-right: 5px;
-    margin-top: 5px;
-    height: 580px;
-    width: 79.3vw;
+    width: calc(100% - 85px); 
     background-image: url('./background-annotate.jpeg');
+    /* background-size: cover; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +17,7 @@
 
     background-color: rgb(92, 92, 92);
     opacity: 0.8;
-    height: 580px;
+    height:calc(100% - (40px + 30px + 10px));
     width: 30px;
     cursor: pointer;
 }
@@ -34,7 +33,7 @@
 
 .previous-btn{
     position: absolute;
-    left:20vw;
+    left:84px;
 }
 
 .drag-and-drop {
@@ -47,14 +46,16 @@
 }
 
 .img-display-div{
-    height: 560px;
-    width: 70vw;
     display:flex;
     justify-content: center;
+    margin: 35px;
+    width: calc(100% - (80px)); 
+    height: calc(100% - (70px));
 }
 
 .img-display{
-    height:560px;
-    width:70vw;
+    max-width: 100%;
     object-fit: contain;
+    border: 2px solid red;
 }
+

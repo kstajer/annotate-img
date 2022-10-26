@@ -5,6 +5,7 @@ function Workspace({imgNames}) {
 
   const [currentImgID, setCurrentImgID]= useState(-1)
   const [currentImgName, setCurrentImgName]= useState(null)
+  const [imageDimensions, setImageDimensions] = useState({});
   var imgSlide=0;
 
   useEffect(() => {
@@ -34,19 +35,14 @@ function Workspace({imgNames}) {
   }
 
   const onImgLoad = ({ target: img }) => {
-    const { naturalWidth, naturalHeight } = img;
-    console.log(naturalHeight, naturalWidth);
+    const { width, height } = img;
+    console.log(width, height)
   };
 
   return (
     <div className='workspace'>
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='img-display-div'>
-        {/* {imgNames.map((image) => {
-           return <img src={require(`${'./images/' + image.name}`)}></img>
-          })
-         } */}
-
         { currentImgName &&
         <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} className='img-display'></img>
         }
