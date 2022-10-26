@@ -46,16 +46,19 @@
 }
 
 .img-display-div{
-    display:flex;
+    display: flex;
     justify-content: center;
+    height: 100%; 
+    /* height: max-content; */
     margin: 35px;
-    width: calc(100% - (80px)); 
-    height: calc(100% - (70px));
+    border: solid 2px aqua;
 }
 
 .img-display{
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    display: block;
     border: 2px solid red;
 }
 

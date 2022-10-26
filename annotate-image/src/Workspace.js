@@ -5,8 +5,20 @@ function Workspace({imgNames}) {
 
   const [currentImgID, setCurrentImgID]= useState(-1)
   const [currentImgName, setCurrentImgName]= useState(null)
-  const [imageDimensions, setImageDimensions] = useState({});
+  const [imageCurrentSize, setImageCurrentSize] = useState([]);
+  const [imgNaturalSize, setImageNaturalSize] = useState([]);
+
   var imgSlide=0;
+
+  useEffect(() => {
+    function handleResize() {
+      if (imageCurrentSize.length > 0) {
+        console.log('resized2')
+        console.log(imageCurrentSize)
+      }
+  }
+    window.addEventListener('resize', handleResize)
+  })
 
   useEffect(() => {
     console.log(imgNames)
@@ -35,12 +47,15 @@ function Workspace({imgNames}) {
   }
 
   const onImgLoad = ({ target: img }) => {
-    const { width, height } = img;
-    console.log(width, height)
+    const { clientWidth, clientHeight } = img;
+    const { naturalWidth, naturalHeight } = img;
+    setImageCurrentSize([clientWidth, clientHeight]);
+    setImageNaturalSize([naturalWidth, clientHeight]);
+    console.log('teraz: '+ clientWidth + ', ' + clientHeight + '; oryginal: ' + naturalWidth + ', ' + naturalHeight)
   };
 
   return (
-    <div className='workspace'>
+    <div className='workspace' onresize= {()=> {console.log('resied')}}>
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='img-display-div'>
         { currentImgName &&

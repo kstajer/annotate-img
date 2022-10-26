@@ -17,17 +17,16 @@
     margin: 0;
     padding: 0;
     width: auto;
-    margin-bottom: 3px;
 
     width: 60px;
-    height: 20px;
-    border-radius: 8px;
+    height: 40px;
+    border-radius: 5px;
     background-color: rgb(50, 50, 50);
     cursor: pointer;
 }
 
 .toolbar label {
-    font-size: 14px;
+    font-size: 10px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -56,13 +55,10 @@ input[type="file"] {
     border: none;
     margin: 0;
     padding: 0px;
-    /* margin-bottom: 3px;
-    margin-left: 3vw;
-    margin-right: 2vw; */
 
-    width: 80px;
-    height: 50px;
-    border-radius: 8px;
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
     background-color: rgb(76, 171, 231) !important;
     cursor: pointer;
 }
