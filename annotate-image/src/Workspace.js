@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import Simple from "./demo";
 
 function Workspace({imgNames}) {
 
@@ -58,9 +59,7 @@ function Workspace({imgNames}) {
     <div className='workspace' onresize= {()=> {console.log('resied')}}>
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='img-display-div'>
-        { currentImgName &&
-        <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} className='img-display'></img>
-        }
+        <Simple />
       </div>
       <button className='next-btn' onClick={nextImg}>]</button>
     </div>
