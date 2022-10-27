@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import Annotation from "react-image-annotation";
 import Root from "react-image-annotation";
-import img from "../src/images/IMG_2640.JPG";
 
 export default class Simple extends Component {
-  state = {
-    annotations: [],
-    annotation: {}
-  };
+    state = {
+        annotations: [],
+        annotation: {}
+    };
 
   onChange = annotation => {
     this.setState({ annotation });
@@ -29,17 +28,17 @@ export default class Simple extends Component {
   };
 
   render() {
-    console.log(this.state.annotations);
     return (
       // <Root>
       <Annotation
-        src={img}
+        src={this.props.img}
         alt="Two pebbles anthropomorphized holding hands"
         annotations={this.state.annotations}
         type={this.state.type}
         value={this.state.annotation}
         onChange={this.onChange}
         onSubmit={this.onSubmit}
+        className="image"
         allowTouch
       />
       // </Root>

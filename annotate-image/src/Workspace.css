@@ -36,29 +36,29 @@
     left:84px;
 }
 
-.drag-and-drop {
-    width: 400px;
-    height: 500px;
+.image-wrapper {
+    height: calc(100% - 30px);
+    width: calc(100% - 100px);
+
+    border: 3px solid greenyellow;
 }
 
-.workspace img {
-    z-index: 100;
-}
-
-.img-display-div{
+.image-container {
     display: flex;
     justify-content: center;
-    height: 100%; 
-    /* height: max-content; */
-    margin: 35px;
     border: solid 2px aqua;
 }
 
-.img-display{
-    width: 100%;
+.image {
     height: 100%;
     object-fit: contain;
-    display: block;
+
     border: 2px solid red;
 }
 
+
+.hide {
+    position: absolute;
+    left: -9999;
+    visibility: hidden;
+}
