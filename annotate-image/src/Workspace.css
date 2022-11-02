@@ -1,9 +1,8 @@
 .workspace {
     margin-left: 5px;
     margin-right: 5px;
-    width: calc(100% - 85px); 
+    width: calc(100% - 85px);
     background-image: url('./background-annotate.jpeg');
-    /* background-size: cover; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +16,7 @@
 
     background-color: rgb(92, 92, 92);
     opacity: 0.8;
-    height:calc(100% - (40px + 30px + 10px));
+    height: calc(100% - (40px + 30px + 10px));
     width: 30px;
     cursor: pointer;
 }
@@ -31,34 +30,28 @@
     right: 5px;
 }
 
-.previous-btn{
+.previous-btn {
     position: absolute;
-    left:84px;
+    left: 84px;
 }
 
 .image-wrapper {
     height: calc(100% - 30px);
     width: calc(100% - 100px);
-
-    border: 3px solid greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
 }
 
 .image-container {
     display: flex;
     justify-content: center;
-    border: solid 2px aqua;
+    margin: 0px;
 }
 
 .image {
     height: 100%;
     object-fit: contain;
-
-    border: 2px solid red;
-}
-
-
-.hide {
-    position: absolute;
-    left: -9999;
-    visibility: hidden;
+    margin: 0px;
 }
