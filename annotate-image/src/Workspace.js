@@ -116,10 +116,7 @@ function Workspace({ imgNames }) {
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
           {currentImgName &&
-            <>
-              <Simple img={require(`${'./images/' + currentImgName}`)} />
-              <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} className='hide' ref={imgRef}></img>
-            </>
+            <Simple img={require(`${'./images/' + currentImgName}`)} />
           }
         </div>
       </div>
