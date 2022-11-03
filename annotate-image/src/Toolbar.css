@@ -3,11 +3,8 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    /* height: 100%; */
     width: 80px;
     background-color: rgb(37, 37, 37);
-    /* margin-top: 5px;
-    margin-bottom: 5px; */
     overflow: scroll;
 }
 
@@ -17,7 +14,7 @@
     margin: 0;
     padding: 0;
     width: auto;
-
+    margin-bottom: 3px;
     width: 60px;
     height: 40px;
     border-radius: 5px;
@@ -26,68 +23,14 @@
 }
 
 .toolbar label {
-    font-size: 10px;
+    font-size: 13px;
     color: white;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-.upload-btn {
-    background-color: rgb(76, 171, 231) !important;
-
+.toolbar hr {
+    width: 35px;
+    border: 1px solid rgb(63, 63, 63);
 }
-
-.download-btn {
-    background-color: rgb(162, 238, 170) !important;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-/* .upload-label{
-    margin-left:12px;
-} */
-
-.custom-file-upload {
-    outline: none;
-    border: none;
-    margin: 0;
-    padding: 0px;
-
-    width: 60px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: rgb(76, 171, 231) !important;
-    cursor: pointer;
-}
-
-/* #download-btn {
-    margin-right: 10vw;
-}
-
-#rectangle-btn,
-#polygon-btn {
-    margin-right: 1vw;
-}
-
-#smart-btn {
-    margin-right: 8vw;
-}
-
-#name-btn {
-    margin-right: 8vw;
-}
-
-#clear-btn {
-    margin-right: 10vw;
-}
-
-#tbd-btn {
-    margin-right: 1vw;
-}
-
-#tbd2-btn {
-    margin-right: 1vw;
-} */

@@ -21,7 +21,7 @@
     width: 40px;
     height: 30px;
     cursor: pointer;
-    border-left: 1px solid rgb(243, 243, 243);
+    border-left: 1px solid rgb(134, 134, 134);
     background-color: inherit;
 }
 
@@ -41,8 +41,9 @@
     width: 120px;
     text-align: center;
     line-height: 30px;
+    font-size: 14px;
     vertical-align: middle;
-    border-left: 1px solid rgb(243, 243, 243);
+    border-left: 1px solid rgb(134, 134, 134);
     color: rgb(243, 243, 243);
     background-color: inherit;
 }

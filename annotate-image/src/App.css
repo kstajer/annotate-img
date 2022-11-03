@@ -9,5 +9,5 @@
   display: flex;
   margin-top: 5px;
   margin-bottom: 5px;
-  height:calc(100% - (40px + 30px + 10px));
+  height: calc(100% - (40px + 30px + 10px));
 }

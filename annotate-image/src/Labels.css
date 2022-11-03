@@ -1,25 +1,94 @@
 .labels {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    /* width: 20vw;
-    height: 580px; */
-    background-color: rgb(37, 37, 37);
-    overflow: scroll;
+  width: 100vw;
+  height: 100vh;
+  margin-top: 5px;
+  margin-bottom: 35px;
+  background-color: rgb(37, 37, 37);
+  overflow: scroll;
 }
 
 .display-labels {
-    margin: 10px;
-    height: 520px;
-    background-color: rgb(247, 247, 247);
+  margin: 10px;
+  height: 90%;
+  margin-bottom: 10px;
+  background-color: rgb(247, 247, 247);
 }
 
 .labels p {
-    padding: 0;
-    margin: 0;
-    margin-left: 10px;
-    margin-top: 10px;
+  padding: 0;
+  margin: 0;
+  margin-left: 10px;
+  margin-top: 10px;
 
-    color: white;
-    font-size: 25px;
+  color: white;
+  font-size: 25px;
 
+}
+
+li a {
+  text-decoration: none;
+  color: #2d2f31;
+}
+
+.labels span {
+  padding: 15px;
+  background: #2d2f31;
+  color: white;
+  font-size: 1.2em;
+  font-variant: small-caps;
+  cursor: pointer;
+  display: block;
+}
+
+.labels span::after {
+  float: right;
+  right: 10%;
+  content: "v";
+}
+
+.slide {
+  margin-top: -50px;
+  clear: both;
+  width: 100%;
+  max-height: 0px;
+  overflow: hidden;
+  text-align: center;
+  /* transition: max-height 0.4s; */
+  -webkit-transition: max-height 1s ease;
+  -moz-transition: max-height 1s ease;
+  transition: max-height 1s ease;
+}
+
+.slide li {
+  padding: 10px;
+}
+
+#touch {
+  position: relative;
+  opacity: 0;
+  max-height: 1000px;
+}
+
+#touch:checked+.slide {
+  max-height: 500px;
+}
+
+#touch2 {
+  position: relative;
+  opacity: 0;
+  height: 0px;
+}
+
+#touch2:checked+.slide {
+  height: 300px;
+}
+
+#touch3 {
+  position: relative;
+  opacity: 0;
+  height: 0px;
+}
+
+#touch3:checked+.slide {
+  height: 300px;
 }

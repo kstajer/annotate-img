@@ -1,5 +1,11 @@
 import './App.css';
-import {useState} from 'react'
+import { useState } from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import Toolbar from './Toolbar.js'
 import Labels from './Labels.js'
 import Footer from './Footer.js'
@@ -14,21 +20,29 @@ import './Navbar.css'
 
 function App() {
 
-  const [imgNames, setImgNames]=useState([])
+  const [imgNames, setImgNames] = useState([])
 
-  const getImgNames=(data)=>{
+  const getImgNames = (data) => {
     setImgNames(data)
   }
 
   return (
     <div className="App">
-      <Navbar/>
-      <div className='labels-workspace'>
-        {/* <Labels /> */}
-        <Toolbar getImgNames={getImgNames}/>
-        <Workspace imgNames={imgNames}/>
-      </div>
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Navbar getImgNames={getImgNames} />
+              <div className='labels-workspace'>
+                <Toolbar />
+                <Workspace imgNames={imgNames} />
+              </div>
+              <Footer />
+            </>
+          } />
+          <Route path="/labels" element={<Labels />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
