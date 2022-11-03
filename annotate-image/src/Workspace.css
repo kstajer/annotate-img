@@ -47,11 +47,11 @@
 .image-container {
     display: flex;
     justify-content: center;
-    margin:0px;
 }
 
 .image {
     height: 100%;
+    width: auto;
     object-fit: contain;
     margin:0px;
 }

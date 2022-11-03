@@ -75,8 +75,8 @@ function Workspace({ imgNames }) {
   useEffect(() => {
     if (imgSlide === 1) {
       nextImg()
-      imgSlide += 1
     }
+      imgSlide+=1
   }, [imgNames]);
 
   useEffect(() => {
