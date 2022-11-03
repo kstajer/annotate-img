@@ -1,14 +1,16 @@
 import './App.css';
 import {useState} from 'react'
-import Navbar from './Navbar.js'
+import Toolbar from './Toolbar.js'
 import Labels from './Labels.js'
 import Footer from './Footer.js'
 import Workspace from './Workspace.js'
+import Navbar from './Navbar'
 
-import './Navbar.css'
+import './Toolbar.css'
 import './Labels.css'
 import './Footer.css'
 import './Workspace.css'
+import './Navbar.css'
 
 function App() {
 
@@ -20,9 +22,10 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar getImgNames={getImgNames}/>
+      <Navbar/>
       <div className='labels-workspace'>
-        <Labels />
+        {/* <Labels /> */}
+        <Toolbar getImgNames={getImgNames}/>
         <Workspace imgNames={imgNames}/>
       </div>
       <Footer />
