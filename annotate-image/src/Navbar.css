@@ -1,5 +1,5 @@
-.navbar{
-    height:40px;
+.navbar {
+    height: 40px;
     width: 100%;
     background-color: rgb(37, 37, 37);
     display: flex;
@@ -12,7 +12,6 @@
     border: none;
     margin: 0;
     padding: 0px;
-
     float: right;
     width: 120px;
     height: 30px;
@@ -24,7 +23,7 @@
     cursor: pointer;
 }
 
-.upload-div{
+.upload-div {
     margin-left: auto;
     margin-right: 0px;
 }
@@ -36,7 +35,7 @@
     padding: 0;
     width: auto;
 
-    margin-left: 10px; 
+    margin-left: 10px;
     margin-right: 40px;
     width: 120px;
     height: 30px;

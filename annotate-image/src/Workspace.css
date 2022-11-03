@@ -1,7 +1,7 @@
 .workspace {
     margin-left: 5px;
     margin-right: 5px;
-    width: calc(100% - 85px); 
+    width: calc(100% - 85px);
     background-image: url('./background-annotate.jpeg');
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@
 
     background-color: rgb(92, 92, 92);
     opacity: 0.8;
-    height:calc(100% - (40px + 30px + 10px));
+    height: calc(100% - (40px + 30px + 10px));
     width: 30px;
     cursor: pointer;
 }
@@ -30,9 +30,9 @@
     right: 5px;
 }
 
-.previous-btn{
+.previous-btn {
     position: absolute;
-    left:84px;
+    left: 84px;
 }
 
 .image-wrapper {
@@ -41,7 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin:0px;
+    margin: 0px;
 }
 
 .image-container {
@@ -53,7 +53,7 @@
     height: 100%;
     width: auto;
     object-fit: contain;
-    margin:0px;
+    margin: 0px;
 }
 
 
@@ -61,4 +61,6 @@
     position: absolute;
     left: -9999;
     visibility: hidden;
+    height: 0px;
+    width: 0px;
 }
