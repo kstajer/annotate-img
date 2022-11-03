@@ -3,7 +3,6 @@
     margin-right: 5px;
     width: calc(100% - 85px); 
     background-image: url('./background-annotate.jpeg');
-    /* background-size: cover; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,30 +35,30 @@
     left:84px;
 }
 
-.drag-and-drop {
-    width: 400px;
-    height: 500px;
-}
-
-.workspace img {
-    z-index: 100;
-}
-
-.img-display-div{
+.image-wrapper {
+    height: calc(100% - 30px);
+    width: calc(100% - 100px);
     display: flex;
     justify-content: center;
-    height: 100%; 
-    /* width: 100%; */
-    /* width: fit-content; */
-    margin: 35px;
-    border: solid 2px aqua;
+    align-items: center;
+    margin:0px;
 }
 
-.img-display{
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.image {
     height: 100%;
     width: auto;
     object-fit: contain;
-    display: block;
-    border: 2px solid red;
+    margin:0px;
 }
 
+
+.hide {
+    position: absolute;
+    left: -9999;
+    visibility: hidden;
+}
