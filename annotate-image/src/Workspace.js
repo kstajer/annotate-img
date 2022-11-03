@@ -24,8 +24,8 @@ function Workspace({imgNames}) {
     console.log(imgNames)
     if(imgSlide===1){
       nextImg()
-      imgSlide+=1
     }
+      imgSlide+=1
   }, [imgNames]);
 
   useEffect(() => {
@@ -61,6 +61,7 @@ function Workspace({imgNames}) {
         { currentImgName &&
         <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} className='img-display'></img>
         }
+        
       </div>
       <button className='next-btn' onClick={nextImg}>]</button>
     </div>

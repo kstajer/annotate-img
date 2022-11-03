@@ -1,4 +1,55 @@
 .navbar{
     height:40px;
+    width: 100%;
     background-color: rgb(37, 37, 37);
+    display: flex;
+    align-items: center;
+}
+
+#upload-btn-label {
+    display: block;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0px;
+
+    float: right;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 185%;
+    border-radius: 5px;
+    background-color: rgb(76, 171, 231) !important;
+    cursor: pointer;
+}
+
+.upload-div{
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.navbar button {
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+
+    margin-left: 10px; 
+    margin-right: 40px;
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: rgb(50, 50, 50);
+    cursor: pointer;
+}
+
+.download-btn {
+    background-color: rgb(162, 238, 170) !important;
+}
+
+input[type="file"] {
+    display: none;
 }
