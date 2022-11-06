@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
-import Simple from "./demo";
+import AnnotateImage from "./demo";
 
 function Workspace({ imgNames }) {
 
@@ -9,7 +9,6 @@ function Workspace({ imgNames }) {
 
   const [imgHeight, setImgHeight] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
-  const imgRef = useRef(null);
 
   const [workspaceHeight, setWorkspaceHeight] = useState(0);
   const [workspaceWidth, setWorkspaceWidth] = useState(0);
@@ -53,14 +52,7 @@ function Workspace({ imgNames }) {
       setOffsetWidth('100%');
       setOffsetHeight('100%');
     }
-    console.log('------------------')
-    console.log('imgName: ' + currentImgName)
-    console.log('scale: ' + scale)
-    console.log('imgWidth: ' + imgWidth + ', imgHeight: ' + imgHeight)
-    console.log('img_ratio (H/W) = ' + Math.round((imgHeight / imgWidth) * 10000) / 10000);
-    console.log('workspaceWidth: ' + workspaceWidth + ', workspaceHeight: ' + workspaceHeight)
-    console.log('workspace_ratio (H/W) = ' + Math.round((workspaceHeight / workspaceWidth) * 10000) / 10000);
-    console.log('offsetWidth: ' + offsetWidth + ', offsetHeight: ' + offsetHeight)
+
   }
 
   var imgSlide = 0;
@@ -80,7 +72,7 @@ function Workspace({ imgNames }) {
   }, [imgNames]);
 
   useEffect(() => {
-    console.log('id: ' + currentImgID + ' name: ' + currentImgName)
+    // console.log('id: ' + currentImgID + ' name: ' + currentImgName)
   }, [currentImgID]);
 
   useEffect(() => {
@@ -111,14 +103,14 @@ function Workspace({ imgNames }) {
 
 
   return (
-    <div className='workspace' onresize={() => { console.log('resied') }}>
+    <div className='workspace' onresize={() => { }}>
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
           {currentImgName &&
             <>
-              <Simple img={require(`${'./images/' + currentImgName}`)} />
-              <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} className='hide' ref={imgRef}></img>
+              <AnnotateImage img={require(`${'./images/' + currentImgName}`)} currentImgID={currentImgID} imgNames={imgNames} />
+              <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} style={{display: 'none'}}></img>
             </>
           }
         </div>

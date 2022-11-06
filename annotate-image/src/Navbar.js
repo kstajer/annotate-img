@@ -12,7 +12,7 @@ function Navbar({ getImgNames }) {
   }, [selectedFiles]);
 
   useEffect(() => {
-    console.log(imgNames)
+    // console.log(imgNames)
     getImgNames(imgNames)
   }, [imgNames]);
 
@@ -36,7 +36,7 @@ function Navbar({ getImgNames }) {
   }
 
   const getImgName = (imgData, x) => {
-    setImgNames(imgNames => [...imgNames, { id: x, name: decodeURIComponent(imgData.name) }])
+    setImgNames(imgNames => [...imgNames, { id: x, name: decodeURIComponent(imgData.name), annotations: [] }])
   }
 
   return (

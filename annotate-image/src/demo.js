@@ -2,18 +2,35 @@ import {React, useState, useEffect} from 'react'
 import Annotation from "react-image-annotation";
 import Root from "react-image-annotation";
 
-function Simple({img}){
+function AnnotateImage({img, currentImgID, imgNames}){
 
-    const [annotation, setAnnotation]= useState({})
-    const [annotations, setAnnotations]= useState([])
-
+    const [annotation, setAnnotation] = useState({})
+    const [annotations, setAnnotations] = useState([])
+    const [allAnnotations, setAllAnnotations] = useState(imgNames)
+    const [imageId, setImageId] = useState(currentImgID)
+  
     useEffect(() => {
-        console.log(annotation, annotations)
-      }, [annotation, annotations]);
+        setAnnotations(allAnnotations[currentImgID].annotations)
+        console.log('przed: '+imageId)
+        setImageId(currentImgID)
+        console.log('po: '+imageId)
+      }, [currentImgID]);
 
     const onChange = (annotation) => {
         setAnnotation(annotation);
     };
+
+
+    useEffect(() => {
+        allAnnotations.map((image) => {
+            if(image.id === currentImgID){
+            image.annotations = annotations
+            }
+        })
+        console.log(allAnnotations)
+
+      }, [annotations]);
+
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
@@ -27,7 +44,6 @@ function Simple({img}){
         }))
     };
 
-        console.log(annotations)
         return (
             // <Root>
             <Annotation
@@ -45,4 +61,4 @@ function Simple({img}){
         );
     }
 
-export default Simple;
+export default AnnotateImage;
