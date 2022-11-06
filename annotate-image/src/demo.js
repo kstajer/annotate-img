@@ -1,47 +1,48 @@
-import React, { Component } from "react";
+import {React, useState, useEffect} from 'react'
 import Annotation from "react-image-annotation";
 import Root from "react-image-annotation";
 
-export default class Simple extends Component {
-    state = {
-        annotations: [],
-        annotation: {}
+function Simple({img}){
+
+    const [annotation, setAnnotation]= useState({})
+    const [annotations, setAnnotations]= useState([])
+
+    useEffect(() => {
+        console.log(annotation, annotations)
+      }, [annotation, annotations]);
+
+    const onChange = (annotation) => {
+        setAnnotation(annotation);
     };
 
-    onChange = annotation => {
-        this.setState({ annotation });
-    };
-
-    onSubmit = annotation => {
+    const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
-
-        this.setState({
-            annotation: {},
-            annotations: this.state.annotations.concat({
-                geometry,
-                data: {
-                    ...data,
-                    id: Math.random()
-                }
-            })
-        });
+        setAnnotation({})
+        setAnnotations(annotations.concat({
+            geometry,
+            data: {
+                ...data,
+                id: Math.random()
+            }
+        }))
     };
 
-    render() {
+        console.log(annotations)
         return (
             // <Root>
             <Annotation
-                src={this.props.img}
+                src={img}
                 alt="Two pebbles anthropomorphized holding hands"
-                annotations={this.state.annotations}
-                type={this.state.type}
-                value={this.state.annotation}
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
+                annotations={annotations}
+                // type={RECT}
+                value={annotation}
+                onChange={onChange}
+                onSubmit={onSubmit}
                 className="image"
                 allowTouch
             />
             // </Root>
         );
     }
-}
+
+export default Simple;
