@@ -1,0 +1,78 @@
+diff --git a/node_modules/react-image-annotation/.DS_Store b/node_modules/react-image-annotation/.DS_Store
+new file mode 100644
+index 0000000..8365dd8
+Binary files /dev/null and b/node_modules/react-image-annotation/.DS_Store differ
+diff --git a/node_modules/react-image-annotation/es/.DS_Store b/node_modules/react-image-annotation/es/.DS_Store
+new file mode 100644
+index 0000000..1a46078
+Binary files /dev/null and b/node_modules/react-image-annotation/es/.DS_Store differ
+diff --git a/node_modules/react-image-annotation/es/components/.DS_Store b/node_modules/react-image-annotation/es/components/.DS_Store
+new file mode 100644
+index 0000000..c62cc18
+Binary files /dev/null and b/node_modules/react-image-annotation/es/components/.DS_Store differ
+diff --git a/node_modules/react-image-annotation/es/components/TextEditor/index.js b/node_modules/react-image-annotation/es/components/TextEditor/index.js
+index a04cfa5..bf54687 100644
+--- a/node_modules/react-image-annotation/es/components/TextEditor/index.js
++++ b/node_modules/react-image-annotation/es/components/TextEditor/index.js
+@@ -18,7 +18,7 @@ function TextEditor(props) {
+       Inner,
+       null,
+       React.createElement('textarea', {
+-        placeholder: 'Write description',
++        placeholder: 'dodaj opis',
+         onFocus: props.onFocus,
+         onBlur: props.onBlur,
+         onChange: props.onChange,
+@@ -30,7 +30,7 @@ function TextEditor(props) {
+       {
+         onClick: props.onSubmit
+       },
+-      'Submit'
++      'Dodaj'
+     )
+   );
+ }
+diff --git a/node_modules/react-image-annotation/lib/components/Rectangle/index.js b/node_modules/react-image-annotation/lib/components/Rectangle/index.js
+index 0fc5f66..a327887 100644
+--- a/node_modules/react-image-annotation/lib/components/Rectangle/index.js
++++ b/node_modules/react-image-annotation/lib/components/Rectangle/index.js
+@@ -4,7 +4,7 @@ exports.__esModule = true;
+ 
+ var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+ 
+-var _templateObject = _taggedTemplateLiteralLoose(['\n  border: dashed 2px black;\n  box-shadow: 0px 0px 1px 1px white inset;\n  box-sizing: border-box;\n  transition: box-shadow 0.21s ease-in-out;\n'], ['\n  border: dashed 2px black;\n  box-shadow: 0px 0px 1px 1px white inset;\n  box-sizing: border-box;\n  transition: box-shadow 0.21s ease-in-out;\n']);
++var _templateObject = _taggedTemplateLiteralLoose(['\n  border: dashed 2px black;\n  box-shadow: 0px 0px 1px 1px white inset;\n  box-sizing: border-box;\n  transition: box-shadow 0.21s ease-in-out;\n'], ['\n  border: dashed 2px red;\n  box-shadow: 0px 0px 1px 1px white inset;\n  box-sizing: border-box;\n  transition: box-shadow 0.21s ease-in-out;\n']);
+ 
+ var _react = require('react');
+ 
+@@ -33,7 +33,7 @@ function Rectangle(props) {
+       top: geometry.y + '%',
+       height: geometry.height + '%',
+       width: geometry.width + '%',
+-      boxShadow: props.active && '0 0 1px 1px yellow inset'
++      boxShadow: props.active && '0 0 1px 1px red inset'
+     }, props.style)
+   });
+ }
+diff --git a/node_modules/react-image-annotation/lib/components/TextEditor/index.js b/node_modules/react-image-annotation/lib/components/TextEditor/index.js
+index 05d0ba1..15e1a4a 100644
+--- a/node_modules/react-image-annotation/lib/components/TextEditor/index.js
++++ b/node_modules/react-image-annotation/lib/components/TextEditor/index.js
+@@ -29,7 +29,7 @@ function TextEditor(props) {
+       Inner,
+       null,
+       _react2.default.createElement('textarea', {
+-        placeholder: 'Write description',
++        placeholder: 'dodaj opis',
+         onFocus: props.onFocus,
+         onBlur: props.onBlur,
+         onChange: props.onChange,
+@@ -41,7 +41,7 @@ function TextEditor(props) {
+       {
+         onClick: props.onSubmit
+       },
+-      'Submit'
++      'Dodaj'
+     )
+   );
+ }
