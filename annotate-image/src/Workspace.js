@@ -4,23 +4,23 @@ import AnnotateImage from "./AnnotateImage.js";
 
 function Workspace({ imgNames }) {
 
-  const [currentImgID, setCurrentImgID] = useState(-1)
-  const [currentImgName, setCurrentImgName] = useState(null)
-
+  const [currentImgID, setCurrentImgID] = useState(-1);
+  const [currentImgName, setCurrentImgName] = useState(null);
+  var imgSlide = 0;
+  
   const [imgHeight, setImgHeight] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
-
-  const [workspaceHeight, setWorkspaceHeight] = useState(0);
-  const [workspaceWidth, setWorkspaceWidth] = useState(0);
-  const workspaceRef = useRef(null);
-
   const [offsetHeight, setOffsetHeight] = useState(0);
   const [offsetWidth, setOffsetWidth] = useState(0)
+  const workspaceRef = useRef(null);
 
+
+
+  // scale & resize image
 
   function resizeContainer() {
-    setWorkspaceHeight(workspaceRef.current.clientHeight);
-    setWorkspaceWidth(workspaceRef.current.clientWidth);
+    var workspaceHeight = workspaceRef.current.clientHeight;
+    var workspaceWidth = workspaceRef.current.clientWidth;
 
     if ((workspaceHeight / workspaceWidth) < (imgHeight / imgWidth)) {
       setOffsetHeight(workspaceHeight + 'px');
@@ -38,14 +38,25 @@ function Workspace({ imgNames }) {
     }
   }
 
-  var imgSlide = 0;
+  useEffect(() => {
+    window.addEventListener('resize', resizeContainer)
+
+    return _ => {
+      window.removeEventListener('resize', resizeContainer)
+    }
+  });
 
   useEffect(() => {
-    function handleResize() {
-      resizeContainer();
-    }
-    window.addEventListener('resize', handleResize)
-  })
+    resizeContainer()
+  }, [imgHeight, imgWidth]);
+
+  const onImgLoad = ({ target: img }) => {
+    const { naturalWidth, naturalHeight } = img;
+    setImgWidth(naturalWidth);
+    setImgHeight(naturalHeight);
+  };
+
+  // change image
 
   useEffect(() => {
     if (imgSlide === 1) {
@@ -53,14 +64,6 @@ function Workspace({ imgNames }) {
     }
     imgSlide += 1
   }, [imgNames]);
-
-  useEffect(() => {
-    // console.log('id: ' + currentImgID + ' name: ' + currentImgName)
-  }, [currentImgID]);
-
-  useEffect(() => {
-    resizeContainer()
-  }, [imgHeight, imgWidth]);
 
   const nextImg = () => {
     if (currentImgID < imgNames.length - 1) {
@@ -78,15 +81,9 @@ function Workspace({ imgNames }) {
     }
   }
 
-  const onImgLoad = ({ target: img }) => {
-    const { naturalWidth, naturalHeight } = img;
-    setImgWidth(naturalWidth);
-    setImgHeight(naturalHeight);
-  };
-
 
   return (
-    <div className='workspace' onResize={() => { }}>
+    <div className='workspace' >
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
