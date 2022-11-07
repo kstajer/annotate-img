@@ -17,42 +17,25 @@ function Workspace({ imgNames }) {
   const [offsetHeight, setOffsetHeight] = useState(0);
   const [offsetWidth, setOffsetWidth] = useState(0)
 
-  // useEffect(() => {
-  //   setWorkspaceHeight(workspaceRef.current.clientHeight)
-  //   setWorkspaceWidth(workspaceRef.current.clientWidth)
-  // })
 
   function resizeContainer() {
     setWorkspaceHeight(workspaceRef.current.clientHeight);
     setWorkspaceWidth(workspaceRef.current.clientWidth);
 
     if ((workspaceHeight / workspaceWidth) < (imgHeight / imgWidth)) {
-      setOffsetHeight('100%');
+      setOffsetHeight(workspaceHeight + 'px');
       var scale = workspaceHeight / imgHeight
-      if (scale < 1) {
-        setOffsetWidth((imgWidth * scale) + 'px');
-      }
-      else if (scale > 1) {
-        setOffsetWidth(0);
-      }
-
+      setOffsetWidth((imgWidth * scale) + 'px');
     }
     else if ((workspaceHeight / workspaceWidth) > (imgHeight / imgWidth)) {
-      setOffsetWidth('100%');
+      setOffsetWidth(workspaceWidth + 'px');
       var scale = workspaceWidth / imgWidth
-      if (scale < 1) {
-        setOffsetHeight((imgHeight * scale) + 'px');
-      }
-      else if (scale > 1) {
-        setOffsetHeight(0);
-      }
-
+      setOffsetHeight((imgHeight * scale) + 'px');
     }
     else if ((workspaceHeight / workspaceWidth) == (imgHeight / imgWidth)) {
       setOffsetWidth('100%');
       setOffsetHeight('100%');
     }
-
   }
 
   var imgSlide = 0;
