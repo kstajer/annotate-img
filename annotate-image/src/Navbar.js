@@ -14,6 +14,7 @@ function Navbar({ getImgNames }) {
   useEffect(() => {
     // console.log(imgNames)
     getImgNames(imgNames)
+    console.log(imgNames)
   }, [imgNames]);
 
   const handleSubmit = async (event) => {

@@ -1,25 +1,26 @@
 import {React, useState, useEffect} from 'react'
 import Annotation from "react-image-annotation";
-import Root from "react-image-annotation";
 
 function AnnotateImage({img, currentImgID, imgNames}){
 
     const [annotation, setAnnotation] = useState({})
     const [annotations, setAnnotations] = useState([])
     const [allAnnotations, setAllAnnotations] = useState(imgNames)
-    const [imageId, setImageId] = useState(currentImgID)
+
+    useEffect(() => {
+        for (let i = allAnnotations.length; i < imgNames.length; i++) {
+            setAllAnnotations(allAnnotations=>([...allAnnotations, imgNames[i]]))
+          }
+      }, [imgNames]);
   
     useEffect(() => {
+        console.log(allAnnotations)
         setAnnotations(allAnnotations[currentImgID].annotations)
-        console.log('przed: '+imageId)
-        setImageId(currentImgID)
-        console.log('po: '+imageId)
       }, [currentImgID]);
 
     const onChange = (annotation) => {
         setAnnotation(annotation);
     };
-
 
     useEffect(() => {
         allAnnotations.map((image) => {
@@ -45,7 +46,6 @@ function AnnotateImage({img, currentImgID, imgNames}){
     };
 
         return (
-            // <Root>
             <Annotation
                 src={img}
                 alt="Two pebbles anthropomorphized holding hands"
@@ -57,7 +57,6 @@ function AnnotateImage({img, currentImgID, imgNames}){
                 className="image"
                 allowTouch
             />
-            // </Root>
         );
     }
 

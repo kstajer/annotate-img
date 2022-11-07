@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
-import AnnotateImage from "./demo";
+import AnnotateImage from "./AnnotateImage.js";
 
 function Workspace({ imgNames }) {
 
@@ -17,10 +17,10 @@ function Workspace({ imgNames }) {
   const [offsetHeight, setOffsetHeight] = useState(0);
   const [offsetWidth, setOffsetWidth] = useState(0)
 
-  useEffect(() => {
-    setWorkspaceHeight(workspaceRef.current.clientHeight)
-    setWorkspaceWidth(workspaceRef.current.clientWidth)
-  })
+  // useEffect(() => {
+  //   setWorkspaceHeight(workspaceRef.current.clientHeight)
+  //   setWorkspaceWidth(workspaceRef.current.clientWidth)
+  // })
 
   function resizeContainer() {
     setWorkspaceHeight(workspaceRef.current.clientHeight);
@@ -103,7 +103,7 @@ function Workspace({ imgNames }) {
 
 
   return (
-    <div className='workspace' onresize={() => { }}>
+    <div className='workspace' onResize={() => { }}>
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
