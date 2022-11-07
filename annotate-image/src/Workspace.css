@@ -42,6 +42,7 @@
     justify-content: center;
     align-items: center;
     margin: 0px;
+    border: 1px solid blue;
 }
 
 .image-container {
@@ -54,6 +55,7 @@
     width: auto;
     object-fit: contain;
     margin: 0px;
+    border: 1px red solid;
 }
 
 
