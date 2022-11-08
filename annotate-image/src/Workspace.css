@@ -38,6 +38,7 @@
 .previous-btn {
     position: absolute;
     left: calc(20% + 72px);
+    
 }
 
 .image-wrapper {

@@ -1,6 +1,8 @@
 import {React, useState, useEffect} from 'react'
 import Annotation from "react-image-annotation";
 
+import Rectangle from './selectors/Rectangle';
+
 function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
 
     const [annotation, setAnnotation] = useState({})
@@ -60,6 +62,8 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
                 onChange={onChange}
                 onSubmit={onSubmit}
                 className="image"
+                renderSelector={Rectangle}
+                renderHighlight={Rectangle}
                 allowTouch
             />
         );

@@ -75,7 +75,6 @@ function Workspace({ imgNames }) {
     if (currentImgID < imgNames.length - 1) {
       setCurrentImgID(currentImgID + 1)
       setCurrentImgName(imgNames[currentImgID + 1].name)
-      // resizeContainer();
     }
   }
 
