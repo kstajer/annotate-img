@@ -12,7 +12,6 @@ function Navbar({ getImgNames }) {
   }, [selectedFiles]);
 
   useEffect(() => {
-    // console.log(imgNames)
     getImgNames(imgNames)
     console.log(imgNames)
   }, [imgNames]);

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import AnnotateImage from "./AnnotateImage.js";
+import Labels from "./Labels.js";
 
 function Workspace({ imgNames }) {
 
@@ -14,8 +15,13 @@ function Workspace({ imgNames }) {
   const [offsetWidth, setOffsetWidth] = useState(0)
   const workspaceRef = useRef(null);
 
+  const [annotationLabels, setAnnotationLabels]= useState([])
 
-
+  const pullAllAnnotations = (data) => {
+    setAnnotationLabels(data)
+    console.log(annotationLabels)
+  }
+  
   // scale & resize image
 
   function resizeContainer() {
@@ -69,7 +75,7 @@ function Workspace({ imgNames }) {
     if (currentImgID < imgNames.length - 1) {
       setCurrentImgID(currentImgID + 1)
       setCurrentImgName(imgNames[currentImgID + 1].name)
-      resizeContainer();
+      // resizeContainer();
     }
   }
 
@@ -77,25 +83,27 @@ function Workspace({ imgNames }) {
     if (currentImgID > 0) {
       setCurrentImgID(currentImgID - 1)
       setCurrentImgName(imgNames[currentImgID - 1].name)
-      resizeContainer();
+      // resizeContainer();
     }
   }
 
-
   return (
+    <div className='workspace-container'>
+    <Labels annotationLabels={annotationLabels} currentImgID={currentImgID}/>
     <div className='workspace' >
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
           {currentImgName &&
             <>
-              <AnnotateImage img={require(`${'./images/' + currentImgName}`)} currentImgID={currentImgID} imgNames={imgNames} />
+              <AnnotateImage img={require(`${'./images/' + currentImgName}`)} currentImgID={currentImgID} imgNames={imgNames} pullAllAnnotations={pullAllAnnotations} />
               <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} style={{display: 'none'}}></img>
             </>
           }
         </div>
       </div>
       <button className='next-btn' onClick={nextImg}>]</button>
+    </div>
     </div>
   )
 }
