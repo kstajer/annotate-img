@@ -7,10 +7,6 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
     const [annotations, setAnnotations] = useState([])
     const [allAnnotations, setAllAnnotations] = useState(imgNames)
 
-    useEffect(()=> {
-        // pullAllAnnotations(allAnnotations)
-        console.log('elo')
-    }, [allAnnotations])
 
     useEffect(() => {
         for (let i = allAnnotations.length; i < imgNames.length; i++) {
@@ -32,7 +28,11 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
             image.annotations = annotations
             }
         })
-        console.log('wysylam adnotacje')
+
+        var tempAnn = structuredClone(allAnnotations)
+        tempAnn[currentImgID].annotations = annotations
+
+        setAllAnnotations(tempAnn)
         pullAllAnnotations(allAnnotations)
       }, [annotations]);
 

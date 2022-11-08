@@ -1,72 +1,30 @@
-import {React, useEffect, useState} from 'react';
+import { React, useEffect, useState } from 'react';
 
-function Labels( {annotationLabels, currentImgID} ) {
-
-  // const [annotations, setAnnotations] = useState([]);
-
-  useEffect(() => {
-    console.log(annotationLabels)
-  });
-
+function Labels({ annotationLabels, currentImgID }) {
 
   return (
     <div className='labels'>
       <p>Labels</p>
-{/* 
       {annotationLabels.length > 0 &&
-
-      } */}
-
-      {/* {annotations.length > 0 &&
-        <div>
-          {annotations.map((record)=>
-            {
-              if(record.id === currentImgID)
-              {
-                {record.annotations.length > 0 &&
-                  record.annotations.map((annotation)=>
-                  {
-                    return <div>
-                      <p>{annotation.data.text}</p>
-                    </div>
-                  })  }
-              }
-            }
-          )}
-        </div>
-      } */}
-
-      {/* <div>
-      {annotationLabels.map((record) => {
-        if(record.id === currentImgID && record.annotations.length > 0){
-            {record.annotations.map((annotation)=> {
-              return (<p>{annotation.data.text}</p>)
-            })}
-        }
-      })
+        annotationLabels.map((record) => {
+          if (record.annotations.length > 0) {
+            return (
+              record.annotations.map((annotation) => {
+                if (record.id === currentImgID) {
+                  return (<p>{annotation.data.text}</p>)
+                }
+                else {
+                  return null
+                }
+              })
+            )
+          }
+          else {
+            return null
+          }
+        })
       }
 
-    <div>
-      {annotationLabels.map((record, index) => {
-        if(record.id === currentImgID && record.annotations.length > 0)
-        return (
-          <div key={index}>
-            {record.annotations.map((annotation, index) => {
-              return (
-                <div key={index}>
-                  <h2>an: {annotation}</h2>
-                </div>
-              );
-            })}
-
-            <hr />
-          </div>
-        )
-      </div> */}
-
-
-      
-    
       {/* <div className='display-labels'>
         <label for="touch"><span>person</span></label>
         <input type="checkbox" id="touch" />
