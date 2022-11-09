@@ -58,15 +58,24 @@ function AnnotateImage( props ){
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
-        setAnnotation({})
-        setAnnotations(annotations.concat({
-            geometry,
-            data: {
-                text: 'test',
-                id: annotationId
-            }
-        }))
-        setAnnotationId(annotationId + 1);
+        if(!(typeof geometry == 'undefined')){
+            setAnnotation({})
+            setAnnotations(annotations.concat({
+                geometry: {
+                    ...geometry,
+                    type: "RECTANGLE"
+                },
+                data: {
+                    text: props.annName,
+                    id: annotationId
+                }
+            }))
+            setAnnotationId(annotationId + 1);
+        }
+        else {
+            console.log('zle oznaczenie')
+        }
+        
     };
 
         return (
@@ -81,6 +90,10 @@ function AnnotateImage( props ){
                 className="image"
                 renderSelector={Rectangle}
                 renderHighlight={Rectangle}
+                disableEditor={true}
+                onMouseUp={(e) => {
+                    onSubmit(annotation)
+                }}
                 activeAnnotations={[annotationToHighlight]}
                 allowTouch
             />

@@ -21,15 +21,14 @@ import './Navbar.css'
 function App() {
 
   const [imgNames, setImgNames] = useState([])
-  const [allAnnotations, setAllAnnotations] = useState([])
+  const [annName, setAnnName] = useState('')
 
   const getImgNames = (data) => {
     setImgNames(data)
   }
 
-  const getAllAnnotations = (data) => {
-    setAllAnnotations(data)
-    console.log('pulluje')
+  const getAnnName = (name) => {
+    setAnnName(name)
   }
 
   return (
@@ -40,8 +39,8 @@ function App() {
             <>
               <Navbar getImgNames={getImgNames} />
               <div className='labels-workspace'>
-                <Toolbar />
-                <Workspace imgNames={imgNames} />
+                <Toolbar pushAnnName={getAnnName}/>
+                <Workspace imgNames={imgNames} annName={annName}/>
               </div>
               <Footer />
             </>

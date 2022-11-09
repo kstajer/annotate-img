@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import AnnotateImage from "./AnnotateImage.js";
 import Labels from "./Labels.js";
 
-function Workspace({ imgNames }) {
+function Workspace({ imgNames, annName}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
   const [currentImgName, setCurrentImgName] = useState(null);
@@ -121,6 +121,7 @@ function Workspace({ imgNames }) {
                 idToDelete={idToDelete}
                 idToHighlight={idToHighlight}
                 labelClicked={clicked}
+                annName={annName}
               />
               <img 
                 onLoad={onImgLoad} 
