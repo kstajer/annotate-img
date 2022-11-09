@@ -1,20 +1,22 @@
 import {React, useState, useEffect} from 'react'
 import Annotation from "react-image-annotation";
 
-function AnnotateImage({img, currentImgID, imgNames}){
+import Rectangle from './selectors/Rectangle';
+
+function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
 
     const [annotation, setAnnotation] = useState({})
     const [annotations, setAnnotations] = useState([])
     const [allAnnotations, setAllAnnotations] = useState(imgNames)
+
 
     useEffect(() => {
         for (let i = allAnnotations.length; i < imgNames.length; i++) {
             setAllAnnotations(allAnnotations=>([...allAnnotations, imgNames[i]]))
           }
       }, [imgNames]);
-  
+
     useEffect(() => {
-        console.log(allAnnotations)
         setAnnotations(allAnnotations[currentImgID].annotations)
       }, [currentImgID]);
 
@@ -28,8 +30,12 @@ function AnnotateImage({img, currentImgID, imgNames}){
             image.annotations = annotations
             }
         })
-        console.log(allAnnotations)
 
+        var tempAnn = structuredClone(allAnnotations)
+        tempAnn[currentImgID].annotations = annotations
+
+        setAllAnnotations(tempAnn)
+        pullAllAnnotations(allAnnotations)
       }, [annotations]);
 
 
@@ -43,6 +49,7 @@ function AnnotateImage({img, currentImgID, imgNames}){
                 id: Math.random()
             }
         }))
+
     };
 
         return (
@@ -55,6 +62,8 @@ function AnnotateImage({img, currentImgID, imgNames}){
                 onChange={onChange}
                 onSubmit={onSubmit}
                 className="image"
+                renderSelector={Rectangle}
+                renderHighlight={Rectangle}
                 allowTouch
             />
         );

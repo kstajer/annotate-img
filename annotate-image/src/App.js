@@ -21,9 +21,15 @@ import './Navbar.css'
 function App() {
 
   const [imgNames, setImgNames] = useState([])
+  const [allAnnotations, setAllAnnotations] = useState([])
 
   const getImgNames = (data) => {
     setImgNames(data)
+  }
+
+  const getAllAnnotations = (data) => {
+    setAllAnnotations(data)
+    console.log('pulluje')
   }
 
   return (

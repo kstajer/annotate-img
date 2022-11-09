@@ -4,6 +4,7 @@
     justify-content: space-around;
     align-items: center;
     width: 80px;
+    min-width:80px;
     background-color: rgb(37, 37, 37);
     overflow: scroll;
 }
