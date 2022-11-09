@@ -18,10 +18,18 @@ function Workspace({ imgNames }) {
   const [annotationLabels, setAnnotationLabels] = useState([]);
 
   const [idToDelete, setIdToDelete] = useState();
+  const [idToHighlight, setIdToHighlight] = useState();
+  const [clicked, setClicked] = useState();
 
   const pullIdToDelete = (id) => {
     setIdToDelete(id);
   }
+
+  const pullIdToHighlight = (id, clicked) => {
+    setIdToHighlight(id);
+    setClicked(clicked);
+  }
+
 
   const pullAllAnnotations = (data) => {
     setAnnotationLabels(data)
@@ -93,7 +101,12 @@ function Workspace({ imgNames }) {
 
   return (
     <div className='workspace-container'>
-    <Labels annotationLabels={annotationLabels} currentImgID={currentImgID} pushIdToDelete={pullIdToDelete}/>
+    <Labels 
+      annotationLabels={annotationLabels} 
+      currentImgID={currentImgID} 
+      pushIdToDelete={pullIdToDelete} 
+      pushIdToHighlight={pullIdToHighlight}
+    />
     <div className='workspace' >
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='image-wrapper' ref={workspaceRef}>
@@ -106,6 +119,8 @@ function Workspace({ imgNames }) {
                 imgNames={imgNames} 
                 pullAllAnnotations={pullAllAnnotations}
                 idToDelete={idToDelete}
+                idToHighlight={idToHighlight}
+                labelClicked={clicked}
               />
               <img 
                 onLoad={onImgLoad} 

@@ -3,16 +3,27 @@ import Annotation from "react-image-annotation";
 
 import Rectangle from './selectors/Rectangle';
 
-function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDelete}){
+function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDelete, idToHighlight, labelClicked}){
 
     const [annotation, setAnnotation] = useState({});
     const [annotations, setAnnotations] = useState([]);
     const [allAnnotations, setAllAnnotations] = useState(imgNames);
     const [annotationId, setAnnotationId] = useState(0);
+    const [annotationToHighlight, setAnnotationToHighlight] = useState();
 
     useEffect(() => {
-        console.log(idToDelete);
+        setAnnotations(annotations.filter((annotation) => annotation.data.id !== idToDelete))
       }, [idToDelete]);
+
+    useEffect(() => {
+        findAnnotationById(annotations, idToHighlight)
+    }, [labelClicked]);
+
+    function findAnnotationById(annotations, idToHighlight) {
+        const ann = annotations.find(obj => obj.data.id === idToHighlight)
+        setAnnotationToHighlight(ann)
+    }
+
 
     useEffect(() => {
         for (let i = allAnnotations.length; i < imgNames.length; i++) {
@@ -26,6 +37,7 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDel
 
     const onChange = (annotation) => {
         setAnnotation(annotation);
+        setAnnotationToHighlight();
     };
 
     useEffect(() => {
@@ -68,6 +80,7 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDel
                 className="image"
                 renderSelector={Rectangle}
                 renderHighlight={Rectangle}
+                activeAnnotations={[annotationToHighlight]}
                 allowTouch
             />
         );

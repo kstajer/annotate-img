@@ -1,11 +1,6 @@
 import { React, useEffect, useState } from 'react';
 
-function Labels({ annotationLabels, currentImgID, pushIdToDelete }) {
-
-  const deleteAnnotation = (id) => {
-    pushIdToDelete(id)
-  }
-
+function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighlight }) {
 
   return (
     <div className='labels'>
@@ -16,7 +11,8 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete }) {
             return (
               record.annotations.map((annotation) => {
                 if (record.id === currentImgID) {
-                  return (<p className='display-label'>{annotation.data.text} 
+                  return (<p onClick={() => {pushIdToHighlight(annotation.data.id, Math.random())}} 
+                            className='display-label'>{annotation.data.text} 
                   <button onClick={() => {
                     pushIdToDelete(annotation.data.id)
                   }}>X</button> 
