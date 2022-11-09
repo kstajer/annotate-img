@@ -3,37 +3,38 @@ import Annotation from "react-image-annotation";
 
 import Rectangle from './selectors/Rectangle';
 
-function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDelete, idToHighlight, labelClicked}){
-
+function AnnotateImage( props ){
+    // props: img, currentImgID, imgNames, pullAllAnnotations, idToDelete, idToHighlight, labelClicked
+    
     const [annotation, setAnnotation] = useState({});
     const [annotations, setAnnotations] = useState([]);
-    const [allAnnotations, setAllAnnotations] = useState(imgNames);
+    const [allAnnotations, setAllAnnotations] = useState(props.imgNames);
     const [annotationId, setAnnotationId] = useState(0);
     const [annotationToHighlight, setAnnotationToHighlight] = useState();
 
     useEffect(() => {
-        setAnnotations(annotations.filter((annotation) => annotation.data.id !== idToDelete))
-      }, [idToDelete]);
+        setAnnotations(annotations.filter((annotation) => annotation.data.id !== props.idToDelete))
+      }, [props.idToDelete]); 
 
     useEffect(() => {
-        findAnnotationById(annotations, idToHighlight)
-    }, [labelClicked]);
+        findAnnotationById(annotations, props.idToHighlight)
+    }, [props.labelClicked]);
 
-    function findAnnotationById(annotations, idToHighlight) {
-        const ann = annotations.find(obj => obj.data.id === idToHighlight)
+    function findAnnotationById(annotations, id) {
+        const ann = annotations.find(obj => obj.data.id === id)
         setAnnotationToHighlight(ann)
     }
 
 
     useEffect(() => {
-        for (let i = allAnnotations.length; i < imgNames.length; i++) {
-            setAllAnnotations(allAnnotations=>([...allAnnotations, imgNames[i]]))
+        for (let i = allAnnotations.length; i < props.imgNames.length; i++) {
+            setAllAnnotations(allAnnotations=>([...allAnnotations, props.imgNames[i]]))
           }
-      }, [imgNames]);
+      }, [props.imgNames]);
 
     useEffect(() => {
-        setAnnotations(allAnnotations[currentImgID].annotations)
-      }, [currentImgID]);
+        setAnnotations(allAnnotations[props.currentImgID].annotations)
+      }, [props.currentImgID]);
 
     const onChange = (annotation) => {
         setAnnotation(annotation);
@@ -42,16 +43,16 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDel
 
     useEffect(() => {
         allAnnotations.map((image) => {
-            if(image.id === currentImgID){
+            if(image.id === props.currentImgID){
             image.annotations = annotations
             }
         })
 
         var tempAnn = structuredClone(allAnnotations)
-        tempAnn[currentImgID].annotations = annotations
+        tempAnn[props.currentImgID].annotations = annotations
 
         setAllAnnotations(tempAnn)
-        pullAllAnnotations(allAnnotations)
+        props.pullAllAnnotations(allAnnotations)
       }, [annotations]);
 
 
@@ -61,7 +62,7 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDel
         setAnnotations(annotations.concat({
             geometry,
             data: {
-                ...data,
+                text: 'test',
                 id: annotationId
             }
         }))
@@ -70,7 +71,7 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDel
 
         return (
             <Annotation
-                src={img}
+                src={props.img}
                 alt="Two pebbles anthropomorphized holding hands"
                 annotations={annotations}
                 // type={RECT}
