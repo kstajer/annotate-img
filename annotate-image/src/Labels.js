@@ -11,7 +11,7 @@ function Labels({ annotationLabels, currentImgID }) {
             return (
               record.annotations.map((annotation) => {
                 if (record.id === currentImgID) {
-                  return (<p>{annotation.data.text}</p>)
+                  return (<p className='display-label'>{annotation.data.text}</p>)
                 }
                 else {
                   return null
