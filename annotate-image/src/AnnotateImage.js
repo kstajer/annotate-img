@@ -3,12 +3,16 @@ import Annotation from "react-image-annotation";
 
 import Rectangle from './selectors/Rectangle';
 
-function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
+function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations, idToDelete}){
 
-    const [annotation, setAnnotation] = useState({})
-    const [annotations, setAnnotations] = useState([])
-    const [allAnnotations, setAllAnnotations] = useState(imgNames)
+    const [annotation, setAnnotation] = useState({});
+    const [annotations, setAnnotations] = useState([]);
+    const [allAnnotations, setAllAnnotations] = useState(imgNames);
+    const [annotationId, setAnnotationId] = useState(0);
 
+    useEffect(() => {
+        console.log(idToDelete);
+      }, [idToDelete]);
 
     useEffect(() => {
         for (let i = allAnnotations.length; i < imgNames.length; i++) {
@@ -46,10 +50,10 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
             geometry,
             data: {
                 ...data,
-                id: Math.random()
+                id: annotationId
             }
         }))
-
+        setAnnotationId(annotationId + 1);
     };
 
         return (

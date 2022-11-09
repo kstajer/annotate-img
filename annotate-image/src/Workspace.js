@@ -15,7 +15,13 @@ function Workspace({ imgNames }) {
   const [offsetWidth, setOffsetWidth] = useState(0)
   const workspaceRef = useRef(null);
 
-  const [annotationLabels, setAnnotationLabels]= useState([])
+  const [annotationLabels, setAnnotationLabels] = useState([]);
+
+  const [idToDelete, setIdToDelete] = useState();
+
+  const pullIdToDelete = (id) => {
+    setIdToDelete(id);
+  }
 
   const pullAllAnnotations = (data) => {
     setAnnotationLabels(data)
@@ -82,21 +88,29 @@ function Workspace({ imgNames }) {
     if (currentImgID > 0) {
       setCurrentImgID(currentImgID - 1)
       setCurrentImgName(imgNames[currentImgID - 1].name)
-      // resizeContainer();
     }
   }
 
   return (
     <div className='workspace-container'>
-    <Labels annotationLabels={annotationLabels} currentImgID={currentImgID}/>
+    <Labels annotationLabels={annotationLabels} currentImgID={currentImgID} pushIdToDelete={pullIdToDelete}/>
     <div className='workspace' >
       <button className='previous-btn' onClick={previousImg}>[</button>
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
           {currentImgName &&
             <>
-              <AnnotateImage img={require(`${'./images/' + currentImgName}`)} currentImgID={currentImgID} imgNames={imgNames} pullAllAnnotations={pullAllAnnotations} />
-              <img onLoad={onImgLoad} src={require(`${'./images/' + currentImgName}`)} style={{display: 'none'}}></img>
+              <AnnotateImage 
+                img={require(`${'./images/' + currentImgName}`)} 
+                currentImgID={currentImgID} 
+                imgNames={imgNames} 
+                pullAllAnnotations={pullAllAnnotations}
+                idToDelete={idToDelete}
+              />
+              <img 
+                onLoad={onImgLoad} 
+                src={require(`${'./images/' + currentImgName}`)} 
+                style={{display: 'none'}}></img>
             </>
           }
         </div>
