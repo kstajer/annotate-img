@@ -37,7 +37,7 @@
 
 .previous-btn {
     position: absolute;
-    left: calc(20% + 72px);
+    left: calc(20% + 71px);
     
 }
 
@@ -49,7 +49,6 @@
     align-items: center;
     margin: 0px;
     /* margin-left: calc( 20% + 16px); */
-    border: 1px solid blue;
 }
 
 .image-container {
