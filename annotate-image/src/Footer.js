@@ -1,14 +1,16 @@
 import React from 'react'
 
-function Footer() {
+function Footer({imgDimensions, imgNames, currentImgID}) {
   return (
     <div className='footer'>
       <div className='footer-btns'>
         <button></button>
         <button></button>
         <span>
-          <p>14/100</p>
-          <p>1200x1800</p>
+          <p>{currentImgID + 1}/{imgNames.length}</p>
+          {
+            imgDimensions.width && <p>{imgDimensions.width}x{imgDimensions.height}</p>
+          }
         </span>
         <button></button>
       </div>

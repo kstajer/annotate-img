@@ -3,14 +3,14 @@ import { useState, useEffect, useRef } from 'react';
 import AnnotateImage from "./AnnotateImage.js";
 import Labels from "./Labels.js";
 
-function Workspace({ imgNames, annName}) {
+function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
   const [currentImgName, setCurrentImgName] = useState(null);
   var imgSlide = 0;
-  
-  const [imgHeight, setImgHeight] = useState(0);
-  const [imgWidth, setImgWidth] = useState(0);
+
+  const [imgDimensions, setImgDimensions] = useState({});
+
   const [offsetHeight, setOffsetHeight] = useState(0);
   const [offsetWidth, setOffsetWidth] = useState(0)
   const workspaceRef = useRef(null);
@@ -42,17 +42,17 @@ function Workspace({ imgNames, annName}) {
     var workspaceHeight = workspaceRef.current.clientHeight;
     var workspaceWidth = workspaceRef.current.clientWidth;
 
-    if ((workspaceHeight / workspaceWidth) < (imgHeight / imgWidth)) {
+    if ((workspaceHeight / workspaceWidth) < (imgDimensions.height / imgDimensions.width)) {
       setOffsetHeight(workspaceHeight + 'px');
-      var scale = workspaceHeight / imgHeight
-      setOffsetWidth((imgWidth * scale) + 'px');
+      var scale = workspaceHeight / imgDimensions.height
+      setOffsetWidth((imgDimensions.width * scale) + 'px');
     }
-    else if ((workspaceHeight / workspaceWidth) > (imgHeight / imgWidth)) {
+    else if ((workspaceHeight / workspaceWidth) > (imgDimensions.height / imgDimensions.width)) {
       setOffsetWidth(workspaceWidth + 'px');
-      var scale = workspaceWidth / imgWidth
-      setOffsetHeight((imgHeight * scale) + 'px');
+      var scale = workspaceWidth / imgDimensions.width
+      setOffsetHeight((imgDimensions.height * scale) + 'px');
     }
-    else if ((workspaceHeight / workspaceWidth) == (imgHeight / imgWidth)) {
+    else if ((workspaceHeight / workspaceWidth) == (imgDimensions.height / imgDimensions.width)) {
       setOffsetWidth('100%');
       setOffsetHeight('100%');
     }
@@ -68,12 +68,16 @@ function Workspace({ imgNames, annName}) {
 
   useEffect(() => {
     resizeContainer()
-  }, [imgHeight, imgWidth]);
+    getImgDimensions(imgDimensions)
+  }, [imgDimensions]);
+
+  useEffect(() => {
+    getCurrentImgID(currentImgID)
+  }, [currentImgID]);
 
   const onImgLoad = ({ target: img }) => {
     const { naturalWidth, naturalHeight } = img;
-    setImgWidth(naturalWidth);
-    setImgHeight(naturalHeight);
+    setImgDimensions({height: naturalHeight, width: naturalWidth})
   };
 
   // change image
@@ -122,6 +126,8 @@ function Workspace({ imgNames, annName}) {
                 idToHighlight={idToHighlight}
                 labelClicked={clicked}
                 annName={annName}
+                clearAll={clearAll}
+                selectorType={selectorType}
               />
               <img 
                 onLoad={onImgLoad} 
