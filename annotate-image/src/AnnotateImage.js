@@ -15,13 +15,14 @@ import {
 
 function AnnotateImage( props ){
     // props: img, currentImgID, imgNames, pullAllAnnotations, 
-    // idToDelete, idToHighlight, labelClicked, clearAll, selectorType
+    // idToDelete, idToHighlight, labelClicked, clearAll, selectorType, rename
     
     const [annotation, setAnnotation] = useState({});
     const [annotations, setAnnotations] = useState([]);
     const [allAnnotations, setAllAnnotations] = useState(props.imgNames);
     const [annotationId, setAnnotationId] = useState(0);
     const [annotationToHighlight, setAnnotationToHighlight] = useState();
+    const [annotationToRename, setAnnotationToRename] = useState();
 
     var allSelectors = {'RECTANGLE': Rectangle, "OVAL": Oval, "POINT": Point}
 
@@ -30,14 +31,43 @@ function AnnotateImage( props ){
       }, [props.idToDelete]); 
 
     useEffect(() => {
-        findAnnotationById(annotations, props.idToHighlight)
+        console.log(props.rename)
+        findAnnotationToRename(annotations, props.rename.id, props.rename.name)
+    }, [props.rename]); 
+
+    useEffect(() => {
+        findAnnotationToHiglight(annotations, props.idToHighlight)
     }, [props.labelClicked]);
 
-    function findAnnotationById(annotations, id) {
+    function findAnnotationToHiglight(annotations, id) {
         const ann = annotations.find(obj => obj.data.id === id)
         setAnnotationToHighlight(ann)
     }
 
+    function findAnnotationToRename(annotations, id, newName) {
+        console.log('funkcvja')
+        if (id > 0) {
+            var ann = annotations.find(obj => obj.data.id === id)
+            console.log('ann')
+            console.log(typeof(ann))
+            ann['data'].text = newName
+
+            var tempAnn = annotations.filter((annotation) => annotation.data.id !== id)
+            tempAnn.push(ann)
+            console.log('tempAnn')
+            console.log(tempAnn)
+            setAnnotations(tempAnn)
+
+            var tempAllAnn = structuredClone(allAnnotations)
+            tempAllAnn[props.currentImgID].annotations = ann
+            console.log('tempAllAnn')
+            console.log(tempAllAnn)
+            setAllAnnotations(tempAllAnn)
+        }
+
+
+        // setAnnotationToRename(ann)
+    }
 
     useEffect(() => {
         for (let i = allAnnotations.length; i < props.imgNames.length; i++) {

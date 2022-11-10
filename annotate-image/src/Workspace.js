@@ -19,6 +19,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
 
   const [idToDelete, setIdToDelete] = useState();
   const [idToHighlight, setIdToHighlight] = useState();
+  const [rename, setRename] = useState({id: -1, name: ''})
   const [clicked, setClicked] = useState();
 
   const pullIdToDelete = (id) => {
@@ -34,6 +35,10 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const pullAllAnnotations = (data) => {
     setAnnotationLabels(data)
     console.log(annotationLabels)
+  }
+
+  const pullRename = (data) => {
+    setRename(data)
   }
   
   // scale & resize image
@@ -110,6 +115,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
       currentImgID={currentImgID} 
       pushIdToDelete={pullIdToDelete} 
       pushIdToHighlight={pullIdToHighlight}
+      pushRename={pullRename}
     />
     <div className='workspace' >
       <button className='previous-btn' onClick={previousImg}>[</button>
@@ -128,6 +134,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
                 annName={annName}
                 clearAll={clearAll}
                 selectorType={selectorType}
+                rename={rename}
               />
               <img 
                 onLoad={onImgLoad} 
