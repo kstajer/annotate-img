@@ -3,58 +3,84 @@ import Annotation from "react-image-annotation";
 
 import Rectangle from './selectors/Rectangle';
 
-function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
+function AnnotateImage( props ){
+    // props: img, currentImgID, imgNames, pullAllAnnotations, idToDelete, idToHighlight, labelClicked
+    
+    const [annotation, setAnnotation] = useState({});
+    const [annotations, setAnnotations] = useState([]);
+    const [allAnnotations, setAllAnnotations] = useState(props.imgNames);
+    const [annotationId, setAnnotationId] = useState(0);
+    const [annotationToHighlight, setAnnotationToHighlight] = useState();
 
-    const [annotation, setAnnotation] = useState({})
-    const [annotations, setAnnotations] = useState([])
-    const [allAnnotations, setAllAnnotations] = useState(imgNames)
+    useEffect(() => {
+        setAnnotations(annotations.filter((annotation) => annotation.data.id !== props.idToDelete))
+      }, [props.idToDelete]); 
+
+    useEffect(() => {
+        findAnnotationById(annotations, props.idToHighlight)
+    }, [props.labelClicked]);
+
+    function findAnnotationById(annotations, id) {
+        const ann = annotations.find(obj => obj.data.id === id)
+        setAnnotationToHighlight(ann)
+    }
 
 
     useEffect(() => {
-        for (let i = allAnnotations.length; i < imgNames.length; i++) {
-            setAllAnnotations(allAnnotations=>([...allAnnotations, imgNames[i]]))
+        for (let i = allAnnotations.length; i < props.imgNames.length; i++) {
+            setAllAnnotations(allAnnotations=>([...allAnnotations, props.imgNames[i]]))
           }
-      }, [imgNames]);
+      }, [props.imgNames]);
 
     useEffect(() => {
-        setAnnotations(allAnnotations[currentImgID].annotations)
-      }, [currentImgID]);
+        setAnnotations(allAnnotations[props.currentImgID].annotations)
+      }, [props.currentImgID]);
 
     const onChange = (annotation) => {
         setAnnotation(annotation);
+        setAnnotationToHighlight();
     };
 
     useEffect(() => {
         allAnnotations.map((image) => {
-            if(image.id === currentImgID){
+            if(image.id === props.currentImgID){
             image.annotations = annotations
             }
         })
 
         var tempAnn = structuredClone(allAnnotations)
-        tempAnn[currentImgID].annotations = annotations
+        tempAnn[props.currentImgID].annotations = annotations
 
         setAllAnnotations(tempAnn)
-        pullAllAnnotations(allAnnotations)
+        props.pullAllAnnotations(allAnnotations)
       }, [annotations]);
 
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
-        setAnnotation({})
-        setAnnotations(annotations.concat({
-            geometry,
-            data: {
-                ...data,
-                id: Math.random()
-            }
-        }))
-
+        if(!(typeof geometry == 'undefined')){
+            setAnnotation({})
+            setAnnotations(annotations.concat({
+                geometry: {
+                    ...geometry,
+                    type: "RECTANGLE"
+                },
+                data: {
+                    text: props.annName,
+                    id: annotationId
+                }
+            }))
+            setAnnotationId(annotationId + 1);
+        }
+        else {
+            console.log('zle oznaczenie')
+        }
+        
     };
 
         return (
             <Annotation
-                src={img}
+                src={props.img}
                 alt="Two pebbles anthropomorphized holding hands"
                 annotations={annotations}
                 // type={RECT}
@@ -64,6 +90,11 @@ function AnnotateImage({img, currentImgID, imgNames, pullAllAnnotations}){
                 className="image"
                 renderSelector={Rectangle}
                 renderHighlight={Rectangle}
+                disableEditor={true}
+                onMouseUp={(e) => {
+                    onSubmit(annotation)
+                }}
+                activeAnnotations={[annotationToHighlight]}
                 allowTouch
             />
         );
