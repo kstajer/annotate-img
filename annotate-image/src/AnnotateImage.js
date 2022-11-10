@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import Annotation from "react-image-annotation";
+import Content from './render/Content';
 
 import Rectangle from './selectors/Rectangle';
 
@@ -90,6 +91,7 @@ function AnnotateImage( props ){
                 className="image"
                 renderSelector={Rectangle}
                 renderHighlight={Rectangle}
+                renderContent={Content}
                 disableEditor={true}
                 onMouseUp={(e) => {
                     onSubmit(annotation)
