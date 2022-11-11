@@ -147,8 +147,6 @@ function AnnotateImage( props ){
     };
 
         return (
-            <>
-            {(props.selectorType == 'RECTANGLE' || props.selectorType == 'OVAL') &&
             <Annotation
                 src={props.img}
                 alt="Two pebbles anthropomorphized holding hands"
@@ -194,57 +192,7 @@ function AnnotateImage( props ){
                 onMouseUp={() => { onSubmit(annotation) }}
                 activeAnnotations={[annotationToHighlight]}
                 allowTouch
-            />}
-
-            {(props.selectorType == 'POINT') &&
-            <Annotation
-                src={props.img}
-                alt="Two pebbles anthropomorphized holding hands"
-                annotations={annotations}
-                type={props.selectorType == 'RECTANGLE' ? RectangleSelector.TYPE : (props.selectorType == 'OVAL' ? OvalSelector.TYPE : PointSelector.TYPE)}
-                value={annotation}
-                onChange={onChange}
-                onSubmit={onSubmit}
-                className="image"
-                renderSelector={props.selectorType == 'RECTANGLE' ? allSelectors.RECTANGLE : (props.selectorType == 'OVAL' ? allSelectors.OVAL : allSelectors.POINT)}
-                renderHighlight= {({ key, annotation, active }) => {
-                    switch (annotation.geometry.type) {
-                        case RectangleSelector.TYPE:
-                          return (
-                            <Rectangle
-                              key={key}
-                              annotation={annotation}
-                              active={active}
-                            />
-                          )
-                        case PointSelector.TYPE:
-                          return (
-                            <Point
-                              key={key}
-                              annotation={annotation}
-                              active={active}
-                            />
-                          )
-                        case OvalSelector.TYPE:
-                          return (
-                            <Oval
-                              key={key}
-                              annotation={annotation}
-                              active={active}
-                            />
-                          )
-                        default:
-                          return null
-                }
-                 }}
-                renderContent={Content}
-                disableEditor={true}
-                // onMouseMove={() => { onSubmit(annotation) }}
-                activeAnnotations={[annotationToHighlight]}
-                allowTouch
-            />}
-
-        </>
+            />
         );
     }
 
