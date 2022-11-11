@@ -24,7 +24,7 @@ function Content (props) {
       className={props.className}
       geometry={geometry}
     >
-      {props.annotation.data && props.annotation.data.text}
+      {props.annotation.data && <>{props.annotation.data.text}  {props.annotation.data.counter}</> }
     </Container>
   )
 }

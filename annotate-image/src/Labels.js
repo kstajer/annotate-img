@@ -19,7 +19,12 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                   return (
                     
                     <p onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
-                      className='display-label'>{annotation.data.id !== rename.id && annotation.data.text}
+                      className='display-label'>{annotation.data.id !== rename.id && 
+                      <>
+                        {annotation.data.counter}
+                        {annotation.data.text}
+                      </>
+                      }
                       {annotation.data.id !== rename.id &&
                       <button onClick={() => {
                         setRename({id: annotation.data.id, name: annotation.data.text})
