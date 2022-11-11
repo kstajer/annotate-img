@@ -22,7 +22,6 @@ function AnnotateImage( props ){
     const [allAnnotations, setAllAnnotations] = useState(props.imgNames);
     const [annotationId, setAnnotationId] = useState(0);
     const [annotationToHighlight, setAnnotationToHighlight] = useState();
-    const [annotationToRename, setAnnotationToRename] = useState();
 
     var allSelectors = {'RECTANGLE': Rectangle, "OVAL": Oval, "POINT": Point}
 
@@ -64,9 +63,6 @@ function AnnotateImage( props ){
             console.log(tempAllAnn)
             setAllAnnotations(tempAllAnn)
         }
-
-
-        // setAnnotationToRename(ann)
     }
 
     useEffect(() => {
@@ -79,18 +75,6 @@ function AnnotateImage( props ){
         setAnnotations(allAnnotations[props.currentImgID].annotations)
       }, [props.currentImgID]);
 
-      useEffect(() => {
-        // if (props.selectorType == 'RECTANGLE') {
-        //     setSelector(allSelectors.RECTANGLE)
-        // }
-        // else if (props.selectorType == 'OVAL') {
-        //     setSelector(allSelectors.OVAL)
-        // }
-        // else if (props.selectorType == 'POINT') {
-        //     setSelector(allSelectors.POINT)
-        // }
-        // console.log(selector)
-      }, [props.selectorType]);
 
     useEffect(() => {
         var tempAnn = structuredClone(allAnnotations)
@@ -154,7 +138,6 @@ function AnnotateImage( props ){
                 type={props.selectorType == 'RECTANGLE' ? RectangleSelector.TYPE : (props.selectorType == 'OVAL' ? OvalSelector.TYPE : PointSelector.TYPE)}
                 value={annotation}
                 onChange={onChange}
-                // onSubmit={onSubmit}
                 className="image"
                 renderSelector={props.selectorType == 'RECTANGLE' ? allSelectors.RECTANGLE : (props.selectorType == 'OVAL' ? allSelectors.OVAL : allSelectors.POINT)}
                 renderHighlight= {({ key, annotation, active }) => {
