@@ -21,9 +21,34 @@ import './Navbar.css'
 function App() {
 
   const [imgNames, setImgNames] = useState([])
+  const [annName, setAnnName] = useState('')
+  const [clearAll, setClearAll] = useState()
+  const [selectorType, setSelectorType] = useState('RECTANGLE')
+  const [currentImgID, setCurrentImgID] = useState()
+  const [imgDimensions, setImgDimensions] = useState({})
 
   const getImgNames = (data) => {
     setImgNames(data)
+  }
+
+  const getAnnName = (name) => {
+    setAnnName(name)
+  }
+
+  const getClearAll = (data) => {
+    setClearAll(data)
+  }
+
+  const getSelectorType = (selector) => {
+    setSelectorType(selector)
+  }
+
+  const getImgDimensions = (dimensions) => {
+    setImgDimensions(dimensions)
+  }
+
+  const getCurrentImgID = (id) => {
+    setCurrentImgID(id)
   }
 
   return (
@@ -34,10 +59,25 @@ function App() {
             <>
               <Navbar getImgNames={getImgNames} />
               <div className='labels-workspace'>
-                <Toolbar />
-                <Workspace imgNames={imgNames} />
+                <Toolbar 
+                  pushAnnName={getAnnName} 
+                  pushClearAll={getClearAll}
+                  pushSelectorType={getSelectorType}
+                />
+                <Workspace 
+                  imgNames={imgNames} 
+                  annName={annName} 
+                  clearAll={clearAll}
+                  selectorType={selectorType}
+                  getImgDimensions={getImgDimensions} 
+                  getCurrentImgID={getCurrentImgID}
+                />
               </div>
-              <Footer />
+              <Footer 
+                imgDimensions={imgDimensions} 
+                imgNames={imgNames} 
+                currentImgID={currentImgID}
+              />
             </>
           } />
           <Route path="/labels" element={<Labels />} />
