@@ -7,9 +7,9 @@ import Oval from './selectors/Oval.js';
 import Point from './selectors/Point.js';
 
 import {
-    PointSelector,
     RectangleSelector,
-    OvalSelector
+    OvalSelector,
+    PointSelector
   } from 'react-image-annotation/lib/selectors'
 
 
@@ -101,6 +101,9 @@ function AnnotateImage( props ){
 
     const onChange = (annotation) => {
         setAnnotation(annotation);
+        if(props.selectorType === 'POINT'){
+            onSubmit(annotation)
+        }
         setAnnotationToHighlight();
     };
 
@@ -116,11 +119,13 @@ function AnnotateImage( props ){
 
         setAllAnnotations(tempAnn)
         props.pullAllAnnotations(allAnnotations)
+
       }, [annotations]);
 
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
+        console.log(annotation)
         if(!(typeof geometry == 'undefined')){
             setAnnotation({})
             setAnnotations(annotations.concat({
@@ -142,6 +147,56 @@ function AnnotateImage( props ){
     };
 
         return (
+            <>
+            {(props.selectorType == 'RECTANGLE' || props.selectorType == 'OVAL') &&
+            <Annotation
+                src={props.img}
+                alt="Two pebbles anthropomorphized holding hands"
+                annotations={annotations}
+                type={props.selectorType == 'RECTANGLE' ? RectangleSelector.TYPE : (props.selectorType == 'OVAL' ? OvalSelector.TYPE : PointSelector.TYPE)}
+                value={annotation}
+                onChange={onChange}
+                // onSubmit={onSubmit}
+                className="image"
+                renderSelector={props.selectorType == 'RECTANGLE' ? allSelectors.RECTANGLE : (props.selectorType == 'OVAL' ? allSelectors.OVAL : allSelectors.POINT)}
+                renderHighlight= {({ key, annotation, active }) => {
+                    switch (annotation.geometry.type) {
+                        case RectangleSelector.TYPE:
+                          return (
+                            <Rectangle
+                              key={key}
+                              annotation={annotation}
+                              active={active}
+                            />
+                          )
+                        case PointSelector.TYPE:
+                          return (
+                            <Point
+                              key={key}
+                              annotation={annotation}
+                              active={active}
+                            />
+                          )
+                        case OvalSelector.TYPE:
+                          return (
+                            <Oval
+                              key={key}
+                              annotation={annotation}
+                              active={active}
+                            />
+                          )
+                        default:
+                          return null
+                }
+                 }}
+                renderContent={Content}
+                disableEditor={false}
+                onMouseUp={() => { onSubmit(annotation) }}
+                activeAnnotations={[annotationToHighlight]}
+                allowTouch
+            />}
+
+            {(props.selectorType == 'POINT') &&
             <Annotation
                 src={props.img}
                 alt="Two pebbles anthropomorphized holding hands"
@@ -184,12 +239,12 @@ function AnnotateImage( props ){
                  }}
                 renderContent={Content}
                 disableEditor={true}
-                onMouseUp={(e) => {
-                    onSubmit(annotation)
-                }}
+                // onMouseMove={() => { onSubmit(annotation) }}
                 activeAnnotations={[annotationToHighlight]}
                 allowTouch
-            />
+            />}
+
+        </>
         );
     }
 
