@@ -1,6 +1,11 @@
 import { React, useEffect, useState } from 'react';
 
-function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighlight }) {
+function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighlight, pushRename}) {
+  const [rename, setRename] = useState({id: -1, name: ''});
+  
+  // useEffect(() => {
+  //   console.log(rename)
+  // }, [rename]);
 
   return (
     <div className='labels'>
@@ -11,12 +16,35 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
             return (
               record.annotations.map((annotation) => {
                 if (record.id === currentImgID) {
-                  return (<p onClick={() => {pushIdToHighlight(annotation.data.id, Math.random())}} 
-                            className='display-label'>{annotation.data.text} 
-                  <button onClick={() => {
-                    pushIdToDelete(annotation.data.id)
-                  }}>X</button> 
-                  </p>)
+                  return (
+                    
+                    <p onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
+                      className='display-label'>{annotation.data.id !== rename.id && annotation.data.text}
+                      {annotation.data.id !== rename.id &&
+                      <button onClick={() => {
+                        setRename({id: annotation.data.id, name: annotation.data.text})
+                      }}>E</button>
+                      }
+                      {
+                        annotation.data.id === rename.id &&
+                        <>
+                          <input 
+                            onChange={(e) => {setRename({id: annotation.data.id, name: e.target.value})}} 
+                            defaultValue={annotation.data.text} 
+                            style={{width: '100px'}}></input>
+                          <button onClick={() => {
+                            pushRename(rename)
+                            setRename({id: -1, name: ''})
+                            }}>S</button>
+                        </>
+                      }
+                      { annotation.data.id !== rename.id &&
+                        <button onClick={() => {
+                        pushIdToDelete(annotation.data.id)
+                        }}>X</button>
+                      }
+                      
+                    </p>)
                 }
                 else {
                   return null
