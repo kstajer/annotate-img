@@ -18,9 +18,16 @@ function Navbar({ getImgNames }) {
 
   const handleSubmit = async (event) => {
     const data = new FormData()
+    const acceptedExtensions = ['jpg', 'jpeg', 'png', 'svg']
     for (var x = 0; x < selectedFiles.length; x++) {
-      data.append('file', selectedFiles[x])
-      getImgName(selectedFiles[x], imgNames.length + x)
+      var extension = selectedFiles[x].name.split('.')[1]
+      if (acceptedExtensions.includes(extension)) {
+        data.append('file', selectedFiles[x])
+        getImgName(selectedFiles[x], imgNames.length + x)
+      }
+      else {
+        console.log("File: " + selectedFiles[x].name + " has forbidden extension.")
+      }
     }
 
     const response = await fetch('http://localhost:4000/image', {
