@@ -59,7 +59,7 @@ function AnnotateImage(props) {
             var tempAnn = []
 
             annotations.forEach(annotation => {
-                if (annotation.data.id === id){
+                if (annotation.data.id === id) {
                     annotation.data.name = newName
                 }
                 tempAnn.push(annotation)
