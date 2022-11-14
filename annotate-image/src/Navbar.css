@@ -4,6 +4,7 @@
     background-color: rgb(37, 37, 37);
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 10px -10px rgb(194, 194, 194);
 }
 
 #upload-btn-label {
@@ -17,13 +18,14 @@
     height: 30px;
     text-align: center;
     font-size: 15px;
-    line-height: 185%;
+    line-height: 190%;
     border-radius: 5px;
     background-color: rgb(76, 171, 231) !important;
     cursor: pointer;
 }
 
 .upload-div {
+    margin-top: 1px;
     margin-left: auto;
     margin-right: 0px;
 }
@@ -46,6 +48,7 @@
 }
 
 .download-btn {
+    margin-top:1px;
     background-color: rgb(162, 238, 170) !important;
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import '../App.css'
 
 const Container = styled.div`
   background: rgba(0, 0, 0, 0.5);
@@ -24,7 +25,7 @@ function Content (props) {
       className={props.className}
       geometry={geometry}
     >
-      {props.annotation.data && <>{props.annotation.data.text}  {props.annotation.data.counter}</> }
+      {props.annotation.data && <>{props.annotation.data.text} <span style={{color: 'darkgrey', fontSize: '13px'}}>({props.annotation.data.counter})</span></> }
     </Container>
   )
 }

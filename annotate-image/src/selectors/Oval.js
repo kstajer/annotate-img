@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  border: dashed 5px green;
+  border: 2px solid red;
   border-radius: 100%;
-  box-shadow: 0px 0px 1px 1px white inset;
+  // box-shadow: 0px 0px 1px 1px white inset;
   box-sizing: border-box;
-  transition: box-shadow 0.21s ease-in-out;
+  transition: background-color 0.21s ease-in-out;
+  background-color: rgba(255, 0, 0, 0.2);
 `
 
 function Oval (props) {
@@ -22,7 +23,8 @@ function Oval (props) {
         top: `${geometry.y}%`,
         height: `${geometry.height}%`,
         width: `${geometry.width}%`,
-        boxShadow: props.active && '0 0 1px 1px yellow inset',
+        backgroundColor: props.active && 'rgba(255, 0, 0, 0.4)',
+        boxShadow: props.active && '0 0 1px 1px red inset',
         ...props.style
       }}
     />
