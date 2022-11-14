@@ -54,20 +54,20 @@ function AnnotateImage(props) {
     function findAnnotationToRename(annotations, id, newName) {
         if (id > 0) {
             var ann = annotations.find(obj => obj.data.id === id)
-            console.log('ann')
-            console.log(typeof (ann))
             ann['data'].text = newName
 
-            var tempAnn = annotations.filter((annotation) => annotation.data.id !== id)
-            tempAnn.push(ann)
-            console.log('tempAnn')
-            console.log(tempAnn)
-            setAnnotations(tempAnn)
+            var tempAnn = []
 
+            annotations.forEach(annotation => {
+                if (annotation.data.id === id){
+                    annotation.data.name = newName
+                }
+                tempAnn.push(annotation)
+            });
+
+            setAnnotations(tempAnn)
             var tempAllAnn = structuredClone(allAnnotations)
             tempAllAnn[props.currentImgID].annotations = ann
-            console.log('tempAllAnn')
-            console.log(tempAllAnn)
             setAllAnnotations(tempAllAnn)
         }
     }
