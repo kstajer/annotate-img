@@ -32,7 +32,6 @@ function AnnotateImage(props) {
     }, [props.idToDelete]);
 
     useEffect(() => {
-        console.log(props.rename)
         findAnnotationToRename(annotations, props.rename.id, props.rename.name)
     }, [props.rename]);
 
@@ -40,11 +39,6 @@ function AnnotateImage(props) {
         findAnnotationToHiglight(annotations, props.idToHighlight)
     }, [props.labelClicked]);
 
-    useEffect(() => {
-        var annCounted = structuredClone(annotationsCounted)
-        annCounted[props.annName] = 1
-        setAnnotationsCounted(annCounted)
-    }, [props.annName]);
 
     function findAnnotationToHiglight(annotations, id) {
         const ann = annotations.find(obj => obj.data.id === id)
@@ -54,20 +48,20 @@ function AnnotateImage(props) {
     function findAnnotationToRename(annotations, id, newName) {
         if (id > 0) {
             var ann = annotations.find(obj => obj.data.id === id)
-            console.log('ann')
-            console.log(typeof (ann))
             ann['data'].text = newName
 
-            var tempAnn = annotations.filter((annotation) => annotation.data.id !== id)
-            tempAnn.push(ann)
-            console.log('tempAnn')
-            console.log(tempAnn)
-            setAnnotations(tempAnn)
+            var tempAnn = []
 
+            annotations.forEach(annotation => {
+                if (annotation.data.id === id) {
+                    annotation.data.name = newName
+                }
+                tempAnn.push(annotation)
+            });
+
+            setAnnotations(tempAnn)
             var tempAllAnn = structuredClone(allAnnotations)
             tempAllAnn[props.currentImgID].annotations = ann
-            console.log('tempAllAnn')
-            console.log(tempAllAnn)
             setAllAnnotations(tempAllAnn)
         }
     }
@@ -80,6 +74,11 @@ function AnnotateImage(props) {
 
     useEffect(() => {
         setAnnotations(allAnnotations[props.currentImgID].annotations)
+        var annCounted = structuredClone(annotationsCounted)
+        if (!(annCounted.hasOwnProperty(props.currentImgID))) {
+            annCounted[props.currentImgID] = {}
+        }
+        setAnnotationsCounted(annCounted)
     }, [props.currentImgID]);
 
 
@@ -98,6 +97,7 @@ function AnnotateImage(props) {
         setAnnotationToHighlight();
     };
 
+
     useEffect(() => {
         allAnnotations.map((image) => {
             if (image.id === props.currentImgID) {
@@ -111,22 +111,23 @@ function AnnotateImage(props) {
         setAllAnnotations(tempAnn)
         props.pullAllAnnotations(allAnnotations)
 
-    }, [annotations]);
-
+    }, [annotationId]);
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
-        console.log('submit')
-        var annCounted = structuredClone(annotationsCounted)
-        if (annCounted.hasOwnProperty(props.annName)) {
-            annCounted[props.annName] = annCounted[props.annName] + 1
-        }
-        else {
-            annCounted[props.annName] = 1
-        }
-        console.log(annCounted)
-        setAnnotationsCounted(annCounted)
 
+        var annCounted = structuredClone(annotationsCounted)
+        if (annCounted.hasOwnProperty(props.currentImgID)) {
+            if (annCounted[props.currentImgID].hasOwnProperty(props.annName)) {
+                annCounted[props.currentImgID][props.annName] = annCounted[props.currentImgID][props.annName] + 1
+            }
+            else {
+                console.log(props.annName + " =1")
+                annCounted[props.currentImgID][props.annName] = 1
+            }
+            setAnnotationsCounted(annCounted)
+        }
+        
         if (!(typeof geometry == 'undefined')) {
             setAnnotation({})
             setAnnotations(annotations.concat({
@@ -137,7 +138,7 @@ function AnnotateImage(props) {
                 data: {
                     text: props.annName,
                     id: annotationId,
-                    counter: annotationsCounted[props.annName]
+                    counter: annotationsCounted[props.currentImgID][props.annName]
                 }
             }))
             setAnnotationId(annotationId + 1);
@@ -145,7 +146,7 @@ function AnnotateImage(props) {
         else {
             console.log('zle oznaczenie')
         }
-
+        
     };
 
     return (
