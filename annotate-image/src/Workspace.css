@@ -7,6 +7,7 @@
     margin-left: 5px;
     margin-right: 5px;
     width: calc(80%);
+    height: 100%;
     background-image: url('./background-annotate.jpeg');
     display: flex;
     justify-content: center; 
@@ -17,12 +18,11 @@
 .workspace button {
     outline: none;
     border: none;
-    margin: 0;
     padding: 0;
 
     background-color: rgb(92, 92, 92);
     opacity: 0.8;
-    height: calc(100% - (40px + 30px + 10px));
+    height: 100%;
     width: 30px;
     cursor: pointer;
 }
@@ -32,14 +32,13 @@
 }
 
 .next-btn {
-    position: absolute;
-    right: 5px;
+    margin-right:0;
+    margin-left: auto;
 }
 
 .previous-btn {
-    position: absolute;
-    left: calc(20% + 71px);
-    
+    margin-left:0;
+    margin-right: auto;
 }
 
 .image-wrapper {
@@ -64,11 +63,11 @@
     margin: 0px;
 }
 
-
+/* 
 .hide {
     position: absolute;
     left: -9999;
     visibility: hidden;
     height: 0px;
     width: 0px;
-}
+} */

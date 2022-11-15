@@ -4,11 +4,13 @@
     justify-content: space-around;
     align-items: center;
     width: 80px;
-    min-width:80px;
+    min-width: 80px;
     background-color: rgb(37, 37, 37);
-    border-top-right-radius:5px;
-    border-bottom-right-radius:5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     overflow: scroll;
+    height: 100%;
+    min-height: 600px;
 }
 
 .toolbar button {
@@ -46,9 +48,13 @@
 
 .popup-content {
     margin: auto;
-    background: rgb(255, 255, 255);
+    margin-top: -5px;
+    margin-left: 10px;
+    background: rgb(219, 219, 219);
     width: 50%;
     padding: 5px;
+    border-radius: 5px;
+    border: 2px solid darkgray;
   }
   .popup-arrow {
     color: rgba(0, 0, 0, 0);
@@ -63,4 +69,30 @@
   }
   [data-popup='tooltip'].popup-overlay {
     background: transparent;
+  }
+
+  .popup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .set-name-btn{
+    all: unset;
+
+    font-size: 15px;
+    width:100px;
+    height: 30px;
+    background-color: rgb(150, 150, 150);
+
+    text-align: center;
+    border-radius: 4px;
+    margin-top:5px;
+    cursor:pointer;
+  }
+
+  #ann-name{
+    margin-top:3px;
   }

@@ -41,13 +41,13 @@ function Toolbar({pushAnnName, pushClearAll, pushSelectorType}) {
       <hr />
       <Popup trigger={<label htmlFor='name-btn'><button id='name-btn'></button>Name</label>} position="right center">
         {close => (
-        <div>
-          <label htmlFor='ann-name'>Enter annotation name:</label>
-          <input type='text' id='ann-name' onChange={(e) => setAnnName(e.target.value)}></input>
-          <button onClick={() => {
+        <div className='popup'>
+          <label htmlFor='ann-name'>Enter annotations name:</label>
+          <input type='text' id='ann-name' maxLength='12' onChange={(e) => setAnnName(e.target.value)}></input>
+          <button className='set-name-btn' onClick={() => {
             close()
             pushAnnName(annName)
-            }}>Submit</button>
+            }}>Set Name</button>
         </div>
         )}
       </Popup>

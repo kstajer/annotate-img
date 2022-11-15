@@ -37,6 +37,7 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                         <>
                           <input 
                             className='rename-input'
+                            maxLength= '12'
                             onChange={(e) => {setRename({id: annotation.data.id, name: e.target.value})}} 
                             defaultValue={annotation.data.text} 
                           ></input>
