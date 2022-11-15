@@ -8,6 +8,8 @@ function Toolbar({pushAnnName, pushClearAll, pushSelectorType}) {
   const [annName, setAnnName] = useState('');
   const [clearAll, setClearAll] = useState(false);
   const [selectorType, setSelectorType] = useState('RECTANGLE');
+  var activeColor= 'rgb(145,145,145)'
+  var buttonColor= 'rgb(50,50,50)'
 
   useEffect(() => {
     console.log(annName);
@@ -24,30 +26,37 @@ function Toolbar({pushAnnName, pushClearAll, pushSelectorType}) {
 
   return (
     <div className='toolbar'>
-      <label id='rectangle-btn'><button onClick={() => { setSelectorType('RECTANGLE')}}></button>Rectangle</label>
-      <label id='polygon-btn'><button onClick={() => { setSelectorType('POINT')}}></button>Point</label>
-      <label id='smart-btn'><button onClick={() => { setSelectorType('OVAL')}}></button>Oval</label>
+
+      <button id='rectangle'  style={{backgroundColor: selectorType==='RECTANGLE' ? activeColor : buttonColor}} 
+      onClick={() => { setSelectorType('RECTANGLE')}}>
+      </button>
+      <label htmlFor='recatngle' id='rectangle-btn'>Rectangle</label>
+      <button id='point' style={{backgroundColor: selectorType==='POINT' ? activeColor : buttonColor}}
+      onClick={() => { setSelectorType('POINT')}}></button>
+      <label htmlFor='point' id='polygon-btn'>Point</label>
+      <button id='oval' style={{backgroundColor: selectorType==='OVAL' ? activeColor : buttonColor}}
+      onClick={() => { setSelectorType('OVAL')}}></button>
+      <label htmlFor='oval' id='smart-btn'>Oval</label>
+
       <hr />
-      <Popup trigger={<label id='name-btn'><button></button>Name</label>} position="right center">
+      <Popup trigger={<label htmlFor='name-btn'><button id='name-btn'></button>Name</label>} position="right center">
         {close => (
-        <div>
-          <label htmlFor='ann-name'>Enter annotation name:</label>
-          <input type='text' name='ann-name' onChange={(e) => setAnnName(e.target.value)}></input>
-          <button onClick={() => {
+        <div className='popup'>
+          <label htmlFor='ann-name'>Enter annotations name:</label>
+          <input type='text' id='ann-name' maxLength='12' onChange={(e) => setAnnName(e.target.value)}></input>
+          <button className='set-name-btn' onClick={() => {
             close()
             pushAnnName(annName)
-            }}>Submit</button>
+            }}>Set Name</button>
         </div>
         )}
       </Popup>
       <hr />
-      <label id='clear-btn'><button onClick={clearAnnotations}></button>Clear All</label>
+      <button id='clear-all' onClick={clearAnnotations}></button>
+      <label htmlFor='clear-all' id='clear-btn'>Clear All</label>
       <hr />
-      <label id='tbd-btn'><button onClick={() => {
-        var w = window.open('http://localhost:3000/labels', 'Data', 'height=400,width=300')
-      }}>
-      </button>Labels</label>
-      <label id='tbd2-btn'><button></button>tbd</label>
+      <button id='labels-btn'></button>
+      <label htmlFor='labels-btn' id='tbd-btn'>Labels</label>
     </div>
   )
 }

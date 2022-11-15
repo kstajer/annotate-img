@@ -6,18 +6,97 @@
   margin-bottom: 35px; */
   background-color: rgb(37, 37, 37);
   overflow: scroll;
-
+  border-radius: 5px;
+  min-width: 200px;
 }
 
 .display-label{
-  height:30px;
-  width:80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  margin: 0;
+  height:40px;
+  width:95%;
+  margin-top:6px;
   margin-left: auto;
   margin-right: auto;
-  background-color: darkgray;
+  border-radius: 5px;
+  background-color: rgb(205, 205, 205);
   text-align: center;
-  line-height: 1.75;
+  line-height: 40px;
+  cursor:pointer;
 }
+
+.display-label:hover{
+  background-color: rgb(180, 180, 180);
+}
+
+.labels-side-buttons{
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 5px;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+.labels-btn{
+  all: unset;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(145, 145, 145);
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.save-rename-btn{
+  margin-right: 35px;
+  margin-left:auto;
+}
+
+.labels-btn:hover{
+  background-color: rgb(105, 105, 105);
+}
+
+.rename-input{
+  -webkit-appearance: none;
+  outline:none;
+  border:none;
+  box-shadow: none;
+  background-color: rgb(205, 205, 205);
+  width: 65%;
+  height: 30px;
+  font-size:16.5px;
+  margin-left: 9px;
+
+}
+
+.text{
+  margin-left:10px;
+}
+
+.id{
+  margin-left: 6px;
+  color: rgb(85, 85, 85);
+}
+
+.title{
+  color:rgb(201, 200, 200);
+  font-size: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* .title-hr{
+  width: 80px;
+  background-color: rgb(44, 44, 44);
+  margin-left: 10px;
+  margin-right: auto;
+  margin-top: -5px;
+  border: 1px solid rgb(95, 95, 95)
+} */
 
 /* /* .display-labels {
   margin: 10px;

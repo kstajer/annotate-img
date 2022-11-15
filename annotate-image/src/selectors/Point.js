@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  border: solid 3px white;
+  border: solid 2px white;
   border-radius: 50%;
   box-sizing: border-box;
   box-shadow:
@@ -13,6 +13,7 @@ const Container = styled.div`
   position: absolute;
   transform: translate3d(-50%, -50%, 0);
   width: 16px;
+  background-color: rgba(255,0,0,0.3);
 ` 
 
 function Point (props) {
@@ -23,7 +24,9 @@ function Point (props) {
     <Container
       style={{
         top: `${geometry.y}%`,
-        left: `${geometry.x}%`
+        left: `${geometry.x}%`,
+        backgroundColor: props.active && 'rgba(255, 0, 0, 0.6)',
+        boxShadow: props.active && '0 0 1px 1px red inset',
       }}
     />
   )

@@ -9,7 +9,8 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
 
   return (
     <div className='labels'>
-      <p>Labels</p>
+      <p className='title'>Labels</p>
+      {/* <hr className='title-hr'></hr> */}
       {annotationLabels.length > 0 &&
         annotationLabels.map((record) => {
           if (record.annotations.length > 0) {
@@ -18,38 +19,42 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                 if (record.id === currentImgID) {
                   return (
                     
-                    <p onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
+                    <div onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
                       className='display-label'>{annotation.data.id !== rename.id && 
                       <>
-                        {annotation.data.counter}
-                        {annotation.data.text}
+                        <span className='text'>{annotation.data.text}</span>
+                        <span className='id'>({annotation.data.counter})</span>
                       </>
                       }
+                      <div className='labels-side-buttons'>
                       {annotation.data.id !== rename.id &&
-                      <button onClick={() => {
+                      <button className='rename-btn labels-btn' onClick={() => {
                         setRename({id: annotation.data.id, name: annotation.data.text})
-                      }}>E</button>
+                      }}></button>
                       }
                       {
                         annotation.data.id === rename.id &&
                         <>
                           <input 
+                            className='rename-input'
+                            maxLength= '12'
                             onChange={(e) => {setRename({id: annotation.data.id, name: e.target.value})}} 
                             defaultValue={annotation.data.text} 
-                            style={{width: '100px'}}></input>
-                          <button onClick={() => {
+                          ></input>
+                          <button className='save-rename-btn labels-btn' onClick={() => {
                             pushRename(rename)
                             setRename({id: -1, name: ''})
-                            }}>S</button>
+                            }}></button>
                         </>
                       }
                       { annotation.data.id !== rename.id &&
-                        <button onClick={() => {
+                        <button className='delete-btn labels-btn' onClick={() => {
                         pushIdToDelete(annotation.data.id)
-                        }}>X</button>
+                        }}></button>
                       }
+                      </div>
                       
-                    </p>)
+                    </div>)
                 }
                 else {
                   return null
