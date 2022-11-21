@@ -16,24 +16,27 @@ export function download(allAnnotations, annotationsCounted) {
     var image = {}
     var categories = []
 
-    for (let i = 0; i < Object.keys(annotationsCounted).length; i++)
-    {
-        Object.keys(annotationsCounted[i]).forEach(obj => {
-            if (!categories.includes(obj)) {
-                categories.push(obj)
-            }
-        });
-
-    }
-    let i = 0
-    categories.forEach(c => {
-        var category = {
-            name: c,
-            id: i
+    if (typeof(annotationsCounted) !== 'undefined') {
+        for (let i = 0; i < Object.keys(annotationsCounted).length; i++)
+        {
+            Object.keys(annotationsCounted[i]).forEach(obj => {
+                if (!categories.includes(obj)) {
+                    categories.push(obj)
+                }
+            });
+    
         }
-        i = i + 1
-        input_categories.push(category)
-    });
+        let i = 0
+        categories.forEach(c => {
+            var category = {
+                name: c,
+                id: i
+            }
+            i = i + 1
+            input_categories.push(category)
+        });
+    }
+
 
     
     input_info = {
@@ -93,5 +96,17 @@ export function download(allAnnotations, annotationsCounted) {
         categories: input_categories
     }
 
-    return (coco)
+    const exportData = () => {
+        const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+          JSON.stringify(coco)
+        )}`;
+        const link = document.createElement("a");
+        link.href = jsonString;
+        link.download = "coco.json";
+        link.click();
+    };
+    if (typeof(annotationsCounted) !== 'undefined') {
+        exportData()
+        return (coco)
+    }
 }
