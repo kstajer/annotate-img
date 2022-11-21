@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
-function Navbar({ getImgNames }) {
+function Navbar({ getImgNames, pullDownload }) {
 
   const [selectedFiles, setSelectedFiles] = useState(null)
   const [imgNames, setImgNames] = useState([])
+  const [downloadIsClicked, setDownloadIsClicked] = useState(false)
 
   useEffect(() => {
     if (selectedFiles) {
@@ -46,6 +47,11 @@ function Navbar({ getImgNames }) {
     setImgNames(imgNames => [...imgNames, { id: x, name: decodeURIComponent(imgData.name), annotations: [] }])
   }
 
+  const downloadClicked = () => {
+    setDownloadIsClicked(!downloadIsClicked)
+    pullDownload(downloadIsClicked)
+  }
+
   return (
     <div className='navbar'>
       <div className='upload-div'>
@@ -53,7 +59,7 @@ function Navbar({ getImgNames }) {
           Upload</label>
         <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
       </div>
-      <button className='download-btn'>Download</button>
+      <button className='download-btn' onClick={downloadClicked}>Download</button>
     </div>
   )
 }

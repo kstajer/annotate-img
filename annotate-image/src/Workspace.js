@@ -2,8 +2,9 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import AnnotateImage from "./AnnotateImage.js";
 import Labels from "./Labels.js";
+import { download } from './download.js';
 
-function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType}) {
+function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadClicked}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
   const [currentImgName, setCurrentImgName] = useState(null);
@@ -21,6 +22,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const [idToHighlight, setIdToHighlight] = useState();
   const [rename, setRename] = useState({id: -1, name: ''})
   const [clicked, setClicked] = useState();
+  const [annotationsCounted, setAnnotationsCounted] = useState();
 
   const pullIdToDelete = (id) => {
     setIdToDelete(id);
@@ -35,6 +37,10 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const pullAllAnnotations = (data) => {
     setAnnotationLabels(data)
     console.log(annotationLabels)
+  }
+
+  const pullAnnotationsCounted = (data) => {
+    setAnnotationsCounted(data)
   }
 
   const pullRename = (data) => {
@@ -70,6 +76,10 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
       window.removeEventListener('resize', resizeContainer)
     }
   });
+
+  useEffect(() => {
+    console.log(download(annotationLabels, annotationsCounted))
+  }, [downloadClicked]);
 
   useEffect(() => {
     resizeContainer()
@@ -135,6 +145,8 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
                 clearAll={clearAll}
                 selectorType={selectorType}
                 rename={rename}
+                imgDimensions={imgDimensions}
+                pullAnnotationsCounted={pullAnnotationsCounted}
               />
               <img 
                 onLoad={onImgLoad} 

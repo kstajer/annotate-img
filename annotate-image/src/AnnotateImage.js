@@ -14,7 +14,7 @@ import {
 
 
 function AnnotateImage(props) {
-    // props: img, currentImgID, imgNames, pullAllAnnotations, 
+    // props: img, currentImgID, imgNames, pullAllAnnotations, imgDimensions
     // idToDelete, idToHighlight, labelClicked, clearAll, selectorType, rename
 
     const [annotation, setAnnotation] = useState({});
@@ -81,6 +81,10 @@ function AnnotateImage(props) {
         setAnnotationsCounted(annCounted)
     }, [props.currentImgID]);
 
+    useEffect(() => {
+        props.pullAnnotationsCounted(annotationsCounted)
+    }, [annotationsCounted]);
+
 
     useEffect(() => {
         var tempAnn = structuredClone(allAnnotations)
@@ -102,6 +106,7 @@ function AnnotateImage(props) {
         allAnnotations.map((image) => {
             if (image.id === props.currentImgID) {
                 image.annotations = annotations
+                image['dimensions'] = props.imgDimensions
             }
         })
 
@@ -122,7 +127,6 @@ function AnnotateImage(props) {
                 annCounted[props.currentImgID][props.annName] = annCounted[props.currentImgID][props.annName] + 1
             }
             else {
-                console.log(props.annName + " =1")
                 annCounted[props.currentImgID][props.annName] = 1
             }
             setAnnotationsCounted(annCounted)
