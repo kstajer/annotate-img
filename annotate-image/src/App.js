@@ -26,6 +26,7 @@ function App() {
   const [selectorType, setSelectorType] = useState('RECTANGLE')
   const [currentImgID, setCurrentImgID] = useState()
   const [imgDimensions, setImgDimensions] = useState({})
+  const [displayLabels, setDisplayLabels]= useState(true)
 
   const getImgNames = (data) => {
     setImgNames(data)
@@ -51,6 +52,10 @@ function App() {
     setCurrentImgID(id)
   }
 
+  const getDisplayLabels = (data) =>{
+    setDisplayLabels(data)
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -63,6 +68,7 @@ function App() {
                   pushAnnName={getAnnName} 
                   pushClearAll={getClearAll}
                   pushSelectorType={getSelectorType}
+                  pushDisplayLabels={getDisplayLabels}
                 />
                 <Workspace 
                   imgNames={imgNames} 
@@ -71,6 +77,7 @@ function App() {
                   selectorType={selectorType}
                   getImgDimensions={getImgDimensions} 
                   getCurrentImgID={getCurrentImgID}
+                  displayLabels={displayLabels}
                 />
               </div>
               <Footer 
