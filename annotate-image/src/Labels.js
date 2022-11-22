@@ -27,7 +27,7 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                       className='display-label'>{annotation.data.id !== rename.id && 
                       <>
                         <span className='text'>{annotation.data.text}</span>
-                        <span className='id'>({annotation.data.counter})</span>
+                        <span className='id'>({annotation.data.id + 1})</span>
                       </>
                       }
                       <div className='labels-side-buttons'>

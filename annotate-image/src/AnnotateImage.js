@@ -23,8 +23,6 @@ function AnnotateImage(props) {
     const [annotationId, setAnnotationId] = useState(0);
     const [annotationToHighlight, setAnnotationToHighlight] = useState();
 
-    const [annotationsCounted, setAnnotationsCounted] = useState({});
-
     var allSelectors = { 'RECTANGLE': Rectangle, "OVAL": Oval, "POINT": Point }
 
     useEffect(() => {
@@ -74,16 +72,7 @@ function AnnotateImage(props) {
 
     useEffect(() => {
         setAnnotations(allAnnotations[props.currentImgID].annotations)
-        var annCounted = structuredClone(annotationsCounted)
-        if (!(annCounted.hasOwnProperty(props.currentImgID))) {
-            annCounted[props.currentImgID] = {}
-        }
-        setAnnotationsCounted(annCounted)
     }, [props.currentImgID]);
-
-    useEffect(() => {
-        props.pullAnnotationsCounted(annotationsCounted)
-    }, [annotationsCounted]);
 
 
     useEffect(() => {
@@ -116,22 +105,11 @@ function AnnotateImage(props) {
         setAllAnnotations(tempAnn)
         props.pullAllAnnotations(allAnnotations)
 
-    }, [annotationId]);
+    }, [annotations]);
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
 
-        var annCounted = structuredClone(annotationsCounted)
-        if (annCounted.hasOwnProperty(props.currentImgID)) {
-            if (annCounted[props.currentImgID].hasOwnProperty(props.annName)) {
-                annCounted[props.currentImgID][props.annName] = annCounted[props.currentImgID][props.annName] + 1
-            }
-            else {
-                annCounted[props.currentImgID][props.annName] = 1
-            }
-            setAnnotationsCounted(annCounted)
-        }
-        
         if (!(typeof geometry == 'undefined')) {
             setAnnotation({})
             setAnnotations(annotations.concat({
@@ -141,8 +119,7 @@ function AnnotateImage(props) {
                 },
                 data: {
                     text: props.annName,
-                    id: annotationId,
-                    counter: annotationsCounted[props.currentImgID][props.annName]
+                    id: annotationId
                 }
             }))
             setAnnotationId(annotationId + 1);
