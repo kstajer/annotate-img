@@ -1,4 +1,4 @@
-export function download(allAnnotations, annotationsCounted) {
+export function download(allAnnotations, annotationsCategories, downloadForm) {
     const getCurrentDate = () => {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -16,37 +16,34 @@ export function download(allAnnotations, annotationsCounted) {
     var image = {}
     var categories = []
 
-    if (typeof(annotationsCounted) !== 'undefined') {
-        for (let i = 0; i < Object.keys(annotationsCounted).length; i++)
-        {
-            Object.keys(annotationsCounted[i]).forEach(obj => {
-                if (!categories.includes(obj)) {
-                    categories.push(obj)
-                }
-            });
-    
-        }
+    if (typeof(annotationsCategories) !== 'undefined') {
+        categories = [... new Set(annotationsCategories)]
+
+
         let i = 0
         categories.forEach(c => {
-            var category = {
-                name: c,
-                id: i
+            if (c !== '') {
+                var category = {
+                    name: c,
+                    id: i
+                }
+                i = i + 1
+                input_categories.push(category)
             }
-            i = i + 1
-            input_categories.push(category)
         });
     }
 
 
-    
-    input_info = {
-        description: "description_test", 
-        url: "http://test.test",
-        version: "1.0_test",
-        year: 2022,
-        contributor: "contributor_test",
-        date_created: getCurrentDate()
+    if (typeof(downloadForm) !== 'undefined') {
+        input_info = {
+            description: downloadForm.dataset, 
+            version: downloadForm.version,
+            year: 2022,
+            contributor: downloadForm.contributor,
+            date_created: getCurrentDate()
+        }
     }
+
 
     allAnnotations.forEach(img => {
         if(img.hasOwnProperty('dimensions')) {
@@ -102,10 +99,17 @@ export function download(allAnnotations, annotationsCounted) {
         )}`;
         const link = document.createElement("a");
         link.href = jsonString;
-        link.download = "coco.json";
+        if (downloadForm.dataset != ''){
+            link.download = downloadForm.dataset + ".json";
+        }
+        else {
+            link.download = "coco.json";
+        }
+        
         link.click();
     };
-    if (typeof(annotationsCounted) !== 'undefined') {
+    if (annotationsCategories.length > 1) {
+        console.log(annotationsCategories)
         exportData()
         return (coco)
     }

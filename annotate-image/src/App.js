@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   BrowserRouter,
   Routes,
@@ -82,7 +82,7 @@ function App() {
                   selectorType={selectorType}
                   getImgDimensions={getImgDimensions} 
                   getCurrentImgID={getCurrentImgID}
-                  downloadClicked={download}
+                  downloadForm={download}
                   displayLabels={displayLabels}
                 />
               </div>

@@ -5,7 +5,7 @@ import Labels from "./Labels.js";
 import { download } from './download.js';
 
 
-function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadClicked, displayLabels}) {
+function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadForm, displayLabels}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
   const [currentImgName, setCurrentImgName] = useState(null);
@@ -23,7 +23,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const [idToHighlight, setIdToHighlight] = useState();
   const [rename, setRename] = useState({id: -1, name: ''})
   const [clicked, setClicked] = useState();
-  const [annotationsCounted, setAnnotationsCounted] = useState();
+  const [annotationsCategories, setAnnotationsCategories] = useState([]);
 
   const [disLabels, setDisLabels]= useState(false)
 
@@ -41,9 +41,9 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
     console.log(annotationLabels)
   }
 
-  const pullAnnotationsCounted = (data) => {
-    setAnnotationsCounted(data)
-  }
+  // const pullAnnotationsCounted = (data) => {
+  //   setAnnotationsCounted(data)
+  // }
 
   const pullRename = (data) => {
     setRename(data)
@@ -89,13 +89,22 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   });
 
   useEffect(() => {
-    console.log(download(annotationLabels, annotationsCounted))
-  }, [downloadClicked]);
+    console.log(download(annotationLabels, annotationsCategories, downloadForm))
+  }, [downloadForm]);
 
   useEffect(() => {
     resizeContainer()
     getImgDimensions(imgDimensions)
   }, [imgDimensions]);
+
+  useEffect(() => {
+    setAnnotationsCategories([...annotationsCategories, annName])
+  }, [annName]);
+
+
+  useEffect(() => {
+    setAnnotationsCategories([...annotationsCategories, rename.name])
+  }, [rename]);
 
   useEffect(() => {
     getCurrentImgID(currentImgID)
@@ -159,7 +168,6 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
                 selectorType={selectorType}
                 rename={rename}
                 imgDimensions={imgDimensions}
-                pullAnnotationsCounted={pullAnnotationsCounted}
               />
               <img 
                 onLoad={onImgLoad} 
