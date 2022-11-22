@@ -105,7 +105,6 @@ export function download(allAnnotations, annotationsCategories, downloadForm) {
         else {
             link.download = "coco.json";
         }
-        
         link.click();
     };
     if (annotationsCategories.length > 1) {
