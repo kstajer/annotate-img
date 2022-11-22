@@ -26,6 +26,7 @@ function App() {
   const [selectorType, setSelectorType] = useState('RECTANGLE')
   const [currentImgID, setCurrentImgID] = useState()
   const [imgDimensions, setImgDimensions] = useState({})
+  const [download, setDownload] = useState()
   const [displayLabels, setDisplayLabels]= useState(true)
 
   const getImgNames = (data) => {
@@ -34,6 +35,10 @@ function App() {
 
   const getAnnName = (name) => {
     setAnnName(name)
+  }
+
+  const pullDownload = (data) => {
+    setDownload(data)
   }
 
   const getClearAll = (data) => {
@@ -62,7 +67,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <Navbar getImgNames={getImgNames} />
+              <Navbar getImgNames={getImgNames} pullDownload={pullDownload}/>
               <div className='labels-workspace'>
                 <Toolbar 
                   pushAnnName={getAnnName} 
@@ -77,6 +82,7 @@ function App() {
                   selectorType={selectorType}
                   getImgDimensions={getImgDimensions} 
                   getCurrentImgID={getCurrentImgID}
+                  downloadClicked={download}
                   displayLabels={displayLabels}
                 />
               </div>
