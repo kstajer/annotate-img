@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Popup from 'reactjs-popup';
 
-
-
-function Toolbar({pushAnnName, pushClearAll, pushSelectorType}) {
+function Toolbar({pushAnnName, pushClearAll, pushSelectorType, pushDisplayLabels}) {
 
   const [annName, setAnnName] = useState('');
   const [clearAll, setClearAll] = useState(false);
@@ -27,19 +25,18 @@ function Toolbar({pushAnnName, pushClearAll, pushSelectorType}) {
   return (
     <div className='toolbar'>
 
-      <button id='rectangle'  style={{backgroundColor: selectorType==='RECTANGLE' ? activeColor : buttonColor}} 
-      onClick={() => { setSelectorType('RECTANGLE')}}>
-      </button>
-      <label htmlFor='recatngle' id='rectangle-btn'>Rectangle</label>
-      <button id='point' style={{backgroundColor: selectorType==='POINT' ? activeColor : buttonColor}}
-      onClick={() => { setSelectorType('POINT')}}></button>
-      <label htmlFor='point' id='polygon-btn'>Point</label>
-      <button id='oval' style={{backgroundColor: selectorType==='OVAL' ? activeColor : buttonColor}}
-      onClick={() => { setSelectorType('OVAL')}}></button>
-      <label htmlFor='oval' id='smart-btn'>Oval</label>
+      <label htmlFor='recatngle' id='rectangle-btn'><button id='rectangle'  style={{backgroundColor: selectorType==='RECTANGLE' ? activeColor : buttonColor}} 
+      onClick={() => { setSelectorType('RECTANGLE')}}><i className='far fa-square' style={{color: selectorType==='RECTANGLE' ? 'white' : 'darkgrey', fontSize: '24px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i>
+      </button>Rectangle</label>
+  
+      <label htmlFor='point' id='polygon-btn'><button id='point' style={{backgroundColor: selectorType==='POINT' ? activeColor : buttonColor}}
+      onClick={() => { setSelectorType('POINT')}}><i className='	far fa-dot-circle' style={{color: selectorType==='POINT' ? 'white' : 'darkgrey', fontSize: '24px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Point</label>
+
+      <label htmlFor='oval' id='smart-btn'><button id='oval' style={{backgroundColor: selectorType==='OVAL' ? activeColor : buttonColor}}
+      onClick={() => { setSelectorType('OVAL')}}><i className='far fa-circle' style={{color: selectorType==='OVAL' ? 'white' : 'darkgrey', fontSize: '24px', marginTop: '3px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Oval</label>
 
       <hr />
-      <Popup trigger={<label htmlFor='name-btn'><button id='name-btn'></button>Name</label>} position="right center">
+      <Popup trigger={<label htmlFor='name-btn'><button id='name-btn'><i className='fas fa-pencil-alt' style={{color: 'darkgrey', fontSize: '24px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Name</label>} position="right center">
         {close => (
         <div className='popup'>
           <label htmlFor='ann-name'>Enter annotations name:</label>
@@ -47,16 +44,15 @@ function Toolbar({pushAnnName, pushClearAll, pushSelectorType}) {
           <button className='set-name-btn' onClick={() => {
             close()
             pushAnnName(annName)
-            }}>Set Name</button>
+            }}
+            >Set Name</button>
         </div>
         )}
       </Popup>
       <hr />
-      <button id='clear-all' onClick={clearAnnotations}></button>
-      <label htmlFor='clear-all' id='clear-btn'>Clear All</label>
+      <label htmlFor='clear-all' id='clear-btn'><button id='clear-all' onClick={clearAnnotations}><i className='fas fa-eraser' style={{color: 'darkgrey', fontSize: '24px', marginTop: '3px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Clear All</label>
       <hr />
-      <button id='labels-btn'></button>
-      <label htmlFor='labels-btn' id='tbd-btn'>Labels</label>
+      <label htmlFor='labels-btn' id='labels-btn'><button id='labels-btn' onClick={()=>{pushDisplayLabels(Math.random)}}><i className='fas fa-columns' style={{color: 'darkgrey', fontSize: '24px', marginTop: '3px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Labels</label>
     </div>
   )
 }

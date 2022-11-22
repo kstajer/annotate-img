@@ -4,11 +4,12 @@ import AnnotateImage from "./AnnotateImage.js";
 import Labels from "./Labels.js";
 import { download } from './download.js';
 
-function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadClicked}) {
+
+function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadClicked, displayLabels}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
   const [currentImgName, setCurrentImgName] = useState(null);
-  var imgSlide = 0;
+  var imgSlide = 1;
 
   const [imgDimensions, setImgDimensions] = useState({});
 
@@ -24,6 +25,8 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const [clicked, setClicked] = useState();
   const [annotationsCounted, setAnnotationsCounted] = useState();
 
+  const [disLabels, setDisLabels]= useState(false)
+
   const pullIdToDelete = (id) => {
     setIdToDelete(id);
   }
@@ -32,7 +35,6 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
     setIdToHighlight(id);
     setClicked(clicked);
   }
-
 
   const pullAllAnnotations = (data) => {
     setAnnotationLabels(data)
@@ -46,6 +48,15 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const pullRename = (data) => {
     setRename(data)
   }
+
+  const pullDisplayLabels= (data) => {
+    setDisLabels(data)
+  }
+
+  useEffect(() => {
+    setDisLabels(!disLabels)
+    resizeContainer()
+  }, [displayLabels]);
   
   // scale & resize image
 
@@ -96,12 +107,11 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   };
 
   // change image
-
   useEffect(() => {
     if (imgSlide === 1) {
       nextImg()
+      imgSlide += 1
     }
-    imgSlide += 1
   }, [imgNames]);
 
   const nextImg = () => {
@@ -120,15 +130,18 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
 
   return (
     <div className='workspace-container'>
+      { disLabels &&
     <Labels 
       annotationLabels={annotationLabels} 
       currentImgID={currentImgID} 
       pushIdToDelete={pullIdToDelete} 
       pushIdToHighlight={pullIdToHighlight}
       pushRename={pullRename}
+      pushDisplayLabels={pullDisplayLabels}
     />
-    <div className='workspace' >
-      <button className='previous-btn' onClick={previousImg}>[</button>
+      }
+    <div className='workspace'  style={{width: disLabels ? '80%' : '100%'}}>
+      <button className='previous-btn' onClick={previousImg}><i className='fas fa-chevron-left' style={{color: 'darkgrey', fontSize: '24px', marginTop: '3px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
           {currentImgName &&
@@ -156,7 +169,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
           }
         </div>
       </div>
-      <button className='next-btn' onClick={nextImg}>]</button>
+      <button className='next-btn' onClick={nextImg}><i className='fas fa-chevron-right' style={{color: 'darkgrey', fontSize: '24px', marginTop: '3px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>
     </div>
     </div>
   )

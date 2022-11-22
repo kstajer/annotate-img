@@ -1,16 +1,17 @@
 .toolbar {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin:auto;
     width: 80px;
     min-width: 80px;
     background-color: rgb(37, 37, 37);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    overflow: scroll;
     height: 100%;
-    min-height: 600px;
+    /* min-height: 600px;  */
+    overflow: scroll;
 }
 
 .toolbar button {
@@ -18,10 +19,16 @@
     border: none;
     margin: 0;
     padding: 0;
-    width: auto;
+    /* width: auto; */
     /* margin-bottom: 3px; */
     width: 60px;
     height: 40px;
+    min-width: 60px;
+    min-height: 40px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
     border-radius: 5px;
     background-color: rgb(50, 50, 50);
     cursor: pointer;
@@ -33,12 +40,13 @@
 }
 
 .toolbar label {
+    margin-top: auto;
+    margin-bottom: auto;
     font-size: 13px;
     color: white;
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-top: -10px;
 }
 
 .toolbar hr {
@@ -60,7 +68,7 @@
     color: rgba(0, 0, 0, 0);
   }
   [role='tooltip'].popup-content {
-    width: 200px;
+    width: 230px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
   }
   
@@ -95,4 +103,5 @@
 
   #ann-name{
     margin-top:3px;
+    width: 160px;
   }
