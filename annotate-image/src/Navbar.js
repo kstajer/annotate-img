@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import Popup from 'reactjs-popup';
 
 function Navbar({ getImgNames, pullDownload }) {
 
   const [selectedFiles, setSelectedFiles] = useState(null)
   const [imgNames, setImgNames] = useState([])
   const [downloadIsClicked, setDownloadIsClicked] = useState(false)
+  const [datasetName, setDatasetName] = useState();
+  const [contributorName, setContributorName] = useState();
+  const [versionName, setVersionName] = useState();
 
   useEffect(() => {
     if (selectedFiles) {
@@ -49,7 +53,10 @@ function Navbar({ getImgNames, pullDownload }) {
 
   const downloadClicked = () => {
     setDownloadIsClicked(!downloadIsClicked)
-    pullDownload(downloadIsClicked)
+    pullDownload({dataset: datasetName, contributor: contributorName, version: versionName, clicked: downloadIsClicked})
+    setDatasetName('')
+    setContributorName('')
+    setVersionName('')
   }
 
   return (
@@ -59,7 +66,23 @@ function Navbar({ getImgNames, pullDownload }) {
           Upload</label>
         <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
       </div>
-      <button className='download-btn' onClick={downloadClicked}>Download</button>
+      <Popup trigger={<button className='download-btn' >Download</button>} modal>
+        {close => (
+        <div className='popup-download'>
+          <label htmlFor='dataset-name'>Dataset name:</label>
+          <input type='text' id='dataset-name' maxLength='32' onChange={(e) => {setDatasetName(e.target.value)}}></input>
+          <label htmlFor='contributor-name'>Contributor:</label>
+          <input type='text' id='contributor-name' maxLength='24' onChange={(e) => {setContributorName(e.target.value)}}></input>
+          <label htmlFor='version'>Version:</label>
+          <input type='text' id='version' maxLength='12' onChange={(e) => {setVersionName(e.target.value)}}></input>
+          <button className='submit-download' onClick={() => {
+            downloadClicked()
+            close()
+            }}
+            >Download</button>
+        </div>
+        )}
+      </Popup>
     </div>
   )
 }
