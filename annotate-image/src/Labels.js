@@ -1,15 +1,19 @@
 import { React, useEffect, useState } from 'react';
 
-function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighlight, pushRename}) {
+function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighlight, pushRename, pushDisplayLabels}) {
+
   const [rename, setRename] = useState({id: -1, name: ''});
-  
-  // useEffect(() => {
-  //   console.log(rename)
-  // }, [rename]);
+  const [displayLabels, setDisplayLabels]= useState(true)
 
   return (
     <div className='labels'>
-      <p className='title'>Labels</p>
+      <div className= 'title-btn'>
+        <p className='title'>Labels</p>
+        {/* <button className= 'close-labels-btn' onClick={() => {
+          pushDisplayLabels(false)}
+        }
+        >x</button> */}
+      </div>
       {/* <hr className='title-hr'></hr> */}
       {annotationLabels.length > 0 &&
         annotationLabels.map((record) => {
@@ -30,7 +34,7 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                       {annotation.data.id !== rename.id &&
                       <button className='rename-btn labels-btn' onClick={() => {
                         setRename({id: annotation.data.id, name: annotation.data.text})
-                      }}></button>
+                      }}><i className='fas fa-edit fa-fw' style={{color: 'lightgrey', fontSize: '18px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>
                       }
                       {
                         annotation.data.id === rename.id &&
@@ -44,13 +48,13 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                           <button className='save-rename-btn labels-btn' onClick={() => {
                             pushRename(rename)
                             setRename({id: -1, name: ''})
-                            }}></button>
+                            }}><i className='fas fa-check' style={{color: 'lightgrey', fontSize: '20px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>
                         </>
                       }
                       { annotation.data.id !== rename.id &&
                         <button className='delete-btn labels-btn' onClick={() => {
                         pushIdToDelete(annotation.data.id)
-                        }}></button>
+                        }}><i className='fas fa-trash-alt fa-fw' style={{color: 'lightgrey', fontSize: '18px', marginTop: '6px'}}></i></button>
                       }
                       </div>
                       
