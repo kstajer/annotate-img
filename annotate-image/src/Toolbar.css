@@ -26,12 +26,20 @@
     min-width: 60px;
     min-height: 40px;
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-right: auto;
     margin-left: auto;
     border-radius: 5px;
-    background-color: rgb(50, 50, 50);
+    background-color: rgb(37, 37, 37);
     cursor: pointer;
+}
+
+.toolbar button:hover{
+  background-color: rgb(50, 50, 50);
+}
+
+.selector-button:hover{
+  background-color: rgb(50, 50, 50) !important;
 }
 
 #name-btn{
@@ -51,6 +59,7 @@
 
 .toolbar hr {
     width: 35px;
+    margin-top: 20px;
     border: 1px solid rgb(63, 63, 63);
 }
 
@@ -64,9 +73,11 @@
     border-radius: 5px;
     border: 2px solid darkgray;
   }
+
   .popup-arrow {
-    color: rgba(0, 0, 0, 0);
+    color: rgba(219, 219, 219, 1);
   }
+
   [role='tooltip'].popup-content {
     width: 230px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;

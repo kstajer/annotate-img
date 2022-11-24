@@ -7,17 +7,17 @@
   background-color: rgb(37, 37, 37);
   overflow: scroll;
   border-radius: 5px;
-  min-width: 200px;
+  min-width: 250px;
 }
 
 .display-label{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 
   padding: 0;
   margin: 0;
-  height:40px;
+  height:50px;
   width:95%;
   margin-bottom:6px;
   margin-left: auto;
@@ -25,12 +25,34 @@
   border-radius: 5px;
   background-color: rgb(205, 205, 205);
   text-align: center;
-  line-height: 40px;
   cursor:pointer;
 }
 
 .display-label:hover{
   background-color: rgb(180, 180, 180);
+}
+
+.label-desc{
+  display: flex;
+  flex-direction: column;
+}
+
+.text{
+  margin-left: 5px;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+.id{
+  margin-left: 6px;
+  color: rgb(85, 85, 85);
+}
+
+.id-type-div{
+  margin-top: 1px;
+  display:flex;
+  font-size: 13px;
+  color: rgb(85, 85, 85);
 }
 
 .labels-side-buttons{
@@ -53,7 +75,6 @@
 }
 
 .save-rename-btn{
-  margin-right: 35px;
   margin-left:auto;
 }
 
@@ -67,20 +88,12 @@
   border:none;
   box-shadow: none;
   background-color: rgb(205, 205, 205);
-  width: 65%;
+  width: 70%;
   height: 30px;
   font-size:16.5px;
-  margin-left: 9px;
+  margin-left: -20px;
+  margin-right: auto;
 
-}
-
-.text{
-  margin-left:10px;
-}
-
-.id{
-  margin-left: 6px;
-  color: rgb(85, 85, 85);
 }
 
 .title{
@@ -105,7 +118,6 @@
   color:rgb(201, 200, 200);
   cursor: pointer;
 }
-
 /* .title-hr{
   width: 80px;
   background-color: rgb(44, 44, 44);

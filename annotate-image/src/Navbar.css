@@ -15,14 +15,20 @@
     margin: 0;
     padding: 0px;
     float: right;
-    width: 120px;
+    width: 150px;
     height: 30px;
     text-align: center;
     font-size: 15px;
     line-height: 190%;
     border-radius: 5px;
-    background-color: rgb(76, 171, 231) !important;
+    /* background-color: rgb(206, 206, 206) !important; */
+    border: 1px solid lightgrey !important;
+    color: lightgray;
     cursor: pointer;
+}
+
+#upload-btn-label:hover{
+    background-color: rgb(78, 78, 78) !important;
 }
 
 .upload-div {
@@ -50,19 +56,54 @@
 
 .download-btn {
     margin-top:1px;
-    background-color: rgb(162, 238, 170) !important;
+    background-color: rgb(173, 173, 173) !important;
+    width: 150px !important;
+    border: 1px solid lightgray !important;
+}
+
+.download-btn:hover{
+    background-color: rgb(134, 134, 134) !important;
+    border: 1px solid rgb(124, 124, 124) !important;
+
 }
 
 input[type="file"] {
     display: none;
 }
 
-.popup-content {
-    width: 400px;
+.download-pop-content {
+    padding: 20px;
+    width: 350px;
+} 
 
+.download-pop-overlay{
 }
 
 .popup-download {
     display: flex;
     flex-direction: column;
+}
+
+.submit-download{
+    all: unset;
+    margin:  auto;
+    margin-top:15px;
+    padding: 2px;
+    width: 150px;
+    height: 35px;
+    background-color: rgba(150,150,150, 0.8);
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-download:hover{
+    background-color: rgba(120,120,120, 0.8);
+}
+
+.form-input{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 14px;
 }
