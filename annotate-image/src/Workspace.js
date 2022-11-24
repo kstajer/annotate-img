@@ -38,12 +38,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
 
   const pullAllAnnotations = (data) => {
     setAnnotationLabels(data)
-    console.log(annotationLabels)
   }
-
-  // const pullAnnotationsCounted = (data) => {
-  //   setAnnotationsCounted(data)
-  // }
 
   const pullRename = (data) => {
     setRename(data)

@@ -27,8 +27,14 @@ function AnnotateImage(props) {
     var allSelectors = { 'RECTANGLE': Rectangle, "OVAL": Oval, "POINT": Point }
 
     useEffect(() => {
-        upload(props.inputCoco)
+        var d = upload(props.inputCoco, allAnnotations)
+        if (d !== null) {
+            setAllAnnotations(d[0])
+            setAnnotations(d[0][props.currentImgID].annotations)
+            setAnnotationId(d[1] + 1)
+        }
     }, [props.inputCoco]);
+
 
     useEffect(() => {
         setAnnotations(annotations.filter((annotation) => annotation.data.id !== props.idToDelete))
@@ -108,10 +114,8 @@ function AnnotateImage(props) {
 
         var tempAnn = structuredClone(allAnnotations)
         tempAnn[props.currentImgID].annotations = annotations
-
         setAllAnnotations(tempAnn)
         props.pullAllAnnotations(allAnnotations)
-
     }, [annotations]);
 
 
