@@ -5,7 +5,7 @@ import Labels from "./Labels.js";
 import { download } from './download.js';
 
 
-function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadForm, displayLabels}) {
+function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadForm, displayLabels, inputCoco}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
   const [currentImgName, setCurrentImgName] = useState(null);
@@ -57,6 +57,8 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
     setDisLabels(!disLabels)
     resizeContainer()
   }, [displayLabels]);
+
+
   
   // scale & resize image
 
@@ -168,6 +170,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
                 selectorType={selectorType}
                 rename={rename}
                 imgDimensions={imgDimensions}
+                inputCoco={inputCoco}
               />
               <img 
                 onLoad={onImgLoad} 

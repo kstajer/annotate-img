@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Popup from 'reactjs-popup';
 
-function Navbar({ getImgNames, pullDownload }) {
+function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
 
   const [selectedFiles, setSelectedFiles] = useState(null)
   const [imgNames, setImgNames] = useState([])
@@ -21,16 +21,21 @@ function Navbar({ getImgNames, pullDownload }) {
     console.log(imgNames)
   }, [imgNames]);
 
-  const [cocoFile, setCocoFile] = useState("");
+  const [inputCoco, setInputCoco] = useState("");
 
   const handleCocoChange = e => {
     const fileReader = new FileReader();
     fileReader.readAsText(e.target.files[0], "UTF-8");
     fileReader.onload = e => {
-      console.log("e.target.result", e.target.result);
-      setCocoFile(e.target.result);
+      // console.log("e.target.result", e.target.result);
+      setInputCoco(e.target.result);
     };
   };
+
+  useEffect(() => {
+    pullInputCoco(inputCoco)
+  }, [inputCoco]);
+
 
   const handleSubmit = async (event) => {
     const data = new FormData()

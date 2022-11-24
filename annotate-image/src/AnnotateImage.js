@@ -11,10 +11,11 @@ import {
     OvalSelector,
     PointSelector
 } from 'react-image-annotation/lib/selectors'
+import { upload } from './upload';
 
 
 function AnnotateImage(props) {
-    // props: img, currentImgID, imgNames, pullAllAnnotations, imgDimensions
+    // props: img, currentImgID, imgNames, pullAllAnnotations, imgDimensions, inputCoco
     // idToDelete, idToHighlight, labelClicked, clearAll, selectorType, rename
 
     const [annotation, setAnnotation] = useState({});
@@ -24,6 +25,10 @@ function AnnotateImage(props) {
     const [annotationToHighlight, setAnnotationToHighlight] = useState();
 
     var allSelectors = { 'RECTANGLE': Rectangle, "OVAL": Oval, "POINT": Point }
+
+    useEffect(() => {
+        upload(props.inputCoco)
+    }, [props.inputCoco]);
 
     useEffect(() => {
         setAnnotations(annotations.filter((annotation) => annotation.data.id !== props.idToDelete))

@@ -27,7 +27,8 @@ function App() {
   const [currentImgID, setCurrentImgID] = useState()
   const [imgDimensions, setImgDimensions] = useState({})
   const [download, setDownload] = useState()
-  const [displayLabels, setDisplayLabels]= useState(true)
+  const [displayLabels, setDisplayLabels] = useState(true)
+  const [inputCoco, setInputCoco] = useState()
 
   const getImgNames = (data) => {
     setImgNames(data)
@@ -39,6 +40,10 @@ function App() {
 
   const pullDownload = (data) => {
     setDownload(data)
+  }
+
+  const pullInputCoco = (data) => {
+    setInputCoco(data)
   }
 
   const getClearAll = (data) => {
@@ -57,7 +62,7 @@ function App() {
     setCurrentImgID(id)
   }
 
-  const getDisplayLabels = (data) =>{
+  const getDisplayLabels = (data) => {
     setDisplayLabels(data)
   }
 
@@ -67,28 +72,33 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <Navbar getImgNames={getImgNames} pullDownload={pullDownload}/>
+              <Navbar
+                getImgNames={getImgNames}
+                pullDownload={pullDownload}
+                pullInputCoco={pullInputCoco}
+              />
               <div className='labels-workspace'>
-                <Toolbar 
-                  pushAnnName={getAnnName} 
+                <Toolbar
+                  pushAnnName={getAnnName}
                   pushClearAll={getClearAll}
                   pushSelectorType={getSelectorType}
                   pushDisplayLabels={getDisplayLabels}
                 />
-                <Workspace 
-                  imgNames={imgNames} 
-                  annName={annName} 
+                <Workspace
+                  imgNames={imgNames}
+                  annName={annName}
                   clearAll={clearAll}
                   selectorType={selectorType}
-                  getImgDimensions={getImgDimensions} 
+                  getImgDimensions={getImgDimensions}
                   getCurrentImgID={getCurrentImgID}
                   downloadForm={download}
                   displayLabels={displayLabels}
+                  inputCoco={inputCoco}
                 />
               </div>
-              <Footer 
-                imgDimensions={imgDimensions} 
-                imgNames={imgNames} 
+              <Footer
+                imgDimensions={imgDimensions}
+                imgNames={imgNames}
                 currentImgID={currentImgID}
               />
             </>
