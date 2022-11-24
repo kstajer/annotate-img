@@ -21,6 +21,17 @@ function Navbar({ getImgNames, pullDownload }) {
     console.log(imgNames)
   }, [imgNames]);
 
+  const [cocoFile, setCocoFile] = useState("");
+
+  const handleCocoChange = e => {
+    const fileReader = new FileReader();
+    fileReader.readAsText(e.target.files[0], "UTF-8");
+    fileReader.onload = e => {
+      console.log("e.target.result", e.target.result);
+      setCocoFile(e.target.result);
+    };
+  };
+
   const handleSubmit = async (event) => {
     const data = new FormData()
     const acceptedExtensions = ['jpg', 'jpeg', 'png', 'svg']
@@ -45,10 +56,11 @@ function Navbar({ getImgNames, pullDownload }) {
 
   const handleFileChange = (event) => {
     setSelectedFiles(event.target.files)
+    console.log(event.target.files)
   }
 
   const getImgName = (imgData, x) => {
-    setImgNames(imgNames => [...imgNames, { id: x, name: decodeURIComponent(imgData.name), annotations: [] }])
+    setImgNames(imgNames => [...imgNames, { id: x, name: decodeURIComponent(imgData.name), annotations: [], dimensions:{height: 0, width: 0} }])
   }
 
   const downloadClicked = () => {
@@ -65,6 +77,12 @@ function Navbar({ getImgNames, pullDownload }) {
         <label htmlFor="upload-btn" className="custom-file-upload" id='upload-btn-label'>
         <i className='fas fa-upload' style={{color: 'lightgrey', fontSize: '18px', marginTop: '6px', marginLeft: '-10px', marginRight: '8px'}}></i>Upload</label>
         <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
+      </div>
+
+      <div >
+        <label htmlFor="coco-btn" >Upload COCO</label>
+        <input type='file' id='coco-btn' name='coco-btn' onChange={handleCocoChange}></input>
+
       </div>
       <Popup className='download-pop' trigger={<button className='download-btn' ><i className='fas fa-download' style={{color: 'rgb(37,37,37)', fontSize: '18px', marginTop: '3px', marginLeft: '-10px', marginRight: '8px'}}></i>Download</button>} modal>
         {close => (

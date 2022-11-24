@@ -95,7 +95,9 @@ function AnnotateImage(props) {
         allAnnotations.map((image) => {
             if (image.id === props.currentImgID) {
                 image.annotations = annotations
-                image['dimensions'] = props.imgDimensions
+                if (annotations.length > 0) {
+                    image['dimensions'] = props.imgDimensions
+                }
             }
         })
 
@@ -106,6 +108,7 @@ function AnnotateImage(props) {
         props.pullAllAnnotations(allAnnotations)
 
     }, [annotations]);
+
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
