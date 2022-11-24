@@ -63,23 +63,23 @@ function Navbar({ getImgNames, pullDownload }) {
     <div className='navbar'>
       <div className='upload-div'>
         <label htmlFor="upload-btn" className="custom-file-upload" id='upload-btn-label'>
-          Upload</label>
+        <i className='fas fa-upload' style={{color: 'lightgrey', fontSize: '18px', marginTop: '6px', marginLeft: '-10px', marginRight: '8px'}}></i>Upload</label>
         <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
       </div>
-      <Popup trigger={<button className='download-btn' >Download</button>} modal>
+      <Popup className='download-pop' trigger={<button className='download-btn' ><i className='fas fa-download' style={{color: 'rgb(37,37,37)', fontSize: '18px', marginTop: '3px', marginLeft: '-10px', marginRight: '8px'}}></i>Download</button>} modal>
         {close => (
         <div className='popup-download'>
           <label htmlFor='dataset-name'>Dataset name:</label>
-          <input type='text' id='dataset-name' maxLength='32' onChange={(e) => {setDatasetName(e.target.value)}}></input>
+          <input type='text' id='dataset-name' className='form-input' maxLength='24' onChange={(e) => {setDatasetName(e.target.value)}}></input>
           <label htmlFor='contributor-name'>Contributor:</label>
-          <input type='text' id='contributor-name' maxLength='24' onChange={(e) => {setContributorName(e.target.value)}}></input>
+          <input type='text' id='contributor-name' className='form-input' maxLength='24' onChange={(e) => {setContributorName(e.target.value)}}></input>
           <label htmlFor='version'>Version:</label>
-          <input type='text' id='version' maxLength='12' onChange={(e) => {setVersionName(e.target.value)}}></input>
+          <input type='text' id='version' className='form-input' maxLength='12' onChange={(e) => {setVersionName(e.target.value)}}></input>
           <button className='submit-download' onClick={() => {
             downloadClicked()
             close()
             }}
-            >Download</button>
+            ><i className='fas fa-download' style={{color: 'rgb(37,37,37)', fontSize: '18px', marginTop: '3px', marginLeft: '-10px', marginRight: '5px'}}></i>Download</button>
         </div>
         )}
       </Popup>

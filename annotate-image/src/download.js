@@ -107,6 +107,7 @@ export function download(allAnnotations, annotationsCategories, downloadForm) {
         }
         link.click();
     };
+    console.log('download.js')
     if (annotationsCategories.length > 1) {
         console.log(annotationsCategories)
         exportData()
