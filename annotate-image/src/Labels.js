@@ -25,10 +25,13 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                     
                     <div onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
                       className='display-label'>{annotation.data.id !== rename.id && 
-                      <>
+                      <div className='label-desc'>
                         <span className='text'>{annotation.data.text}</span>
-                        <span className='id'>({annotation.data.id + 1})</span>
-                      </>
+                        <div className='id-type-div'>
+                          <span className='id'>id: {annotation.data.id + 1}, type </span>
+                          <span className='type'>: {annotation.geometry.type}</span>
+                        </div>
+                      </div>
                       }
                       <div className='labels-side-buttons'>
                       {annotation.data.id !== rename.id &&
@@ -49,6 +52,9 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                             pushRename(rename)
                             setRename({id: -1, name: ''})
                             }}><i className='fas fa-check' style={{color: 'lightgrey', fontSize: '20px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>
+                          <button className='close-rename-btn labels-btn' onClick={() => {
+                            setRename({id: -1, name: ''})
+                            }}><i className='fas fa-undo' style={{color: 'lightgrey', fontSize: '18px', marginTop: '6px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>
                         </>
                       }
                       { annotation.data.id !== rename.id &&

@@ -6,8 +6,8 @@ function Toolbar({pushAnnName, pushClearAll, pushSelectorType, pushDisplayLabels
   const [annName, setAnnName] = useState('');
   const [clearAll, setClearAll] = useState(false);
   const [selectorType, setSelectorType] = useState('RECTANGLE');
-  var activeColor= 'rgb(145,145,145)'
-  var buttonColor= 'rgb(50,50,50)'
+  var activeColor= 'rgb(50,50,50)'
+  var buttonColor= 'rgb(37,37,37)'
 
   useEffect(() => {
     console.log(annName);
@@ -25,14 +25,14 @@ function Toolbar({pushAnnName, pushClearAll, pushSelectorType, pushDisplayLabels
   return (
     <div className='toolbar'>
 
-      <label htmlFor='recatngle' id='rectangle-btn'><button id='rectangle'  style={{backgroundColor: selectorType==='RECTANGLE' ? activeColor : buttonColor}} 
+      <label htmlFor='recatngle' id='rectangle-btn'><button id='rectangle' className='selector-button'  style={{backgroundColor: selectorType==='RECTANGLE' ? activeColor : buttonColor}} 
       onClick={() => { setSelectorType('RECTANGLE')}}><i className='far fa-square' style={{color: selectorType==='RECTANGLE' ? 'white' : 'darkgrey', fontSize: '24px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i>
       </button>Rectangle</label>
   
-      <label htmlFor='point' id='polygon-btn'><button id='point' style={{backgroundColor: selectorType==='POINT' ? activeColor : buttonColor}}
-      onClick={() => { setSelectorType('POINT')}}><i className='	far fa-dot-circle' style={{color: selectorType==='POINT' ? 'white' : 'darkgrey', fontSize: '24px', marginTop: '5px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Point</label>
+      <label htmlFor='point' id='polygon-btn'><button className='selector-button'  id='point' style={{backgroundColor: selectorType==='POINT' ? activeColor : buttonColor}}
+      onClick={() => { setSelectorType('POINT')}}><i className='	far fa-dot-circle' style={{color: selectorType==='POINT' ? 'white' : 'darkgrey', fontSize: '24px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Point</label>
 
-      <label htmlFor='oval' id='smart-btn'><button id='oval' style={{backgroundColor: selectorType==='OVAL' ? activeColor : buttonColor}}
+      <label htmlFor='oval' id='smart-btn'><button className='selector-button'  id='oval' style={{backgroundColor: selectorType==='OVAL' ? activeColor : buttonColor}}
       onClick={() => { setSelectorType('OVAL')}}><i className='far fa-circle' style={{color: selectorType==='OVAL' ? 'white' : 'darkgrey', fontSize: '24px', marginTop: '3px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>Oval</label>
 
       <hr />
