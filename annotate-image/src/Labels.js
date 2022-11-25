@@ -1,22 +1,16 @@
 import { React, useEffect, useState } from 'react';
 
-function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighlight, pushRename, pushDisplayLabels}) {
+function Labels({ allAnnotations, currentImgID, pushIdToDelete, pushIdToHighlight, pushRename, pushDisplayLabels}) {
 
   const [rename, setRename] = useState({id: -1, name: ''});
-  const [displayLabels, setDisplayLabels]= useState(true)
 
   return (
     <div className='labels'>
       <div className= 'title-btn'>
         <p className='title'>Labels</p>
-        {/* <button className= 'close-labels-btn' onClick={() => {
-          pushDisplayLabels(false)}
-        }
-        >x</button> */}
       </div>
-      {/* <hr className='title-hr'></hr> */}
-      {annotationLabels.length > 0 &&
-        annotationLabels.map((record) => {
+      {allAnnotations.length > 0 &&
+        allAnnotations.map((record) => {
           if (record.annotations.length > 0) {
             return (
               record.annotations.map((annotation) => {
@@ -26,7 +20,7 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                     <div onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
                       className='display-label'>{annotation.data.id !== rename.id && 
                       <div className='label-desc'>
-                        <span className='text'>{annotation.data.text==='' ? 'annotation' :annotation.data.text}</span>
+                        <span className={annotation.data.text==='' ? 'empty-text':'text'}>{annotation.data.text==='' ? '[annotation]' :annotation.data.text}</span>
                         <div className='id-type-div'>
                           <span className='id'>id: {annotation.data.id + 1}, type </span>
                           <span className='type'>: {annotation.geometry.type}</span>
@@ -77,36 +71,6 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
           }
         })
       }
-
-      {/* <div className='display-labels'>
-        <label for="touch"><span>person</span></label>
-        <input type="checkbox" id="touch" />
-        <ul class="slide">
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-        </ul>
-
-        <label for="touch2"><span>dog</span></label>
-        <input type="checkbox" id="touch2" />
-        <ul class="slide">
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-        </ul>
-
-        <label for="touch3"><span>tree</span></label>
-        <input type="checkbox" id="touch3" />
-        <ul class="slide">
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-          <li><a href="#">Lorem Ipsum</a></li>
-        </ul>
-    </div> */}
-
     </div>
   )
 }

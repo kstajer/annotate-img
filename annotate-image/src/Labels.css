@@ -43,6 +43,15 @@
   margin-top: 5px;
 }
 
+.empty-text{
+  margin-left: 5px;
+  margin-right: auto;
+  margin-top: 6px;
+  margin-bottom: 3px;
+  color: rgb(85, 85, 85);
+  font-size: 13px;
+}
+
 .id{
   margin-left: 6px;
   color: rgb(85, 85, 85);
