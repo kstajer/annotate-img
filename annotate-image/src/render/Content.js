@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import '../App.css'
+import '../css/App.css'
 
 const Container = styled.div`
   background: rgba(0, 0, 0, 0.5);

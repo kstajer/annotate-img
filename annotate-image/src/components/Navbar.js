@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Popup from 'reactjs-popup';
-import cocoIcon from './coco-upload-icon.png'
+import cocoIcon from '../coco-upload-icon.png'
 
 function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
 

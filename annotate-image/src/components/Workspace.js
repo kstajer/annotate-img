@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import AnnotateImage from "./AnnotateImage.js";
 import Labels from "./Labels.js";
-import { download } from './download.js';
+import { download } from '../download.js';
 
 
 function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadForm, displayLabels, inputCoco}) {

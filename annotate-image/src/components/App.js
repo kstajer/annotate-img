@@ -1,4 +1,4 @@
-import './App.css';
+import '../css/App.css';
 import { useState, useEffect } from 'react'
 import {
   BrowserRouter,
@@ -12,11 +12,11 @@ import Footer from './Footer.js'
 import Workspace from './Workspace.js'
 import Navbar from './Navbar'
 
-import './Toolbar.css'
-import './Labels.css'
-import './Footer.css'
-import './Workspace.css'
-import './Navbar.css'
+import '../css/Toolbar.css'
+import '../css/Labels.css'
+import '../css/Footer.css'
+import '../css/Workspace.css'
+import '../css/Navbar.css'
 
 function App() {
 

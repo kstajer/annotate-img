@@ -1,17 +1,17 @@
 import { React, useState, useEffect } from 'react'
 import Annotation from "react-image-annotation";
-import Content from './render/Content';
+import Content from '../render/Content';
 
-import Rectangle from './selectors/Rectangle.js';
-import Oval from './selectors/Oval.js';
-import Point from './selectors/Point.js';
+import Rectangle from '../selectors/Rectangle.js';
+import Oval from '../selectors/Oval.js';
+import Point from '../selectors/Point.js';
 
 import {
     RectangleSelector,
     OvalSelector,
     PointSelector
 } from 'react-image-annotation/lib/selectors'
-import { upload } from './upload';
+import { upload } from '../upload';
 
 
 function AnnotateImage(props) {
