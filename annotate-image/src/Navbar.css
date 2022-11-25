@@ -14,7 +14,7 @@
     border: none;
     margin: 0;
     padding: 0px;
-    float: right;
+    /* float: right; */
     width: 150px;
     height: 30px;
     text-align: center;
@@ -31,10 +31,82 @@
     background-color: rgb(78, 78, 78) !important;
 }
 
+#upload-coco-label{
+    display: block;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0px;
+    float: right;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 190%;
+    border-radius: 5px;
+    /* background-color: rgb(206, 206, 206) !important; */
+    border: 1px solid lightgrey !important;
+    color: lightgray;
+    cursor: pointer;
+}
+
+#upload-coco-label-disabled{
+    display: block;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0px;
+    float: right;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 190%;
+    border-radius: 5px;
+    /* background-color: rgb(206, 206, 206) !important; */
+    border: 1px solid rgb(67, 67, 67) !important;
+    color: rgb(67, 67, 67);
+    cursor: not-allowed;
+}
+
+#upload-coco-label:hover{
+    background-color: rgb(78, 78, 78) !important;
+}
+
 .upload-div {
     margin-top: 1px;
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
+}
+.upload-coco-div{
+    margin-top: 1px;
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.coco-icon{
+    filter: brightness(0) invert(0.85);
+    width: 18px;
+    height: 22px;
+    margin-right: 6px;
+}
+
+
+.coco-icon-disabled{
+    filter: brightness(0) invert(0.3);
+    width: 18px;
+    height: 22px;
+    margin-right: 6px;
+}
+
+.upload-coco-text{
+    margin-top: 2px;
+}
+
+.upload-text-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar button {

@@ -26,7 +26,7 @@ function Labels({ annotationLabels, currentImgID, pushIdToDelete, pushIdToHighli
                     <div onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
                       className='display-label'>{annotation.data.id !== rename.id && 
                       <div className='label-desc'>
-                        <span className='text'>{annotation.data.text}</span>
+                        <span className='text'>{annotation.data.text==='' ? 'annotation' :annotation.data.text}</span>
                         <div className='id-type-div'>
                           <span className='id'>id: {annotation.data.id + 1}, type </span>
                           <span className='type'>: {annotation.geometry.type}</span>

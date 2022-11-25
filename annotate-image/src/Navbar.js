@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Popup from 'reactjs-popup';
+import cocoIcon from './coco-upload-icon.png'
 
 function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
 
@@ -9,6 +10,7 @@ function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
   const [datasetName, setDatasetName] = useState();
   const [contributorName, setContributorName] = useState();
   const [versionName, setVersionName] = useState();
+  const [disableUpload, setDisableUpload] = useState(true);
 
   useEffect(() => {
     if (selectedFiles) {
@@ -19,6 +21,9 @@ function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
   useEffect(() => {
     getImgNames(imgNames)
     console.log(imgNames)
+    if(imgNames.length > 0){
+      setDisableUpload(false)
+    }
   }, [imgNames]);
 
   const [inputCoco, setInputCoco] = useState("");
@@ -84,11 +89,12 @@ function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
         <input type='file' accept="image/png, image/jpg, image/jpeg" id='upload-btn' name='file' multiple onChange={handleFileChange}></input>
       </div>
 
-      <div >
-        <label htmlFor="coco-btn" >Upload COCO</label>
-        <input type='file' id='coco-btn' name='coco-btn' onChange={handleCocoChange}></input>
-
+      <div className='upload-coco-div'>
+        <label htmlFor="coco-btn" className="custom-file-upload" 
+        id={disableUpload ? 'upload-coco-label-disabled' : 'upload-coco-label'}><div className='upload-text-icon'><img src={cocoIcon} className={disableUpload ? 'coco-icon-disabled' : 'coco-icon'}/><div className='upload-coco-text'>Upload COCO</div></div></label>
+        <input disabled= {disableUpload} type='file' id='coco-btn' name='coco-btn' onChange={handleCocoChange}></input>
       </div>
+
       <Popup className='download-pop' trigger={<button className='download-btn' ><i className='fas fa-download' style={{color: 'rgb(37,37,37)', fontSize: '18px', marginTop: '3px', marginLeft: '-10px', marginRight: '8px'}}></i>Download</button>} modal>
         {close => (
         <div className='popup-download'>
