@@ -8,7 +8,7 @@
     margin-right: 5px;
     width: 80%;
     height: 100%;
-    background-image: url('./background-annotate.jpeg');
+    background-image: url('../background-annotate.jpeg');
     display: flex;
     justify-content: center; 
     align-items: center;

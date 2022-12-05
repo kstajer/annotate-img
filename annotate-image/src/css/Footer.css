@@ -38,7 +38,9 @@
     margin: 0;
 
     height: 30px;
-    width: 120px;
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
     text-align: center;
     line-height: 30px;
     font-size: 14px;
@@ -47,3 +49,9 @@
     color: rgb(243, 243, 243);
     background-color: inherit;
 }
+
+/* .img-name{
+    width:fit-content !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+} */
