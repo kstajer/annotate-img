@@ -1,5 +1,5 @@
-// const fsExtra = require('fs-extra')
-// fsExtra.emptyDirSync('../annotate-image/src/components/images/')
+const fsExtra = require('fs-extra')
+fsExtra.emptyDirSync('../annotate-image/src/components/images/')
 
 const express = require('express')
 const app = express()

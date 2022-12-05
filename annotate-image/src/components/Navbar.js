@@ -61,7 +61,9 @@ function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
       body: data,
 
     })
-    if (response) console.log(response.statusText)
+    if (response) {
+      console.log(response.statusText)
+    }
   }
 
   const handleFileChange = (event) => {

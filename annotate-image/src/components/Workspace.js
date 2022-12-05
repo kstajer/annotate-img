@@ -3,13 +3,13 @@ import { useState, useEffect, useRef } from 'react';
 import AnnotateImage from "./AnnotateImage.js";
 import Labels from "./Labels.js";
 import { download } from '../download.js';
+import { callbackify } from 'util';
 
 
 function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadForm, displayLabels, inputCoco}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
   const [currentImgName, setCurrentImgName] = useState(null);
-  var imgSlide = 1;
 
   const [imgDimensions, setImgDimensions] = useState({});
 
@@ -26,6 +26,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const [annotationsCategories, setAnnotationsCategories] = useState([]);
 
   const [disLabels, setDisLabels]= useState(true)
+  
 
   const pullIdToDelete = (id) => {
     setIdToDelete(id);
@@ -48,22 +49,33 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
     setDisLabels(data)
   }
 
-  useEffect(() => {
-    console.log(allAnnotations)
-    if(allAnnotations.length > 0){
-    if(allAnnotations[currentImgID].annotations.length > 0){
-      setDisLabels(true)
-    }
-  }
-    // resizeContainer()
-  }, [allAnnotations]);
+  // useEffect(() => {
+  //   console.log(allAnnotations)
+  //   if(allAnnotations.length > 0){
+  //   if(allAnnotations[currentImgID].annotations.length > 0){
+  //     setDisLabels(true)
+  //   }
+  // }
+  //   // resizeContainer()
+  // }, [allAnnotations]);
 
   useEffect(() => {
     setDisLabels(!disLabels)
     // resizeContainer()
   }, [displayLabels]);
 
+  useEffect(() => {
+    // const timer = setTimeout(() => {
+    resizeContainer()
+    // }, 1000)
+
+  }, [disLabels]);
   // scale & resize image
+
+  // useEffect(() => {
+  //   setWorkspaceHeight(workspaceRef.current.clientHeight)
+  //   setWorkspaceWidth(workspaceRef.current.clientWidth)
+  // }, [workspaceRef.current.clientHeight, workspaceRef.current.clientWidth]);
 
   function resizeContainer() {
     var workspaceHeight = workspaceRef.current.clientHeight;
@@ -71,23 +83,29 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
 
     if ((workspaceHeight / workspaceWidth) < (imgDimensions.height / imgDimensions.width)) {
       setOffsetHeight(workspaceHeight + 'px');
-      var scale = workspaceHeight / imgDimensions.height
-      setOffsetWidth((imgDimensions.width * scale) + 'px');
+      // var scale = workspaceHeight / imgDimensions.height
+      setOffsetWidth((imgDimensions.width * (workspaceHeight / imgDimensions.height)-100) + 'px');
+      console.log('case1')
     }
     else if ((workspaceHeight / workspaceWidth) > (imgDimensions.height / imgDimensions.width)) {
       setOffsetWidth(workspaceWidth + 'px');
-      var scale = workspaceWidth / imgDimensions.width
-      setOffsetHeight((imgDimensions.height * scale) + 'px');
+      // var scale = workspaceWidth / imgDimensions.width
+      setOffsetHeight((imgDimensions.height * (workspaceWidth / imgDimensions.width)) + 'px');
+      console.log('case2')
     }
     else if ((workspaceHeight / workspaceWidth) == (imgDimensions.height / imgDimensions.width)) {
       setOffsetWidth('100%');
       setOffsetHeight('100%');
+      console.log('case3')
     }
+    console.log('workspaceWidth: ' + workspaceWidth);
+
+    console.log('offsetWidth: ' + offsetWidth);
+    console.log('_______')
   }
 
   useEffect(() => {
     window.addEventListener('resize', resizeContainer)
-
     return _ => {
       window.removeEventListener('resize', resizeContainer)
     }
@@ -118,14 +136,19 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const onImgLoad = ({ target: img }) => {
     const { naturalWidth, naturalHeight } = img;
     setImgDimensions({height: naturalHeight, width: naturalWidth})
+
+    const timer = setTimeout(() => {
+      resizeContainer()
+    }, 1000)
   };
 
   // change image
   useEffect(() => {
-    if (imgSlide === 1) {
+    if(currentImgID === -1){
+    const timer = setTimeout(() => {
       nextImg()
-      imgSlide += 1
-    }
+    }, 1000)
+  }
   }, [imgNames]);
 
   const nextImg = () => {
@@ -154,7 +177,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
       pushDisplayLabels={pullDisplayLabels}
     />
       }
-    <div className='workspace'  style={{width: disLabels ? '80%' : '100%'}}>
+    <div className='workspace'  style={{width: disLabels ? 'calc(80% - 18px)' : '100%'}}>
       <button className='previous-btn' onClick={previousImg}><i className='fas fa-chevron-left' style={{color: 'darkgrey', fontSize: '24px', marginTop: '3px', marginLeft: 'auto', marginRight: 'auto'}}></i></button>
       <div className='image-wrapper' ref={workspaceRef}>
         <div className='image-container' style={{ height: offsetHeight ? offsetHeight : '', width: offsetWidth ? offsetWidth : '' }}>
@@ -175,7 +198,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
                 imgDimensions={imgDimensions}
                 inputCoco={inputCoco}
               />
-              <img 
+                <img 
                 onLoad={onImgLoad} 
                 src={require(`${'./images/' + currentImgName}`)} 
                 style={{display: 'none'}}></img>
