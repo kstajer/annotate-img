@@ -84,7 +84,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
     if ((workspaceHeight / workspaceWidth) < (imgDimensions.height / imgDimensions.width)) {
       setOffsetHeight(workspaceHeight + 'px');
       // var scale = workspaceHeight / imgDimensions.height
-      setOffsetWidth((imgDimensions.width * (workspaceHeight / imgDimensions.height)-100) + 'px');
+      setOffsetWidth((imgDimensions.width * (workspaceHeight / imgDimensions.height)) + 'px');
       console.log('case1')
     }
     else if ((workspaceHeight / workspaceWidth) > (imgDimensions.height / imgDimensions.width)) {

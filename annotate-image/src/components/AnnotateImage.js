@@ -85,6 +85,9 @@ function AnnotateImage(props) {
         setAnnotations(allAnnotations[props.currentImgID].annotations)
     }, [props.currentImgID]);
 
+    useEffect(() => {
+        console.log(annotations)
+      }, [annotations]);
 
     useEffect(() => {
         var tempAnn = structuredClone(allAnnotations)
