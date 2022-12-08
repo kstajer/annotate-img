@@ -25,7 +25,7 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   const [clicked, setClicked] = useState();
   const [annotationsCategories, setAnnotationsCategories] = useState([]);
 
-  const [disLabels, setDisLabels]= useState(true)
+  const [disLabels, setDisLabels]= useState(false)
   
 
   const pullIdToDelete = (id) => {
@@ -137,9 +137,12 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
     const { naturalWidth, naturalHeight } = img;
     setImgDimensions({height: naturalHeight, width: naturalWidth})
 
-    const timer = setTimeout(() => {
-      resizeContainer()
-    }, 1000)
+    //HERE
+
+
+    // const timer = setTimeout(() => {
+    //   resizeContainer()
+    // }, 100)
   };
 
   // change image

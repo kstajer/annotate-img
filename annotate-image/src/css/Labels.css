@@ -127,6 +127,13 @@
   color:rgb(201, 200, 200);
   cursor: pointer;
 }
+
+.no-labels{
+  font-size: 16px;
+  color: rgb(88, 88, 88);
+  margin-top: 0px;
+  margin-left: 10px;
+}
 /* .title-hr{
   width: 80px;
   background-color: rgb(44, 44, 44);

@@ -85,6 +85,7 @@ function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
 
   return (
     <div className='navbar'>
+      <p className='navbar-title'>Annotate Images</p>
       <div className='upload-div'>
         <label htmlFor="upload-btn" className="custom-file-upload" id='upload-btn-label'>
         <i className='fas fa-upload' style={{color: 'lightgrey', fontSize: '18px', marginTop: '6px', marginLeft: '-10px', marginRight: '8px'}}></i>Upload</label>

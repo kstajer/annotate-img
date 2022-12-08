@@ -148,7 +148,7 @@ function AnnotateImage(props) {
     return (
         <Annotation
             src={props.img}
-            alt="Two pebbles anthropomorphized holding hands"
+            alt="Couldn't load file."
             annotations={annotations}
             type={props.selectorType == 'RECTANGLE' ? RectangleSelector.TYPE : (props.selectorType == 'OVAL' ? OvalSelector.TYPE : PointSelector.TYPE)}
             value={annotation}
