@@ -1,4 +1,8 @@
 export function download(allAnnotations, annotationsCategories, downloadForm) {
+    if (typeof(downloadForm) === 'undefined') {
+        return null
+    }
+
     const getCurrentDate = () => {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -93,8 +97,13 @@ export function download(allAnnotations, annotationsCategories, downloadForm) {
         )}`;
         const link = document.createElement("a");
         link.href = jsonString;
-        if (downloadForm.dataset != '') {
-            link.download = downloadForm.dataset + ".json";
+        if (typeof(downloadForm) !== 'undefined') {
+            if (downloadForm.dataset != '') {
+                link.download = downloadForm.dataset + ".json";
+            }
+            else {
+                link.download = "coco.json";
+            }
         }
         else {
             link.download = "coco.json";

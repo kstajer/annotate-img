@@ -60,7 +60,6 @@ function Navbar({ getImgNames, pullDownload, pullInputCoco }) {
     const response = await fetch('http://localhost:4000/image', {
       method: 'POST',
       body: data,
-
     })
     if (response) {
       console.log(response.statusText)
