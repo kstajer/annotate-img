@@ -1,6 +1,6 @@
-.workspace-container{
-    display:flex;
-    width:100%;
+.workspace-container {
+    display: flex;
+    width: 100%;
 }
 
 .workspace {
@@ -10,7 +10,7 @@
     height: 100%;
     background-image: url('../background-annotate.jpeg');
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     border-radius: 5px;
 }
@@ -32,12 +32,12 @@
 }
 
 .next-btn {
-    margin-right:0;
+    margin-right: 0;
     margin-left: auto;
 }
 
 .previous-btn {
-    margin-left:0;
+    margin-left: 0;
     margin-right: auto;
 }
 
@@ -49,13 +49,10 @@
     align-items: center;
     margin: 0px;
     overflow: hidden !important;
-    /* margin-left: calc( 20% + 16px); */
 }
 
 .image-container {
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
 }
 
 .image {
@@ -64,12 +61,3 @@
     object-fit: contain;
     margin: 0px;
 }
-
-/* 
-.hide {
-    position: absolute;
-    left: -9999;
-    visibility: hidden;
-    height: 0px;
-    width: 0px;
-} */

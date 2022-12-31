@@ -14,9 +14,9 @@ const Container = styled.div`
   transform: translate3d(-50%, -50%, 0);
   width: 16px;
   background-color: rgba(255,0,0,0.3);
-` 
+`
 
-function Point (props) {
+function Point(props) {
   const { geometry } = props.annotation
   if (!geometry) return null
 

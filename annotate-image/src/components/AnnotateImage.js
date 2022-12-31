@@ -1,11 +1,9 @@
 import { React, useState, useEffect } from 'react'
 import Annotation from "react-image-annotation";
 import Content from '../render/Content';
-
 import Rectangle from '../selectors/Rectangle.js';
 import Oval from '../selectors/Oval.js';
 import Point from '../selectors/Point.js';
-
 import {
     RectangleSelector,
     OvalSelector,
@@ -27,16 +25,13 @@ function AnnotateImage(props) {
     var allSelectors = { 'RECTANGLE': Rectangle, "OVAL": Oval, "POINT": Point }
 
     useEffect(() => {
-        console.log(props.inputCoco)
         var d = upload(props.inputCoco, allAnnotations)
         if (d !== null) {
             setAllAnnotations(d[0])
             setAnnotations(d[0][props.currentImgID].annotations)
             setAnnotationId(d[1] + 1)
         }
-        
     }, [props.inputCoco]);
-
 
     useEffect(() => {
         setAnnotations(annotations.filter((annotation) => annotation.data.id !== props.idToDelete))
@@ -50,33 +45,6 @@ function AnnotateImage(props) {
         findAnnotationToHiglight(annotations, props.idToHighlight)
     }, [props.labelClicked]);
 
-
-    function findAnnotationToHiglight(annotations, id) {
-        const ann = annotations.find(obj => obj.data.id === id)
-        setAnnotationToHighlight(ann)
-    }
-
-    function findAnnotationToRename(annotations, id, newName) {
-        if (id > 0) {
-            var ann = annotations.find(obj => obj.data.id === id)
-            ann['data'].text = newName
-
-            var tempAnn = []
-
-            annotations.forEach(annotation => {
-                if (annotation.data.id === id) {
-                    annotation.data.name = newName
-                }
-                tempAnn.push(annotation)
-            });
-
-            setAnnotations(tempAnn)
-            var tempAllAnn = structuredClone(allAnnotations)
-            tempAllAnn[props.currentImgID].annotations = ann
-            setAllAnnotations(tempAllAnn)
-        }
-    }
-
     useEffect(() => {
         for (let i = allAnnotations.length; i < props.imgNames.length; i++) {
             setAllAnnotations(allAnnotations => ([...allAnnotations, props.imgNames[i]]))
@@ -84,13 +52,8 @@ function AnnotateImage(props) {
     }, [props.imgNames]);
 
     useEffect(() => {
-        console.log(allAnnotations)
         setAnnotations(allAnnotations[props.currentImgID].annotations)
     }, [props.currentImgID]);
-
-    useEffect(() => {
-        console.log(annotations)
-      }, [annotations]);
 
     useEffect(() => {
         var tempAnn = structuredClone(allAnnotations)
@@ -98,16 +61,7 @@ function AnnotateImage(props) {
         setAllAnnotations(tempAnn)
         setAnnotations([])
     }, [props.clearAll]);
-
-    const onChange = (annotation) => {
-        setAnnotation(annotation);
-        if (props.selectorType === 'POINT') {
-            onSubmit(annotation)
-        }
-        setAnnotationToHighlight();
-    };
-
-
+    
     useEffect(() => {
         allAnnotations.map((image) => {
             if (image.id === props.currentImgID) {
@@ -124,6 +78,38 @@ function AnnotateImage(props) {
         props.pullAllAnnotations(allAnnotations)
     }, [annotations]);
 
+    function findAnnotationToHiglight(annotations, id) {
+        const ann = annotations.find(obj => obj.data.id === id)
+        setAnnotationToHighlight(ann)
+    }
+
+    function findAnnotationToRename(annotations, id, newName) {
+        if (id > 0) {
+            var ann = annotations.find(obj => obj.data.id === id)
+            ann['data'].text = newName
+
+            var tempAnn = []
+            annotations.forEach(annotation => {
+                if (annotation.data.id === id) {
+                    annotation.data.name = newName
+                }
+                tempAnn.push(annotation)
+            });
+
+            setAnnotations(tempAnn)
+            var tempAllAnn = structuredClone(allAnnotations)
+            tempAllAnn[props.currentImgID].annotations = ann
+            setAllAnnotations(tempAllAnn)
+        }
+    }
+
+    const onChange = (annotation) => {
+        setAnnotation(annotation);
+        if (props.selectorType === 'POINT') {
+            onSubmit(annotation)
+        }
+        setAnnotationToHighlight();
+    };
 
     const onSubmit = (annotation) => {
         const { geometry, data } = annotation;
@@ -143,9 +129,8 @@ function AnnotateImage(props) {
             setAnnotationId(annotationId + 1);
         }
         else {
-            console.log('zle oznaczenie')
+            console.log('Wrong annotation')
         }
-        
     };
 
     return (

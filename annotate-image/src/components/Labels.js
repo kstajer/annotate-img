@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 
 function Labels({ allAnnotations, currentImgID, pushIdToDelete, pushIdToHighlight, pushRename, pushDisplayLabels}) {
 
@@ -9,7 +9,6 @@ function Labels({ allAnnotations, currentImgID, pushIdToDelete, pushIdToHighligh
       <div className= 'title-btn'>
         <p className='title'>Labels</p>
       </div>
-
       {allAnnotations.length > 0 &&
         allAnnotations.map((record) => {
           if (record.annotations.length > 0) {
@@ -20,7 +19,7 @@ function Labels({ allAnnotations, currentImgID, pushIdToDelete, pushIdToHighligh
                     <div onClick={() => { pushIdToHighlight(annotation.data.id, Math.random()) }}
                       className='display-label'>{annotation.data.id !== rename.id && 
                       <div className='label-desc'>
-                        <span className={annotation.data.text==='' ? 'empty-text':'text'}>{annotation.data.text==='' ? '[annotation]' :annotation.data.text}</span>
+                        <span className={annotation.data.text === '' ? 'empty-text' : 'text'}>{annotation.data.text === '' ? '[annotation]' : annotation.data.text}</span>
                         <div className='id-type-div'>
                           <span className='id'>id: {annotation.data.id + 1}, type </span>
                           <span className='type'>: {annotation.geometry.type}</span>

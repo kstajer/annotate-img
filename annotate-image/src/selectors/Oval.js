@@ -4,13 +4,12 @@ import styled from 'styled-components'
 const Container = styled.div`
   border: 2px solid rgb(160,0,0);
   border-radius: 100%;
-  // box-shadow: 0px 0px 1px 1px white inset;
   box-sizing: border-box;
   transition: background-color 0.21s ease-in-out;
   background-color: rgba(255, 0, 0, 0.2);
 `
 
-function Oval (props) {
+function Oval(props) {
   const { geometry } = props.annotation
   if (!geometry) return null
 

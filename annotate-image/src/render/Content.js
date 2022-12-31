@@ -10,7 +10,7 @@ const Container = styled.div`
   margin-left: 2px;
 `
 
-function Content (props) {
+function Content(props) {
   const { geometry } = props.annotation
   if (!geometry) return null
 
@@ -25,7 +25,7 @@ function Content (props) {
       className={props.className}
       geometry={geometry}
     >
-      {props.annotation.data && <>{props.annotation.data.text} <span style={{color: 'darkgrey', fontSize: '13px'}}>({props.annotation.data.id + 1})</span></> }
+      {props.annotation.data && <>{props.annotation.data.text} <span style={{ color: 'darkgrey', fontSize: '13px' }}>({props.annotation.data.id + 1})</span></>}
     </Container>
   )
 }

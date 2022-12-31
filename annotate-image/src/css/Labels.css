@@ -1,49 +1,44 @@
 .labels {
   width: 20%;
   height: 100%;
-  margin-left:5px;
-  /* margin-top: 5px;
-  margin-bottom: 35px; */
+  margin-left: 5px;
   background-color: rgb(37, 37, 37);
   overflow: scroll;
   border-radius: 5px;
   min-width: 250px;
 }
 
-.display-label{
+.display-label {
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
-
   padding: 0;
   margin: 0;
-  height:50px;
-  width:95%;
-  margin-bottom:6px;
+  height: 50px;
+  width: 95%;
+  margin-bottom: 6px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
   background-color: rgb(205, 205, 205);
   text-align: center;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.display-label:hover{
+.display-label:hover {
   background-color: rgb(180, 180, 180);
 }
 
-.label-desc{
+.label-desc {
   display: flex;
   flex-direction: column;
 }
 
-.text{
+.text {
   margin-left: 5px;
   margin-right: auto;
   margin-top: 5px;
 }
 
-.empty-text{
+.empty-text {
   margin-left: 5px;
   margin-right: auto;
   margin-top: 6px;
@@ -52,28 +47,28 @@
   font-size: 13px;
 }
 
-.id{
+.id {
   margin-left: 6px;
   color: rgb(85, 85, 85);
 }
 
-.id-type-div{
+.id-type-div {
   margin-top: 1px;
-  display:flex;
+  display: flex;
   font-size: 13px;
   color: rgb(85, 85, 85);
 }
 
-.labels-side-buttons{
+.labels-side-buttons {
   display: flex;
   align-items: center;
   margin-left: auto;
   margin-right: 5px;
-  margin-top:auto;
-  margin-bottom:auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.labels-btn{
+.labels-btn {
   all: unset;
   width: 30px;
   height: 30px;
@@ -83,148 +78,52 @@
   line-height: 30px;
 }
 
-.save-rename-btn{
-  margin-left:auto;
+.save-rename-btn {
+  margin-left: auto;
 }
 
-.labels-btn:hover{
+.labels-btn:hover {
   background-color: rgb(105, 105, 105);
 }
 
-.rename-input{
+.rename-input {
   -webkit-appearance: none;
-  outline:none;
-  border:none;
+  outline: none;
+  border: none;
   box-shadow: none;
   background-color: rgb(205, 205, 205);
   width: 70%;
   height: 30px;
-  font-size:16.5px;
+  font-size: 16.5px;
   margin-left: -20px;
   margin-right: auto;
 
 }
 
-.title{
-  color:rgb(201, 200, 200);
+.title {
+  color: rgb(201, 200, 200);
   font-size: 20px;
   margin-left: 10px;
   margin-bottom: 10px;
 }
 
-.title-btn{
+.title-btn {
   display: flex;
   justify-content: space-between;
- /* align-items: center; */
 }
 
-.close-labels-btn{
+.close-labels-btn {
   all: unset;
-
   width: 45px;
   height: 30px;
   font-size: 13px;
-  color:rgb(201, 200, 200);
+  color: rgb(201, 200, 200);
   cursor: pointer;
 }
 
-.no-labels{
+.no-labels {
   font-size: 16px;
   color: rgb(88, 88, 88);
   margin-top: 0px;
   margin-left: 10px;
 }
-/* .title-hr{
-  width: 80px;
-  background-color: rgb(44, 44, 44);
-  margin-left: 10px;
-  margin-right: auto;
-  margin-top: -5px;
-  border: 1px solid rgb(95, 95, 95)
-} */
-
-/* /* .display-labels {
-  margin: 10px;
-  height: 90%;
-  margin-bottom: 10px;
-  background-color: rgb(247, 247, 247);
-}
-
-.labels p {
-  padding: 0;
-  margin: 0;
-  margin-left: 10px;
-  margin-top: 10px;
-
-  color: white;
-  font-size: 25px;
-
-}
-
-li a {
-  text-decoration: none;
-  color: #2d2f31;
-}
-
-.labels span {
-  padding: 15px;
-  background: #2d2f31;
-  color: white;
-  font-size: 1.2em;
-  font-variant: small-caps;
-  cursor: pointer;
-  display: block;
-}
-
-.labels span::after {
-  float: right;
-  right: 10%;
-  content: "v";
-}
-
-.slide {
-  margin-top: -50px;
-  clear: both;
-  width: 100%;
-  max-height: 0px;
-  overflow: hidden;
-  text-align: center;
-  transition: max-height 0.4s; 
-  -webkit-transition: max-height 1s ease;
-  -moz-transition: max-height 1s ease;
-  transition: max-height 1s ease;
-}
-
-.slide li {
-  padding: 10px;
-}
-
-#touch {
-  position: relative;
-  opacity: 0;
-  max-height: 1000px;
-}
-
-#touch:checked+.slide {
-  max-height: 500px;
-}
-
-#touch2 {
-  position: relative;
-  opacity: 0;
-  height: 0px;
-}
-
-#touch2:checked+.slide {
-  height: 300px;
-}
-
-#touch3 {
-  position: relative;
-  opacity: 0;
-  height: 0px;
-}
-
-#touch3:checked+.slide {
-  height: 300px;
-}  */

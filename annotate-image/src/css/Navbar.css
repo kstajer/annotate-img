@@ -8,7 +8,7 @@
     box-shadow: 0 2px 10px -10px rgb(194, 194, 194);
 }
 
-.navbar-title{
+.navbar-title {
     margin-left: 10px;
     color: white;
     font-size: 17px;
@@ -20,24 +20,22 @@
     border: none;
     margin: 0;
     padding: 0px;
-    /* float: right; */
     width: 150px;
     height: 30px;
     text-align: center;
     font-size: 15px;
     line-height: 190%;
     border-radius: 5px;
-    /* background-color: rgb(206, 206, 206) !important; */
     border: 1px solid lightgrey !important;
     color: lightgray;
     cursor: pointer;
 }
 
-#upload-btn-label:hover{
+#upload-btn-label:hover {
     background-color: rgb(78, 78, 78) !important;
 }
 
-#upload-coco-label{
+#upload-coco-label {
     display: block;
     outline: none;
     border: none;
@@ -50,13 +48,12 @@
     font-size: 15px;
     line-height: 190%;
     border-radius: 5px;
-    /* background-color: rgb(206, 206, 206) !important; */
     border: 1px solid lightgrey !important;
     color: lightgray;
     cursor: pointer;
 }
 
-#upload-coco-label-disabled{
+#upload-coco-label-disabled {
     display: block;
     outline: none;
     border: none;
@@ -69,13 +66,12 @@
     font-size: 15px;
     line-height: 190%;
     border-radius: 5px;
-    /* background-color: rgb(206, 206, 206) !important; */
     border: 1px solid rgb(67, 67, 67) !important;
     color: rgb(67, 67, 67);
     cursor: not-allowed;
 }
 
-#upload-coco-label:hover{
+#upload-coco-label:hover {
     background-color: rgb(78, 78, 78) !important;
 }
 
@@ -85,31 +81,31 @@
     margin-right: 0;
 }
 
-.upload-coco-div{
+.upload-coco-div {
     margin-top: 1px;
     margin-left: 10px;
     margin-right: 0px;
 }
 
-.coco-icon{
+.coco-icon {
     filter: brightness(0) invert(0.85);
     width: 18px;
     height: 22px;
     margin-right: 6px;
 }
 
-.coco-icon-disabled{
+.coco-icon-disabled {
     filter: brightness(0) invert(0.3);
     width: 18px;
     height: 22px;
     margin-right: 6px;
 }
 
-.upload-coco-text{
+.upload-coco-text {
     margin-top: 2px;
 }
 
-.upload-text-icon{
+.upload-text-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,13 +129,13 @@
 }
 
 .download-btn {
-    margin-top:1px;
+    margin-top: 1px;
     background-color: rgb(211, 211, 211) !important;
     width: 150px !important;
     border: 1px solid rgb(197, 197, 197) !important;
 }
 
-.download-btn:hover{
+.download-btn:hover {
     background-color: rgb(134, 134, 134) !important;
     border: 1px solid rgb(124, 124, 124) !important;
 
@@ -152,31 +148,31 @@ input[type="file"] {
 .download-pop-content {
     padding: 20px;
     width: 350px;
-} 
+}
 
 .popup-download {
     display: flex;
     flex-direction: column;
 }
 
-.submit-download{
+.submit-download {
     all: unset;
-    margin:  auto;
-    margin-top:15px;
+    margin: auto;
+    margin-top: 15px;
     padding: 2px;
     width: 150px;
     height: 35px;
-    background-color: rgba(150,150,150, 0.8);
+    background-color: rgba(150, 150, 150, 0.8);
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.submit-download:hover{
-    background-color: rgba(120,120,120, 0.8);
+.submit-download:hover {
+    background-color: rgba(120, 120, 120, 0.8);
 }
 
-.form-input{
+.form-input {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
@@ -189,7 +185,7 @@ input[type="file"] {
         margin-right: auto;
     }
 
-    .upload-coco-div{
+    .upload-coco-div {
         margin-right: 0px;
     }
 }
