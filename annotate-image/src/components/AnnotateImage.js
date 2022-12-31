@@ -27,12 +27,14 @@ function AnnotateImage(props) {
     var allSelectors = { 'RECTANGLE': Rectangle, "OVAL": Oval, "POINT": Point }
 
     useEffect(() => {
+        console.log(props.inputCoco)
         var d = upload(props.inputCoco, allAnnotations)
         if (d !== null) {
             setAllAnnotations(d[0])
             setAnnotations(d[0][props.currentImgID].annotations)
             setAnnotationId(d[1] + 1)
         }
+        
     }, [props.inputCoco]);
 
 
@@ -82,6 +84,7 @@ function AnnotateImage(props) {
     }, [props.imgNames]);
 
     useEffect(() => {
+        console.log(allAnnotations)
         setAnnotations(allAnnotations[props.currentImgID].annotations)
     }, [props.currentImgID]);
 

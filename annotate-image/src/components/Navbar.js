@@ -30,14 +30,21 @@ function Navbar({ getImgNames, pullDownload, pullInputCoco}) {
 
   const handleCocoChange = e => {
     const fileReader = new FileReader();
-    fileReader.readAsText(e.target.files[0], "UTF-8");
-    fileReader.onload = e => {
-      // console.log("e.target.result", e.target.result);
-      setInputCoco(e.target.result);
-    };
+    console.log(e.target.files[0].name.split('.')[1])
+    if (e.target.files[0].name.split('.')[1] == 'json') {
+      fileReader.readAsText(e.target.files[0], "UTF-8");
+      fileReader.onload = e => {
+        setInputCoco(e.target.result);
+      };
+    }
+    else {
+      console.log("File: " + e.target.files[0].name + " has forbidden extension.")
+    }
   };
 
   useEffect(() => {
+    console.log('zmiana coco')
+    console.log(inputCoco)
     pullInputCoco(inputCoco)
   }, [inputCoco]);
 

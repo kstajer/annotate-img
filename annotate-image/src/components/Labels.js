@@ -4,21 +4,11 @@ function Labels({ allAnnotations, currentImgID, pushIdToDelete, pushIdToHighligh
 
   const [rename, setRename] = useState({id: -1, name: ''});
 
-  console.log('wszystko: ' + allAnnotations)
-
   return (
     <div className='labels'>
       <div className= 'title-btn'>
         <p className='title'>Labels</p>
       </div>
-
-      {allAnnotations.length === 0  &&
-          <div className='no-labels'>No labels yet</div>
-      }
-
-      {allAnnotations.length > 0 && allAnnotations[currentImgID].annotations.length === 0 &&
-          <div className='no-labels'>No labels yet</div>
-      }
 
       {allAnnotations.length > 0 &&
         allAnnotations.map((record) => {

@@ -6,6 +6,7 @@ import { download } from '../download.js';
 import { callbackify } from 'util';
 
 
+
 function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clearAll, selectorType, downloadForm, displayLabels, inputCoco}) {
 
   const [currentImgID, setCurrentImgID] = useState(-1);
@@ -111,9 +112,9 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
     }
   });
 
-  // useEffect(() => {
-  //   console.log(download(annotationLabels, annotationsCategories, downloadForm))
-  // }, [downloadForm]);
+  useEffect(() => {
+    console.log(download(allAnnotations, annotationsCategories, downloadForm))
+  }, [downloadForm]);
 
   useEffect(() => {
     resizeContainer()
@@ -154,7 +155,19 @@ function Workspace({ imgNames, annName, getImgDimensions, getCurrentImgID, clear
   }
   }, [imgNames]);
 
-  const nextImg = () => {
+  // useEffect(() => {
+  //   if(currentImgID === -1){
+  //   const timer = setTimeout(() => {
+  //     nextImg()
+  //   }, 1000)
+  // }
+  // }, [allAnnotations]);
+
+  const nextImg = () => {    
+    if (allAnnotations !== imgNames && allAnnotations.length > 0) {
+      imgNames = allAnnotations
+    }
+
     if (currentImgID < imgNames.length - 1) {
       setCurrentImgID(currentImgID + 1)
       setCurrentImgName(imgNames[currentImgID + 1].name)
